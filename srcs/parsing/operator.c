@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-char *check_redirecion(shell_t *new, int *i)
+char *check_redirection(shell_t *new, int *i)
 {
 	char *str = NULL;
 
@@ -20,11 +20,14 @@ char *check_redirecion(shell_t *new, int *i)
 	|| new->priority[*i + 1] == TWO_RIGHT
 	|| new->priority[*i + 1] == ONE_LEFT
 	|| new->priority[*i + 1] == TWO_LEFT)
-		str = *new->different_command[1];
+		if (*new->different_command[1] != NULL)
+			str = *new->different_command[1];
+	// if (str != NULL && (new->priority[*i + 1] == ONE_RIGHT
+	// || new->priority[*i + 1] == TWO_RIGHT)
 	return (str);
 }
 
-int skip_redirecion(shell_t *new, int *i)
+int skip_redirection(shell_t *new, int *i)
 {
 	if (new->priority[*i] == ONE_RIGHT
 	|| new->priority[*i] == TWO_RIGHT
@@ -43,7 +46,8 @@ int operator_tow_left(shell_t *new, int i, char *path)
 
 	if (new->priority[i + 1] == ONE_LEFT) {
 		fd = open(path, O_RDONLY);
-		dup2(fd, 0);
+		if (fd != -1)
+			dup2(fd, 0);
 	}
 	if (new->priority[i + 1] == TWO_LEFT) {
 		while (my_strcmp(buffer, path) != 0) {
@@ -60,16 +64,17 @@ int operator_pipe_redirect_file(shell_t *new, int i, int *pipe, char *path)
 {
 	int fd = 0;
 
-	if (new->priority[i + 1] != SEMICOLON
-	&& new->priority[i + 1] == PIPE)
+	if (new->priority[i + 1] == PIPE)
 		dup2(pipe[1], 1);
 	else if (new->priority[i + 1] == ONE_RIGHT) {
 		fd = open(path, O_WRONLY | O_CREAT, 0666);
-		dup2(fd, 1);
+		if (fd != -1)
+			dup2(fd, 1);
 	}
 	else if (new->priority[i + 1] == TWO_RIGHT) {
 		fd = open(path, O_WRONLY | O_APPEND | O_CREAT, 0666);
-		dup2(fd, 1);
+		if (fd != -1)
+			dup2(fd, 1);
 	}
 	operator_tow_left(new, i, path);
 	return (0);

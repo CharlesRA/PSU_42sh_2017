@@ -9,7 +9,7 @@
 #include "shell.h"
 #include "define.h"
 #include "str.h"
-#include "bultin.h"
+#include "builtins.h"
 
 char **change_pwd(char **envp)
 {

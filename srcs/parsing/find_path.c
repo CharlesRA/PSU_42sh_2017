@@ -6,7 +6,7 @@
 */
 
 #include "shell.h"
-#include "bultin.h"
+#include "builtins.h"
 #include "str.h"
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -17,20 +17,21 @@ char *get_the_command(shell_t *new)
 {
 	char *command = NULL;
 	size_t size = 0;
+	char **array;
 
 	if (getline(&command, &size, stdin) == -1)
 		exit(new->return_value);
 	if ((size = my_strlen(command)) == 1)
 		return (NULL);
-	new->array = my_str_to_word_array(command, ' ');
-	if (new->array == NULL
+	array = my_str_to_word_array(command, ' ');
+	if (array == NULL
 	|| priority_array(command, new) == 84
 	|| error_operator(new->priority) == 1
-	|| non_sence_command(new->array[0]) == 1) {
+	|| non_sence_command(array[0]) == 1) {
 		new->return_value = 1;
 		return (NULL);
 	}
-	new->different_command = array_command(new->array);
+	new->different_command = array_command(array);
 	return (command);
 }
 
@@ -38,8 +39,8 @@ char *choose_command(shell_t *new, int *i, char **envp)
 {
 	char *command = NULL;
 
-	new->path = check_redirecion(new, i);
-	if (skip_redirecion(new, i) == 1)
+	new->path = check_redirection(new, i);
+	if (skip_redirection(new, i) == 1)
 		return (NULL);
 	command = path_to_binaries(envp, new, *(new->different_command)[0]);
 	if (command == NULL) {

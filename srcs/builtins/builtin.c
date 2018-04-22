@@ -6,7 +6,7 @@
 */
 
 #include "shell.h"
-#include "bultin.h"
+#include "builtins.h"
 #include "str.h"
 
 int check_builtin(shell_t *new, char *command)

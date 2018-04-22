@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "shell.h"
-#include "bultin.h"
+#include "builtins.h"
 
 int get_index(int i, int change)
 {

@@ -10,6 +10,8 @@
 int string_is_operator(char *command)
 {
 	if (my_strcmp(command, "|") == 0
+	|| my_strcmp(command, "||") == 0
+	|| my_strcmp(command, "&&") == 0
 	|| my_strcmp(command, ";") == 0
 	|| my_strcmp(command, "<") == 0
 	|| my_strcmp(command, "<<") == 0

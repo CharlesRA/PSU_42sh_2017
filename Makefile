@@ -19,20 +19,27 @@ UT_DIR	=	./tests
 
 LIB_DIR	=	./lib/my
 
+BUILTINS=	./srcs/builtins
+
+PARSING=	./srcs/parsing
+
+ERRORS=		./srcs/errors
+
 EXE	=	$(SRC_DIR)/main.c\
-		$(SRC_DIR)/find_path.c\
-		$(SRC_DIR)/error.c\
-		$(SRC_DIR)/cd.c\
-		$(SRC_DIR)/builtin.c\
-		$(SRC_DIR)/env.c\
 		$(SRC_DIR)/loop.c\
-		$(SRC_DIR)/setenv.c\
 		$(SRC_DIR)/utils.c\
-		$(SRC_DIR)/unsetenv.c\
-		$(SRC_DIR)/operator.c\
-		$(SRC_DIR)/error_message.c\
-		$(SRC_DIR)/command_and_priority.c\
-		$(SRC_DIR)/differents_type_command.c\
+		$(ERRORS)/error.c\
+		$(ERRORS)/error_message.c\
+		$(BUILTINS)/cd.c\
+		$(BUILTINS)/setenv.c\
+		$(BUILTINS)/unsetenv.c\
+		$(BUILTINS)/builtin.c\
+		$(BUILTINS)/env.c\
+		$(PARSING)/operator.c\
+		$(PARSING)/command_and_priority.c\
+		$(PARSING)/differents_type_command.c\
+		$(PARSING)/find_path.c\
+
 
 OBJ	=	$(EXE:.c=.o)
 
@@ -42,21 +49,22 @@ UT 	= 	$(UT_DIR)/ut_error.c\
 		$(UT_DIR)/ut_setenv.c\
 		$(UT_DIR)/ut_path.c\
 
-
-
-UT2	=	$(SRC_DIR)/find_path.c\
-		$(SRC_DIR)/error.c\
-		$(SRC_DIR)/cd.c\
-		$(SRC_DIR)/builtin.c\
-		$(SRC_DIR)/env.c\
+UT2	=	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/loop.c\
-		$(SRC_DIR)/setenv.c\
 		$(SRC_DIR)/utils.c\
-		$(SRC_DIR)/unsetenv.c\
-		$(SRC_DIR)/operator.c\
-		$(SRC_DIR)/error_message.c\
-		$(SRC_DIR)/command_and_priority.c\
-		$(SRC_DIR)/differents_type_command.c\
+		$(ERRORS)/error.c\
+		$(ERRORS)/error_message.c\
+		$(BUILTINS)/cd.c\
+		$(BUILTINS)/setenv.c\
+		$(BUILTINS)/unsetenv.c\
+		$(BUILTINS)/builtin.c\
+		$(BUILTINS)/env.c\
+		$(BUILTINS)/alias.c\
+		$(BUILTINS)/echo.c\
+		$(PARSING)/operator.c\
+		$(PARSING)/command_and_priority.c\
+		$(PARSING)/differents_type_command.c\
+		$(PARSING)/find_path.c\
 
 RM	=	rm -f
 

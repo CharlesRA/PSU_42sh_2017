@@ -8,7 +8,7 @@
 #include "shell.h"
 #include "str.h"
 #include <sys/wait.h>
-#include "bultin.h"
+#include "builtins.h"
 
 void wait_process(int *nbr, shell_t *new, char ***skip)
 {
@@ -42,6 +42,7 @@ int operator(char c)
 {
 	if (c == ';'
 	|| c == '|'
+	|| c == '&'
 	|| c == '<'
 	|| c == '>')
 		return (1);
@@ -51,7 +52,9 @@ int operator(char c)
 int char_is_an_operator(char const *str, int *i, int mod)
 {
 	if ((str[*i] == ';'
-	|| str[*i] == '|'
+	|| (str[*i] == '&' && str[*i + 1] == '&')
+	|| (str[*i] == '|' && str[*i + 1] == '|')
+	|| (str[*i] == '|' && str[*i + 1] != '|')
 	|| (str[*i] == '<' && str[*i + 1] == '<')
 	|| (str[*i] == '>' && str[*i + 1] == '>')
 	|| (str[*i] == '<' && str[*i + 1] != '<')
