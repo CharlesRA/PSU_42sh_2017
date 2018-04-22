@@ -24,7 +24,6 @@ typedef struct s_shell
 {
 	int return_value;
 	int row;
-	char **array;
 	char **binaries;
 	char *priority;
 	char ***different_command;
