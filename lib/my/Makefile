@@ -64,13 +64,19 @@ AR	=	ar rc
 
 CC	=	gcc
 
-CFLAGS	=	-g3 #-Wall -Wextra -Werror
+CFLAGS	=	#-Wall -Wextra -Werror
 
 CPPFLAGS=	-I../../includes/
 
 OBJ	=	$(SRC:.c=.o)
 
 NAME	=	libmy.a
+
+debug: fclean debug2
+
+debug2:	CFLAGS += -g3
+debug2:	MAKE   += debug
+debug2:	all
 
 all:	$(NAME)
 

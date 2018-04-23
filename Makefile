@@ -7,7 +7,7 @@
 
 NAME	=	42sh
 
-CC	=	gcc -g3
+CC	=	gcc
 
 MAKE	=	/usr/bin/make
 
@@ -83,6 +83,12 @@ all:		LIB $(NAME)
 
 LIB:
 		$(MAKE) -C $(LIB_DIR)
+
+debug: fclean debug2
+
+debug2: CFLAGS += -g3
+debug2: MAKE	+= debug
+debug2:	all
 
 $(NAME):	LIB $(OBJ)
 		$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
