@@ -94,11 +94,13 @@ int fill_array(char ***array, char **command, int len)
 	return (0);
 }
 
-char *** array_command(char **command)
+char ***array_command(char **command)
 {
 	int len = my_array_len(command) + 1;
 	char ***array = malloc(sizeof(char * ) * len + 1);
 
+	if (array == NULL)
+		return (NULL);
 	fill_array(array, command, len);
 	return (array);
 }

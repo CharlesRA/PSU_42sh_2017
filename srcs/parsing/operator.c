@@ -15,15 +15,14 @@
 char *check_redirection(shell_t *new, int *i)
 {
 	char *str = NULL;
+	int fd = 0;
 
-	if (new->priority[*i + 1] == ONE_RIGHT
+	if ((new->priority[*i + 1] == ONE_RIGHT
 	|| new->priority[*i + 1] == TWO_RIGHT
 	|| new->priority[*i + 1] == ONE_LEFT
 	|| new->priority[*i + 1] == TWO_LEFT)
-		if (*new->different_command[1] != NULL)
-			str = *new->different_command[1];
-	// if (str != NULL && (new->priority[*i + 1] == ONE_RIGHT
-	// || new->priority[*i + 1] == TWO_RIGHT)
+	&& *new->different_command[1] != NULL)
+		str = *new->different_command[1];
 	return (str);
 }
 
@@ -32,9 +31,8 @@ int skip_redirection(shell_t *new, int *i)
 	if (new->priority[*i] == ONE_RIGHT
 	|| new->priority[*i] == TWO_RIGHT
 	|| new->priority[*i] == ONE_LEFT
-	|| new->priority[*i] == TWO_LEFT) {
+	|| new->priority[*i] == TWO_LEFT)
 		return (1);
-	}
 	return (0);
 }
 

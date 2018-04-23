@@ -1,0 +1,76 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+check_signal	program.c	/^int check_signal(int wstatus)$/;"	f
+strcat_del	program.c	/^char *strcat_del(char const *path, char const *prog, char del)$/;"	f
+execute_prog	program.c	/^void execute_prog(char **cmd, char **envp, uint8_t *ret)$/;"	f
+child_process	program.c	/^void child_process(char **cmd, char **envp, uint8_t *ret)$/;"	f
+launch_program	program.c	/^int launch_program(char **cmd, char **envp)$/;"	f
+add_to_output	rpn.c	/^static int add_to_output(node_t **output, node_t **token)$/;"	f	file:
+pop_operators	rpn.c	/^static int pop_operators(node_t **output, node_t **stack, node_t *token)$/;"	f	file:
+pop_operators_until_open_parenthesis	rpn.c	/^static int pop_operators_until_open_parenthesis(node_t **output, node_t **stack,$/;"	f	file:
+list_to_rpn	rpn.c	/^int list_to_rpn(node_t **root)$/;"	f
+check_sh_cmd	minishell.c	/^static int check_sh_cmd(char **cmd, command_t *command)$/;"	f	file:
+execute_command	minishell.c	/^int execute_command(command_t *command)$/;"	f
+check_node	minishell.c	/^int check_node(command_t *command)$/;"	f
+make_commands	minishell.c	/^int make_commands(command_t *command)$/;"	f
+minishell	minishell.c	/^int minishell(char **env)$/;"	f
+add_line_to_env	commands/commands_set_unsetenv.c	/^char **add_line_to_env(char **envp, char *line, int n)$/;"	f
+rm_line_to_env	commands/commands_set_unsetenv.c	/^char **rm_line_to_env(char **envp, int n)$/;"	f
+unset_env	commands/commands_set_unsetenv.c	/^static char **unset_env(char **envp, char *cmd, int len)$/;"	f	file:
+set_env	commands/commands_set_unsetenv.c	/^static char **set_env(char **envp, char **cmd)$/;"	f	file:
+change_env	commands/commands_set_unsetenv.c	/^int change_env(command_t *command, char **cmd, int type)$/;"	f
+cd_in_cdpath	commands/commands_cd.c	/^static int cd_in_cdpath(char **cdpath, char const *folder)$/;"	f	file:
+create_old_pwd	commands/commands_cd.c	/^static char **create_old_pwd(void)$/;"	f	file:
+special_cd	commands/commands_cd.c	/^static int special_cd(char **envp, char **var, char const *name)$/;"	f	file:
+check_path	commands/commands_cd.c	/^static void check_path(char *cmd, char **var, command_t *command)$/;"	f	file:
+do_cd	commands/commands_cd.c	/^int do_cd(char *cmd, command_t *command)$/;"	f
+cmd_cd	commands/commands_built_in.c	/^int cmd_cd(char **cmd, command_t *command)$/;"	f
+cmd_env	commands/commands_built_in.c	/^int cmd_env(char **cmd, command_t *command)$/;"	f
+cmd_setenv	commands/commands_built_in.c	/^int cmd_setenv(char **cmd, command_t *command)$/;"	f
+cmd_unsetenv	commands/commands_built_in.c	/^int cmd_unsetenv(char **cmd, command_t *command)$/;"	f
+cmd_exit	commands/commands_built_in.c	/^int cmd_exit(char **cmd, command_t *command)$/;"	f
+env_var	commands/commands_env.c	/^char **env_var(char **envp, char const *var)$/;"	f
+check_env_arguments	commands/commands_env.c	/^char **check_env_arguments(char **cmd, char **tmp, int *i)$/;"	f
+ext_program	pipes.c	/^static void ext_program(int *fd_pipe, char **args, char **envp, uint8_t *ret)$/;"	f	file:
+middle_programs	pipes.c	/^static void middle_programs(int **fd_pipe, char **args, char **envp, uint8_t *ret)$/;"	f	file:
+pipe_programs	pipes.c	/^static int pipe_programs(char ***args, char **envp)$/;"	f	file:
+parsing_args	pipes.c	/^static char ***parsing_args(int len, char **av)$/;"	f	file:
+pipe_list	pipes.c	/^int pipe_list(int ac, char **av, char **envp)$/;"	f
+is_number	errors.c	/^int is_number(char c)$/;"	f
+is_letter	errors.c	/^int is_letter(char c)$/;"	f
+is_alphanum	errors.c	/^int is_alphanum(char const *str)$/;"	f
+my_perror	errors.c	/^int my_perror(char const *str)$/;"	f
+destroy_nodes	tree.c	/^void destroy_nodes(node_t *node)$/;"	f
+init_tree	tree.c	/^static int init_tree(node_t **root)$/;"	f	file:
+create_tree	tree.c	/^int create_tree(node_t **root, char *cmd)$/;"	f
+destroy_node	rpn_aux.c	/^void destroy_node(node_t *node)$/;"	f
+is_left_associativity	rpn_aux.c	/^int is_left_associativity(node_t *data)$/;"	f
+precedence	rpn_aux.c	/^int precedence(node_t *data)$/;"	f
+main	main.c	/^int main(int ac, char **av, char **envp)$/;"	f
+prompt_int	signals.c	/^void prompt_int(int a)$/;"	f
+ignore	signals.c	/^void ignore(int a)$/;"	f
+is_command	lexer/lexer.c	/^static int is_command(char c)$/;"	f	file:
+is_separator	lexer/lexer.c	/^static int is_separator(char c)$/;"	f	file:
+lexing	lexer/lexer.c	/^int lexing(node_t **root, char *cmd)$/;"	f
+add_node	lexer/lexer_add_node.c	/^static int add_node(char *data, int len, node_t **root, type_t type)$/;"	f	file:
+add_command	lexer/lexer_add_node.c	/^int add_command(char *cmd, int *curs, node_t **root)$/;"	f
+add_separator	lexer/lexer_add_node.c	/^int add_separator(char *cmd, int *curs, node_t **root)$/;"	f
+add_unknown	lexer/lexer_add_node.c	/^int add_unknown(char *cmd, int *curs, node_t **root)$/;"	f
+is_quote	lexer/lexer_check_type.c	/^int is_quote(char c)$/;"	f
+is_word	lexer/lexer_check_type.c	/^int is_word(char c)$/;"	f
+is_bracket	lexer/lexer_check_type.c	/^int is_bracket(char c)$/;"	f
+is_parenthesis	lexer/lexer_check_type.c	/^int is_parenthesis(char c)$/;"	f
+replace_var	var.c	/^static int replace_var(char **str, char **envp, uint8_t ret)$/;"	f	file:
+check_replace_var	var.c	/^char **check_replace_var(char **tab, char **envp, uint8_t ret)$/;"	f
+display_env	display.c	/^void display_env(char **env)$/;"	f
+display_prompt	display.c	/^void display_prompt(void)$/;"	f
+prompt	display.c	/^int prompt(command_t *command)$/;"	f
+exit_shell_cmd	exit.c	/^void exit_shell_cmd(char **cmd, int status)$/;"	f
+exit_shell	exit.c	/^void exit_shell(int status)$/;"	f
+add_to_stack	make_tree.c	/^static int add_to_stack(list_t **stack, node_t *node)$/;"	f	file:
+pop_sons_from_stack	make_tree.c	/^static int pop_sons_from_stack(list_t **stack, node_t *ope)$/;"	f	file:
+make_tree	make_tree.c	/^int make_tree(node_t **root)$/;"	f

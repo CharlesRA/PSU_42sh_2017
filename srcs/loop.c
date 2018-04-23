@@ -16,7 +16,7 @@ int wait_process_semicolon(shell_t *new, int i, char ***skip, int *proc)
 	get_index(i, 1);
 	if (new->priority[i] == SEMICOLON || new->priority[i] == AND || new->priority[i] == OR) {
 		wait_process(proc, new, skip);
-		if (new->priority[i] == AND && new->return_value == 1)
+		if (new->priority[i] == AND && new->return_value != 0)
 			return (1);
 		else if (new->priority[i] == OR && new->return_value == 0)
 			return (1);
