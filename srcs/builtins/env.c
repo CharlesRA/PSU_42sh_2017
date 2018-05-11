@@ -8,7 +8,7 @@
 #include "shell.h"
 #include "str.h"
 
-char **print_env(shell_t *new, char **envp)
+char **print_env(shell_t *tcsh, char **envp)
 {
 	for (int i = 0; envp[i] != NULL; i++) {
 		if (my_strlen(envp[i]) != 0) {

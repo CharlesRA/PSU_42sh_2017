@@ -7,7 +7,7 @@
 
 NAME	=	42sh
 
-CC	=	gcc
+CC	=	gcc -g3
 
 MAKE	=	/usr/bin/make
 
@@ -35,6 +35,7 @@ EXE	=	$(SRC_DIR)/main.c\
 		$(BUILTINS)/unsetenv.c\
 		$(BUILTINS)/builtin.c\
 		$(BUILTINS)/env.c\
+		$(BUILTINS)/alias.c\
 		$(PARSING)/operator.c\
 		$(PARSING)/command_and_priority.c\
 		$(PARSING)/differents_type_command.c\
@@ -43,14 +44,13 @@ EXE	=	$(SRC_DIR)/main.c\
 
 OBJ	=	$(EXE:.c=.o)
 
-UT 	= 	$(UT_DIR)/ut_error.c\
-		$(UT_DIR)/ut_operator.c\
-		$(UT_DIR)/ut_cd.c\
-		$(UT_DIR)/ut_setenv.c\
-		$(UT_DIR)/ut_path.c\
+UT 	=	$(UT_DIR)/ut_command.c\
+		# $(UT_DIR)/ut_error.c\
+		# $(UT_DIR)/ut_operator.c\
+		# $(UT_DIR)/ut_setenv.c\
+		# $(UT_DIR)/ut_path.c\
 
-UT2	=	$(SRC_DIR)/main.c\
-		$(SRC_DIR)/loop.c\
+UT2	=	$(SRC_DIR)/loop.c\
 		$(SRC_DIR)/utils.c\
 		$(ERRORS)/error.c\
 		$(ERRORS)/error_message.c\
@@ -59,16 +59,15 @@ UT2	=	$(SRC_DIR)/main.c\
 		$(BUILTINS)/unsetenv.c\
 		$(BUILTINS)/builtin.c\
 		$(BUILTINS)/env.c\
-		$(BUILTINS)/alias.c\
-		$(BUILTINS)/echo.c\
 		$(PARSING)/operator.c\
 		$(PARSING)/command_and_priority.c\
 		$(PARSING)/differents_type_command.c\
 		$(PARSING)/find_path.c\
 
+
 RM	=	rm -f
 
-CFLAGS	=	##-Wall -Wextra
+CFLAGS	=	-g3 ##-Wall -Wextra
 
 CPPFLAGS=	-I./includes/
 
@@ -94,7 +93,7 @@ $(NAME):	LIB $(OBJ)
 		$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 
 tests_run:	LIB
-		$(CC) $(INCLUDE) -o $(NAME) $(UT) $(UT2) -lcriterion -coverage  -L./lib/ -lmy
+		$(CC) -g3 $(INCLUDE) -o $(NAME) $(UT) $(UT2) -lcriterion -coverage  -L./lib/ -lmy
 		./$(NAME)
 
 clean:

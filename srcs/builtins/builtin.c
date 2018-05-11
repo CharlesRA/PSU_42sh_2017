@@ -9,7 +9,7 @@
 #include "builtins.h"
 #include "str.h"
 
-int check_builtin(shell_t *new, char *command)
+int check_builtin(shell_t *tcsh, char *command)
 {
 	for (int i = 0; i != 4; i++)
 		if (my_strcmp(command, tab[i].builtin) == 0)
@@ -17,14 +17,14 @@ int check_builtin(shell_t *new, char *command)
 	return (0);
 }
 
-char **apply_builtin(const char *command, shell_t *new, char **envp)
+char **apply_builtin(const char *command, shell_t *tcsh, char **envp)
 {
 	char **(*pointeurSurFonction)(shell_t *, char **);
 
 	for (int i = 0; i != 4; i++) {
 		if (my_strcmp(command, tab[i].builtin) == 0) {
 			pointeurSurFonction = tab[i].function;
-			envp = pointeurSurFonction(new, envp);
+			envp = pointeurSurFonction(tcsh,envp);
 			return (envp);
 		}
 	}

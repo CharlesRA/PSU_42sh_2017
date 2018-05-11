@@ -9,13 +9,13 @@
 #define BUILTINS_H
 
 /*_______________________________BUIlTINS_____________________________________*/
-char **change_directory(shell_t *new, char **env);
-char **unset_env(shell_t *new, char **envp);
-char **set_env(shell_t *new, char **envp);
+char **change_directory(shell_t *tcsh, char **env);
+char **unset_env(shell_t *tcsh, char **envp);
+char **set_env(shell_t *tcsh, char **envp);
 char *find_home(char **env);
-int check_builtin(shell_t *new, char *command);
-char **print_env(shell_t *new, char **envp);
-char **apply_builtin(const char *command, shell_t *new, char **envp);
+int check_builtin(shell_t *tcsh, char *command);
+char **print_env(shell_t *tcsh, char **envp);
+char **apply_builtin(const char *command, shell_t *tcsh, char **envp);
 /*____________________________________________________________________________*/
 
 
@@ -29,9 +29,9 @@ static struct s_flags tab[] = {
 	{"env", &print_env},
 	{"setenv", &set_env },
 	{"unsetenv", &unset_env},
+	{"alias", NULL},
 	{"exit", NULL},
 	{"!!", NULL},
-	{"aliase", NULL},
 	{NULL, NULL},
 };
 

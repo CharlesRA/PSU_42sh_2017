@@ -9,12 +9,12 @@
 
 static int add_to_stack(list_t **stack, node_t *node)
 {
-	list_t *new = malloc(sizeof(*new));
+	list_t *new = malloc(sizeof(*tcsh));
 
 	if (new == NULL)
 		return (1);
-	new->node = node;
-	new->next = *stack;
+	tcsh->node = node;
+	tcsh->next = *stack;
 	*stack = new;
 	return (0);
 }

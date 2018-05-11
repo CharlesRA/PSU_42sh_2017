@@ -54,15 +54,15 @@ char **change_old_pwd(char **envp)
 	return (envp);
 }
 
-int change_directory_part_two(shell_t *new, char **env)
+int change_directory_part_two(shell_t *tcsh, char **env)
 {
 	char *home;
 	int dir = 0;
 
-	if (new->different_command[0][1] != NULL)
-		dir = chdir(new->different_command[0][1]);
-	if (new->different_command[0][1] == NULL
-	|| my_strcmp(new->different_command[0][1], "~") == 0) {
+	if (tcsh->different_command[0][1] != NULL)
+		dir = chdir(tcsh->different_command[0][1]);
+	if (tcsh->different_command[0][1] == NULL
+	|| my_strcmp(tcsh->different_command[0][1], "~") == 0) {
 		home = find_home(env);
 		if (home == NULL)
 			return (84);
@@ -71,50 +71,50 @@ int change_directory_part_two(shell_t *new, char **env)
 			free(home);
 	}
 	if (dir == -1) {
-		new->return_value = 1;
-		my_printf(ERROR_CD, new->different_command[0][1]);
+		tcsh->return_value = 1;
+		my_printf(ERROR_CD, tcsh->different_command[0][1]);
 		return (84);
 	}
 	return (0);
 }
 
-char *compare_cd(shell_t *new, char *cwd, char **env)
+char *compare_cd(shell_t *tcsh, char *cwd, char **env)
 {
 	int dir = 0;
 
-	if (my_strcmp(new->different_command[0][1], "-") == 0
+	if (my_strcmp(tcsh->different_command[0][1], "-") == 0
 	&& cwd != NULL) {
 		dir = chdir(cwd);
 		cwd = getcwd(cwd, 4096);
 		if (dir == -1) {
-			new->return_value = 1;
+			tcsh->return_value = 1;
 			my_printf(ERROR_CD
-			, new->different_command[0][1]);
+			, tcsh->different_command[0][1]);
 			return (NULL);
 		}
 	}
-	if (my_strcmp(new->different_command[0][1], "-") != 0) {
+	if (my_strcmp(tcsh->different_command[0][1], "-") != 0) {
 		cwd = getcwd(cwd, 4096);
-		change_directory_part_two(new, env);
+		change_directory_part_two(tcsh,env);
 		return (cwd);
 	}
 	return (cwd);
 }
 
-char **change_directory(shell_t *new, char **env)
+char **change_directory(shell_t *tcsh, char **env)
 {
 	static char *cwd = NULL;
 	char *temp;
 
 	env = change_old_pwd(env);
-	if (new->different_command[0][1] != NULL) {
-		temp = compare_cd(new, cwd, env);
+	if (tcsh->different_command[0][1] != NULL) {
+		temp = compare_cd(tcsh,cwd, env);
 		if (temp == NULL)
 			return (NULL);
 		cwd = temp;
 	}
 	else {
-		if (change_directory_part_two(new, env) == 84)
+		if (change_directory_part_two(tcsh,env) == 84)
 			return (NULL);
 	}
 	env = change_pwd(env);

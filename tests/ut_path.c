@@ -14,7 +14,7 @@ Test (path_to_binaries, path)
 	char *array[] = {"NULL"};
 	shell_t new;
 
-	cr_assert(path_to_binaries(array, &new, "ls") == NULL);
+	cr_assert(path_to_binaries(array, &tcsh,"ls") == NULL);
 }
 
 Test (find_correct_line_env, correct_env)

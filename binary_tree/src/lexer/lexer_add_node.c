@@ -14,18 +14,18 @@ static int add_node(char *data, int len, node_t **root, type_t type)
 
 	if (new == NULL)
 		return (1);
-	new->type = type;
-	new->left = NULL;
-	new->right = NULL;
+	tcsh->type = type;
+	tcsh->left = NULL;
+	tcsh->right = NULL;
 	while (tmp->right)
 		tmp = tmp->right;
 	tmp->right = new;
-	new->data = malloc(len + 1);
-	if (new->data == NULL)
+	tcsh->data = malloc(len + 1);
+	if (tcsh->data == NULL)
 		return (1);
 	for (int i = 0 ; i < len ; i++)
-		new->data[i] = data[i];
-	new->data[len] = 0;
+		tcsh->data[i] = data[i];
+	tcsh->data[len] = 0;
 	return (0);
 }
 

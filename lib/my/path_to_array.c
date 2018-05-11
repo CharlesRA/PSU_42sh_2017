@@ -8,22 +8,22 @@
 #include "shell.h"
 #include <stdlib.h>
 
-char *count_row_path(char *str, shell_t *new)
+char *count_row_path(char *str, shell_t *tcsh)
 {
 	int i = 5;
 
-	new->row = 1;
+	tcsh->row = 1;
 	while (str[i] != '\0') {
 		if (str[i] == ':')
-			new->row++;
+			tcsh->row++;
 		i++;
 	}
-	new->binaries = malloc(sizeof(char *) * (new->row + 1));
-	if (new->binaries == NULL)
+	tcsh->binaries = malloc(sizeof(char *) * (tcsh->row + 1));
+	if (tcsh->binaries == NULL)
 		return (NULL);
 }
 
-void count_lines_path(char *str, shell_t *new)
+void count_lines_path(char *str, shell_t *tcsh)
 {
 	int i = 5;
 	int mod = 0;
@@ -32,7 +32,7 @@ void count_lines_path(char *str, shell_t *new)
 
 	while (str[i] != '\0') {
 		if (str[i] == ':') {
-			new->binaries[k] = malloc(sizeof(char) * (lines + 1));
+			tcsh->binaries[k] = malloc(sizeof(char) * (lines + 1));
 			k++;
 			lines = 0;
 			mod = 1;
@@ -43,10 +43,10 @@ void count_lines_path(char *str, shell_t *new)
 		}
 		i++;
 	}
-	new->binaries[k] = malloc(sizeof(char) * (lines));
+	tcsh->binaries[k] = malloc(sizeof(char) * (lines));
 }
 
-void string_to_binaries(char *str, shell_t *new)
+void string_to_binaries(char *str, shell_t *tcsh)
 {
 	int i = 5;
 	int k = 0;
@@ -55,24 +55,24 @@ void string_to_binaries(char *str, shell_t *new)
 
 	while (str[i] != '\0') {
 		if (str[i] == ':' && mod == 0) {
-			new->binaries[k][j] = '\0';
+			tcsh->binaries[k][j] = '\0';
 			k++;
 			j = 0;
 			mod = 1;
 		}
 		else {
-			new->binaries[k][j] = str[i];
+			tcsh->binaries[k][j] = str[i];
 			j++;
 			mod = 0;
 		}
 		i++;
 	}
-	new->binaries[k] = NULL;
+	tcsh->binaries[k] = NULL;
 }
 
-void str_to_word_binaries(char *str, shell_t *new)
+void str_to_word_binaries(char *str, shell_t *tcsh)
 {
-	count_row_path(str, new);
-	count_lines_path(str, new);
-	string_to_binaries(str, new);
+	count_row_path(str, tcsh);
+	count_lines_path(str, tcsh);
+	string_to_binaries(str, tcsh);
 }

@@ -43,23 +43,23 @@ int error_operator(char *str)
 	return (0);
 }
 
-void error_status(int wstatus, shell_t *new, char *command)
+void error_status(int wstatus, shell_t *tcsh, char *command)
 {
-	new->return_value = WEXITSTATUS(wstatus);
+	tcsh->return_value = WEXITSTATUS(wstatus);
 	for (int i = 0; i != 31; i++) {
 		if (WTERMSIG(wstatus) == i + 1) {
 			wstatus = wstatus < 128 ? wstatus += 128 : wstatus;
-			new->return_value = wstatus;
+			tcsh->return_value = wstatus;
 			my_putserr(err[i].message);
 			my_putserr("\n");
 		}
 	}
 }
 
-void waitpid_and_error(pid_t pid, shell_t *new, char *command)
+void waitpid_and_error(pid_t pid, shell_t *tcsh, char *command)
 {
 	int wstatus = 0;
 
 	waitpid(pid, &wstatus, 0);
-	error_status(wstatus, new, command);
+	error_status(wstatus, tcsh,command);
 }

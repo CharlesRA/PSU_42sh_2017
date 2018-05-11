@@ -9,7 +9,7 @@
 #include "str.h"
 #include "define.h"
 
-int overwrite_env(char *envp, shell_t *new)
+int overwrite_env(char *envp, shell_t *tcsh)
 {
 	int i = 0;
 	int size = my_strlen(envp);
@@ -23,7 +23,7 @@ int overwrite_env(char *envp, shell_t *new)
 		i++;
 	}
 	str[i] = '\0';
-	result = my_strcmp(str, new->different_command[0][1]);
+	result = my_strcmp(str, tcsh->different_command[0][1]);
 	free(str);
 	return (result);
 }
@@ -40,33 +40,33 @@ int check_invalid_char(char *str)
 	return (0);
 }
 
-char **set_env_arg(int i, shell_t *new, char **envp, int overwrite)
+char **set_env_arg(int i, shell_t *tcsh, char **envp, int overwrite)
 {
 	if (overwrite == 0) {
 		my_realloc_char_star(&envp, 1);
 		envp[i + 1] = NULL;
 	}
-	new->different_command[0][1]
-	= my_strdupcat(new->different_command[0][1], "=");
-	if (new->different_command[0][2] == NULL)
-		envp[i] = my_strdupcat(NULL, new->different_command[0][1]);
+	tcsh->different_command[0][1]
+	= my_strdupcat(tcsh->different_command[0][1], "=");
+	if (tcsh->different_command[0][2] == NULL)
+		envp[i] = my_strdupcat(NULL, tcsh->different_command[0][1]);
 	else
-		envp[i] = my_strdupcat(new->different_command[0][1]
-		, new->different_command[0][2]);
+		envp[i] = my_strdupcat(tcsh->different_command[0][1]
+		, tcsh->different_command[0][2]);
 	return (envp);
 }
 
-int set_env_error(shell_t *new, char **envp)
+int set_env_error(shell_t *tcsh, char **envp)
 {
-	if (check_invalid_char(new->different_command[0][1]) == 1) {
-		new->return_value = 1;
+	if (check_invalid_char(tcsh->different_command[0][1]) == 1) {
+		tcsh->return_value = 1;
 		my_putstr("setenv: Variable name must contain"
 		" alphanumeric characters.\n");
 		return (1);
 	}
-	if (new->different_command[0][2] != NULL) {
-		if (new->different_command[0][3] != NULL) {
-			new->return_value = 1;
+	if (tcsh->different_command[0][2] != NULL) {
+		if (tcsh->different_command[0][3] != NULL) {
+			tcsh->return_value = 1;
 			my_putserr("setenv: Too many arguments.\n");
 			return (1);
 		}
@@ -74,20 +74,20 @@ int set_env_error(shell_t *new, char **envp)
 	return (0);
 }
 
-char **set_env(shell_t *new, char **envp)
+char **set_env(shell_t *tcsh, char **envp)
 {
 	int i = 0;
 	int overwrite = 0;
 
-	if (set_env_error(new, envp) == 1)
+	if (set_env_error(tcsh,envp) == 1)
 		return (envp);
 	while (envp[i] != NULL) {
-		if (overwrite_env(envp[i], new) == 0) {
+		if (overwrite_env(envp[i], tcsh) == 0) {
 			overwrite = 1;
 			break;
 		}
 		i++;
 	}
-	envp = set_env_arg(i, new, envp, overwrite);
+	envp = set_env_arg(i, tcsh,envp, overwrite);
 	return (envp);
 }

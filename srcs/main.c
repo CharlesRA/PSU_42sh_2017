@@ -6,12 +6,17 @@
 */
 
 #include "shell.h"
+#include <stdlib.h>
 
 int main(int ac, char **av, char **envp)
 {
-	shell_t new;
+	shell_t tcsh;
 
-	new.return_value = 0;
-	loop(&new, envp);
+	tcsh.return_value = 0;
+	tcsh.alias = malloc(sizeof(alias_t));
+	if (tcsh.alias == NULL)
+		return (84);
+	tcsh.alias[0].shortcut = NULL;
+	loop(&tcsh, envp);
 	return (0);
 }

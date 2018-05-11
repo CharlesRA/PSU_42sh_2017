@@ -8,65 +8,65 @@
 #include "shell.h"
 #include "str.h"
 
-int condition_priority_redirection(shell_t *new, int *i, int *j, char *str)
+int condition_priority_redirection(shell_t *tcsh, int *i, int *j, char *str)
 {
 	if (str[*i] == '<' && str[*i + 1] == '<') {
-		new->priority[*j] = TWO_LEFT;
+		tcsh->priority[*j] = TWO_LEFT;
 		*i += 1;
 		*j += 1;
 	}
 	else if (str[*i] == '>' && str[*i + 1] != '>') {
-		new->priority[*j] = ONE_RIGHT;
+		tcsh->priority[*j] = ONE_RIGHT;
 		*j += 1;
 	}
 	else if (str[*i] == '>' && str[*i + 1] == '>') {
-		new->priority[*j] = TWO_RIGHT;
+		tcsh->priority[*j] = TWO_RIGHT;
 		*i += 1;
 		*j += 1;
 	}
 	else if (str[*i] == '|' && str[*i + 1] == '|') {
-		new->priority[*j] = OR;
+		tcsh->priority[*j] = OR;
 		*i += 1;
 		*j += 1;
 	}
 	else if (str[*i] == '&' && str[*i + 1] == '&') {
-		new->priority[*j] = AND;
+		tcsh->priority[*j] = AND;
 		*i += 1;
 		*j += 1;
 	}
 	return (0);
 }
 
-int condition_priority(shell_t *new, int *i, int *j, char *str)
+int condition_priority(shell_t *tcsh, int *i, int *j, char *str)
 {
 	if (str[*i] == '|' && str[*i + 1] != '|') {
-		new->priority[*j] = PIPE;
+		tcsh->priority[*j] = PIPE;
 		*j += 1;
 	}
 	else if (str[*i] == ';') {
-		new->priority[*j] = SEMICOLON;
+		tcsh->priority[*j] = SEMICOLON;
 		*j += 1;
 	}
 	if (str[*i] == '<' && str[*i + 1] != '<') {
-		new->priority[*j] = ONE_LEFT;
+		tcsh->priority[*j] = ONE_LEFT;
 		*j += 1;
 	}
-	condition_priority_redirection(new, i, j, str);
+	condition_priority_redirection(tcsh,i, j, str);
 	return (0);
 }
 
-int priority_array(char *str, shell_t *new)
+int priority_array(char *str, shell_t *tcsh)
 {
 	int len = my_strlen(str) + 1;
 	int j = 1;
 
-	new->priority = malloc(sizeof(char) * len + 1);
-	if (new->priority == NULL)
+	tcsh->priority = malloc(sizeof(char) * len + 1);
+	if (tcsh->priority == NULL)
 		return (84);
-	new->priority[0] = '#';
+	tcsh->priority[0] = '#';
 	for (int i = 0; str[i]; i++)
-		condition_priority(new, &i, &j, str);
-	new->priority[j] = '\0';
+		condition_priority(tcsh,&i, &j, str);
+	tcsh->priority[j] = '\0';
 	return (0);
 }
 
