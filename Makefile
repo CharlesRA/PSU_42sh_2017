@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-NAME	=	mysh
+NAME	=	42sh
 
 NAMET	=	unit_tests
 
