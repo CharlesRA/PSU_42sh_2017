@@ -1,112 +1,80 @@
 ##
 ## EPITECH PROJECT, 2017
-## corewar
+## Makefile
 ## File description:
 ## Makefile
 ##
 
-NAME	=	42sh
+NAME	=	mysh
 
-CC	=	gcc -g3
+NAMET	=	unit_tests
 
-MAKE	=	/usr/bin/make
+CC	=	gcc -Iinclude/
 
-SRC_DIR	=	./srcs
+SRC	=	src/main.c \
+		src/minishell.c \
+		src/io_redirections.c \
+		src/prompt.c \
+		src/pipes.c \
+		src/builtin.c \
+		src/program.c \
+		src/program_path.c \
+		src/tree/tree.c \
+		src/tree/make_tree.c \
+		src/tree/lexer/lexer.c \
+		src/tree/lexer/lexer_add_node.c \
+		src/tree/lexer/lexer_check_type.c \
+		src/tree/rpn.c \
+		src/tree/rpn_aux.c \
+		src/commands/commands_built_in.c \
+		src/commands/commands_cd.c \
+		src/commands/commands_env.c \
+		src/commands/commands_set_unsetenv.c \
+		src/errors.c \
+		src/exit.c \
+		src/signals.c \
+		src/var.c
 
-LIB_DIR	=	./lib/my
+SRCT	=	tests/tests.c
 
-UT_DIR	=	./tests
+CFLAGS	=	-W -Wall -Wextra -pedantic
 
-LIB_DIR	=	./lib/my
+OBJ	=	$(SRC:.c=.o)
 
-BUILTINS=	./srcs/builtins
+OBJT	=	tests.o
 
-PARSING=	./srcs/parsing
+LIB_DIR	=	lib/
 
-ERRORS=		./srcs/errors
+LDFLAGS	=	-L$(LIB_DIR) -lmy -lmy_strings -lmy_files
 
-EXE	=	$(SRC_DIR)/main.c\
-		$(SRC_DIR)/loop.c\
-		$(SRC_DIR)/utils.c\
-		$(ERRORS)/error.c\
-		$(ERRORS)/error_message.c\
-		$(BUILTINS)/cd.c\
-		$(BUILTINS)/setenv.c\
-		$(BUILTINS)/unsetenv.c\
-		$(BUILTINS)/builtin.c\
-		$(BUILTINS)/env.c\
-		$(BUILTINS)/alias.c\
-		$(PARSING)/operator.c\
-		$(PARSING)/command_and_priority.c\
-		$(PARSING)/differents_type_command.c\
-		$(PARSING)/find_path.c\
+all:	$(NAME)
 
+lib_make:
+	make -C $(LIB_DIR)my
+	make -C $(LIB_DIR)my_strings
+	make -C $(LIB_DIR)my_files
 
-OBJ	=	$(EXE:.c=.o)
+$(NAME):	lib_make $(OBJ)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJ) $(LDFLAGS)
 
-UT 	=	$(UT_DIR)/ut_command.c\
-		# $(UT_DIR)/ut_error.c\
-		# $(UT_DIR)/ut_operator.c\
-		# $(UT_DIR)/ut_setenv.c\
-		# $(UT_DIR)/ut_path.c\
-
-UT2	=	$(SRC_DIR)/loop.c\
-		$(SRC_DIR)/utils.c\
-		$(ERRORS)/error.c\
-		$(ERRORS)/error_message.c\
-		$(BUILTINS)/cd.c\
-		$(BUILTINS)/setenv.c\
-		$(BUILTINS)/unsetenv.c\
-		$(BUILTINS)/builtin.c\
-		$(BUILTINS)/env.c\
-		$(PARSING)/operator.c\
-		$(PARSING)/command_and_priority.c\
-		$(PARSING)/differents_type_command.c\
-		$(PARSING)/find_path.c\
-
-
-RM	=	rm -f
-
-CFLAGS	=	-g3 ##-Wall -Wextra
-
-CPPFLAGS=	-I./includes/
-
-LDFLAGS	=	-L./lib/ -lmy
-
-UT_FLAGS=	-lcriterion --coverage
-
-INCLUDE	=	-I ./includes
-
-
-all:		LIB $(NAME)
-
-LIB:
-		$(MAKE) -C $(LIB_DIR)
-
-debug: fclean debug2
-
-debug2: CFLAGS += -g3
-debug2: MAKE	+= debug
-debug2:	all
-
-$(NAME):	LIB $(OBJ)
-		$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
-
-tests_run:	LIB
-		$(CC) -g3 $(INCLUDE) -o $(NAME) $(UT) $(UT2) -lcriterion -coverage  -L./lib/ -lmy
-		./$(NAME)
+tests_run:	lib_make
+	$(CC) --coverage -c $(SRCT)
+	$(CC) $(CFLAGS) $(OBJT) -lcriterion -lgcov -o $(NAMET) $(LDFLAGS)
+	./$(NAMET)
 
 clean:
-		$(MAKE) clean -C $(LIB_DIR)
-		$(RM) $(OBJ)
+	make clean -C $(LIB_DIR)my
+	make clean -C $(LIB_DIR)my_strings
+	make clean -C $(LIB_DIR)my_files
+	$(RM) $(OBJ) $(OBJT)
+	$(RM) *.gcno *.gcda
 
-ut_clean:
-		rm *gc*
+fclean:	clean
+	make fclean -C $(LIB_DIR)my
+	make fclean -C $(LIB_DIR)my_strings
+	make fclean -C $(LIB_DIR)my_files
+	$(RM) $(NAME) $(NAMET)
 
-fclean:		clean
-		$(MAKE) fclean -C $(LIB_DIR)
-		$(RM) $(NAME)
+re:	fclean all
 
-re:		fclean all
-
-.PHONY:		re all fclean clean
+.PHONY: all clean fclean re tests_run lib_make
