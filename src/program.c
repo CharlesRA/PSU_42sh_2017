@@ -11,16 +11,17 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include "minishell.h"
+#include "signals.h"
 
 int check_signal(int wstatus)
 {
-	if (WIFEXITED(wstatus))
-		return (WEXITSTATUS(wstatus));
-	if (WIFSIGNALED(wstatus)) {
-		my_puterror(strsignal(WTERMSIG(wstatus)));
-		if (WCOREDUMP(wstatus))
-			my_puterror(" (core dumped)");
-		my_puterror("\n");
+	wstatus = WEXITSTATUS(wstatus);
+	for (int i = 0; i != 31; i++) {
+		if (WTERMSIG(wstatus) == i + 1) {
+			wstatus = wstatus < 128 ? wstatus += 128 : wstatus;
+			my_putserr(err[i].message);
+			my_putserr("\n");
+		}
 	}
 	return (wstatus);
 }
