@@ -9,9 +9,7 @@
 
 int main(int ac, char **av, char **envp)
 {
-	if (ac != 1) {
-		(void) av;
+	if (ac != 1)
 		return (1);
-	}
 	return (minishell(envp));
 }

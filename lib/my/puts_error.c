@@ -5,7 +5,7 @@
 ** error
 */
 
-#include <unistd.h>
+#include "str.h"
 
 int my_putserr(char *str)
 {

@@ -9,16 +9,27 @@ NAME	=	42sh
 
 NAMET	=	unit_tests
 
-CC	=	gcc -Iinclude/
+CC	=	gcc
 
-SRC	=	src/main.c \
-		src/minishell.c \
-		src/io_redirections.c \
-		src/prompt.c \
-		src/pipes.c \
+SRC	=	src/brackets.c \
+		src/brackets_replace_arg.c \
 		src/builtin.c \
+		src/commands/commands_built_in.c \
+		src/commands/commands_cd.c \
+		src/commands/commands_env.c \
+		src/commands/commands_set_unsetenv.c \
+		src/errors.c \
+		src/exit.c \
+		src/history/history.c \
+		src/interro_dot.c \
+		src/io_redirections.c \
+		src/main.c \
+		src/minishell.c \
+		src/pipes.c \
 		src/program.c \
 		src/program_path.c \
+		src/prompt.c \
+		src/signals.c \
 		src/tree/tree.c \
 		src/tree/make_tree.c \
 		src/tree/lexer/lexer.c \
@@ -26,18 +37,16 @@ SRC	=	src/main.c \
 		src/tree/lexer/lexer_check_type.c \
 		src/tree/rpn.c \
 		src/tree/rpn_aux.c \
-		src/commands/commands_built_in.c \
-		src/commands/commands_cd.c \
-		src/commands/commands_env.c \
-		src/commands/commands_set_unsetenv.c \
-		src/errors.c \
-		src/exit.c \
-		src/signals.c \
-		src/var.c
+		src/var.c \
+		src/variables/cwd.c \
+		src/variables/declare_variable.c \
+		src/variables/handle_variables.c
 
 SRCT	=	tests/tests.c
 
-CFLAGS	=	-W -Wall -Wextra -pedantic
+CPPFLAGS=	-Iinclude/
+
+CFLAGS	=	-W -Wall -Wextra -Wno-unused-variable -pedantic
 
 OBJ	=	$(SRC:.c=.o)
 

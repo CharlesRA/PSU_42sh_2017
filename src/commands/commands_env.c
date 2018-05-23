@@ -20,15 +20,16 @@ int display_env(command_t *command)
 		my_perror("fork");
 		return (-1);
 	} else if (child == 0) {
-		change_input_output(command);
+		check_if_pipe_and_dup(command);
 		for (int i = 0 ; command->env[i] ; i++)
 			my_printf("%s\n", command->env[i]);
 		exit(0);
 	}
-	if (waitpid(child, NULL, 0) == -1) {
-		my_perror("waitpid");
-		exit_shell(1);
-	}
+	if (command->pipe_fd[0] == 0)
+		if (waitpid(child, NULL, 0) == -1) {
+			my_perror("waitpid");
+			exit_shell(1);
+		}
 	return (0);
 }
 
@@ -42,14 +43,4 @@ char **env_var(char **envp, char const *var)
 		if (my_strncmp(envp[i], var, len) == 0)
 			return (my_str_to_word_array(&envp[i][len], ":"));
 	return (NULL);
-}
-
-char **check_env_arguments(char **cmd, char **tmp, int *i)
-{
-	if (my_strcmp(cmd[0], "-i") == 0) {
-		i[0]++;
-		destroy_tab(tmp);
-		return (NULL);
-	}
-	return (tmp);
 }

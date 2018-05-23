@@ -7,26 +7,30 @@
 
 #include <unistd.h>
 #include <sys/wait.h>
-#include <string.h>
 #include <sys/stat.h>
 #include <errno.h>
 #include "minishell.h"
-#include "signals.h"
 
-int check_signal(int wstatus)
+void check_if_pipe_and_dup(command_t *command)
 {
-	wstatus = WEXITSTATUS(wstatus);
-	for (int i = 0; i != 31; i++) {
-		if (WTERMSIG(wstatus) == i + 1) {
-			wstatus = wstatus < 128 ? wstatus += 128 : wstatus;
-			my_putserr(err[i].message);
-			my_putserr("\n");
-		}
+	if (command->pipe_fd[0] == 0) {
+		change_input_output(command);
+		return;
 	}
-	return (wstatus);
+	if (command->fd_tmp == -1) {
+		dup2(command->pipe_fd[1], 1);
+		close(command->pipe_fd[0]);
+		close(command->pipe_fd[1]);
+	} else {
+		dup2(command->fd_tmp, 0);
+		if (command->node->parent->parent->type == PIPE)
+			dup2(command->pipe_fd[1], 1);
+		else if (command->output != 1)
+			dup2(command->output, 1);
+	}
 }
 
-static uint8_t execute_process(command_t *command)
+static uint8_t execute_process(char const *path, command_t *command)
 {
 	char **cmd = command->node->data;
 	pid_t child = fork();
@@ -36,31 +40,39 @@ static uint8_t execute_process(command_t *command)
 		my_perror("fork");
 		return (1);
 	} else if (child == 0) {
-		change_input_output(command);
-		execve(cmd[0], cmd, command->env);
+		check_if_pipe_and_dup(command);
+		if (execve(path, cmd, command->env) == -1)
+			exit(1);
 	}
-	if (waitpid(child, &wstatus, 0) == -1) {
-		my_perror("waitpid");
-		exit_shell(1);
+	if (command->pipe_fd[0] == 0) {
+		if (waitpid(child, &wstatus, 0) == -1) {
+			my_perror("waitpid");
+			exit_shell(1);
+		}
+		return (check_signal(wstatus));
 	}
-	return (check_signal(wstatus));
+	return (0);
 }
 
-static uint8_t check_and_execute_process(command_t *command)
+static uint8_t check_and_execute_process(char *path, command_t *command)
 {
-	if (access(command->node->data[0], X_OK) == 0)
-		return (execute_process(command));
+	if (access(path, X_OK) == 0)
+		return (execute_process(path, command));
 	my_perror(command->node->data[0]);
 	return (1);
 }
 
 uint8_t launch_program(command_t *command)
 {
+	char *cmd_path = get_command_line(command);
+
+	brackets(command);
+	interro_dot(command);
 	if (signal(SIGINT, ignore) == SIG_ERR)
 		my_perror("signal");
-	if (get_command_line(command) == 1)
+	if (cmd_path == NULL)
 		return (1);
-	return (check_and_execute_process(command));
+	return (check_and_execute_process(cmd_path, command));
 }
 
 int execute_command(command_t *command)

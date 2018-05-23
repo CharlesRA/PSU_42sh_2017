@@ -11,9 +11,11 @@
 static void separator_node(command_t *command)
 {
 	command_t left = {command->node->left, command->env, command->output,
-			command->input, command->ret};
+			command->input, command->fd_tmp,
+			{command->pipe_fd[0], command->pipe_fd[1]}, command->ret};
 	command_t right = {command->node->right, command->env, command->output,
-			command->input, command->ret};
+			command->input, command->fd_tmp,
+			{command->pipe_fd[0], command->pipe_fd[1]}, command->ret};
 
 	check_node(&left);
 	if (command->node->type == SEMICOLON ||
@@ -29,12 +31,14 @@ static void separator_node(command_t *command)
 void redirect_or_pipe_node(command_t *command)
 {
 	command_t left = {command->node->left, command->env, command->output,
-			command->input, command->ret};
+			command->input, command->fd_tmp,
+			{command->pipe_fd[0], command->pipe_fd[1]}, command->ret};
 	command_t right = {command->node->right, command->env, command->output,
-			command->input, command->ret};
+			command->input, command->fd_tmp,
+			{command->pipe_fd[0], command->pipe_fd[1]}, command->ret};
 
 	if (command->node->type == PIPE)
-		pipe_node(command, &left, &right);
+		pipe_node(command);
 	else {
 		if (command->node->type == ONE_RIGHT_BRACKET ||
 		command->node->type == TWO_RIGHT_BRACKET)
@@ -82,7 +86,7 @@ static int make_commands(command_t *command)
 
 int minishell(char **env)
 {
-	command_t command = {NULL, my_tabdup(env), 1, 0, 0};
+	command_t command = {NULL, my_tabdup(env), 1, 0, -1, {0, 0}, 0};
 
 	while (1) {
 		if (prompt(&command) == 1)

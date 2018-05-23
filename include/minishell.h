@@ -8,6 +8,7 @@
 #ifndef MINISHELL_H_
 #define MINISHELL_H_
 
+#include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include "my_files.h"
@@ -36,6 +37,7 @@ typedef enum type {
 
 typedef struct node {
 	char **data;
+	struct node *parent;
 	struct node *left;
 	struct node *right;
 	type_t type;
@@ -51,8 +53,17 @@ typedef struct command {
 	char **env;
 	int output;
 	int input;
+	int fd_tmp;
+	int pipe_fd[2];
 	uint8_t ret;
 } command_t;
+
+typedef struct s_dot_int
+{
+	int pos_arg;
+	int idx;
+	char *src;
+} dot_int_t;
 
 int check_builtin(command_t *command);
 
@@ -66,10 +77,10 @@ int prompt(command_t *command);
 uint8_t launch_program(command_t *command);
 int execute_command(command_t *command);
 
-void pipe_node(command_t *command, command_t *left, command_t *right);
+void pipe_node(command_t *command);
 
 char *strcat_del(char const *path, char const *prog, char del);
-int get_command_line(command_t *command);
+char *get_command_line(command_t *command);
 
 void change_input_output(command_t const *command);
 void close_input_output(command_t const *command);

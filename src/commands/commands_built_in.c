@@ -16,22 +16,7 @@ int cmd_cd(command_t *command)
 
 int cmd_env(command_t *command)
 {
-	char **tmp = my_tabdup(command->env);
-	char **stock = command->node->data;
-	int i = 1;
-
-	command->env = check_env_arguments(&(command->node->data[1]), command->env, &i);
-	if (command->node->data[i] == NULL)
-		display_env(command);
-	else {
-		command->node->data = &(command->node->data[i]);
-		command->ret = launch_program(command);
-		command->node->data = stock;
-	}
-	if (command->env)
-		destroy_tab(command->env);
-	command->env = tmp;
-	return (0);
+	return (display_env(command));
 }
 
 int cmd_setenv(command_t *command)

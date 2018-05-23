@@ -11,34 +11,30 @@
 #include <sys/wait.h>
 #include "minishell.h"
 
-void pipe_node(command_t *command, command_t *left, command_t *right)
+void pipe_node(command_t *command)
 {
-	int pipe_fd[2];
-	pid_t child_l;
-	pid_t child_r;
+	int nb_wait = 1;
+	int ret = 0;
+	command_t execute = {NULL, command->env, command->output,
+			command->input, command->fd_tmp,
+			{command->pipe_fd[0], command->pipe_fd[1]}, command->ret};
 
-	get_command_line(right);
-	if (left->node->type == COMMAND)
-		get_command_line(left);
-	if (pipe(pipe_fd) == -1) {
-		my_perror("pipe");
+	while (command->node->left->type != COMMAND)
+		command->node = command->node->left;
+	if (pipe(execute.pipe_fd) == -1)
 		return;
+	execute.node = command->node->left;
+	execute_command(&execute);
+	for ( ; command->node->type == PIPE ; nb_wait++) {
+		execute.node = command->node->right;
+		close(execute.pipe_fd[1]);
+		execute.fd_tmp = execute.pipe_fd[0];
+		if (pipe(execute.pipe_fd) == -1)
+			return;
+		execute_command(&execute);
+		command->node = command->node->parent;
 	}
-	child_l = fork();
-	if (child_l == 0) {
-		dup2(pipe_fd[1], command->output);
-		close(pipe_fd[0]);
-		close(pipe_fd[1]);
-		execve(left->node->data[0], left->node->data, command->env);
-	}
-	child_r = fork();
-	if (child_r == 0) {
-		dup2(pipe_fd[0], command->input);
-		close(pipe_fd[0]);
-		close(pipe_fd[1]);
-		execve(right->node->data[0], right->node->data, command->env);
-	}
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
-	waitpid(child_r, NULL, 0);
+	while (nb_wait--)
+		wait(&ret);
+	command->ret = check_signal(ret);
 }

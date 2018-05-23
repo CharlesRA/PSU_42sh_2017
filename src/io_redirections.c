@@ -14,8 +14,10 @@ void change_input_output(command_t const *command)
 {
 	if (command->input != 0)
 		dup2(command->input, 0);
-	if (command->output != 1)
+	if (command->output != 1) {
 		dup2(command->output, 1);
+		close(command->output);
+	}
 }
 
 void close_input_output(command_t const *command)
@@ -29,7 +31,7 @@ void close_input_output(command_t const *command)
 int get_output(node_t const *node, type_t type)
 {
 	int mode = O_WRONLY | O_CREAT | (type == TWO_RIGHT_BRACKET ?
-					O_APPEND : 0);
+					O_APPEND : O_TRUNC);
 	int fd = open(node->data[0], mode, 0666);
 
 	if (fd == -1)

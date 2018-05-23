@@ -18,7 +18,6 @@ void destroy_node(node_t *node)
 
 int is_left_associativity(node_t *data)
 {
-	(void) data;
 	return (1);
 }
 
