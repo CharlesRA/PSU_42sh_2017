@@ -6,7 +6,6 @@
 */
 
 #include "minishell.h"
-#include "shell.h"
 //#include "builtins.h"
 #include "str.h"
 #include <sys/types.h>
@@ -39,7 +38,7 @@ static int change_arg(dot_int_t *my_info, DIR **dir, command_t *command)
 	if (entry == NULL)
 		return (-1);
 	if (entry->d_type == DT_DIR && my_strlen(entry->d_name) == my_info->idx
-	&& entry->d_name != '.') {
+	&& entry->d_name[0] != '.') {
 		command->node->data[my_info->pos_arg]
 		= my_strdup(entry->d_name);
 		my_info->pos_arg += 1;
@@ -56,7 +55,7 @@ static int change_arg_match(dot_int_t *my_info, DIR **dir
 	if (entry == NULL)
 		return (-1);
 	if (entry->d_type == DT_DIR && my_strlen(entry->d_name) == my_info->idx
-	&& entry->d_name != '.' && match(entry->d_name, src) == 1) {
+	&& entry->d_name[0] != '.' && match(entry->d_name, src) == 1) {
 		command->node->data[my_info->pos_arg]
 		= my_strdup(entry->d_name);
 		my_info->pos_arg += 1;

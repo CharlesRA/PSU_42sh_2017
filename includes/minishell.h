@@ -13,11 +13,19 @@
 #include <stdlib.h>
 #include "my_files.h"
 #include "my_strings.h"
+#include "linked_list.h"
 
 #define WRONG_ARCH "%s: Exec format error. Wrong Architecture.\n"
 #define PERM_DENIED "%s: Permission denied.\n"
 #define AMBIGUOUS "Ambiguous output redirect.\n"
 #define NULL_COMMAND "Invalid null command.\n"
+
+
+typedef struct s_complete
+{
+	char *file;
+	char *valid;
+} complete_t;
 
 typedef enum type {
 	ROOT = 45,
@@ -57,6 +65,13 @@ typedef struct command {
 	int pipe_fd[2];
 	uint8_t ret;
 } command_t;
+
+typedef struct s_dot_int
+{
+	int pos_arg;
+	int idx;
+	char *src;
+} dot_int_t;
 
 int check_builtin(command_t *command);
 
@@ -107,5 +122,11 @@ int precedence(node_t *data);
 int is_letter(char c);
 int is_alphanum(char const *str);
 int my_perror(char const *str);
+void loop_replace_arg(command_t *command, circular_dll_t *my_letters
+, char *src);
+void interro_dot(command_t *command);
+int check_signal(int wstatus);
+int brackets(command_t *command);
+void check_if_pipe_and_dup(command_t *command);
 
 #endif

@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include "commands.h"
+#include "str.h"
 
 int display_env(command_t *command)
 {
@@ -41,6 +42,6 @@ char **env_var(char **envp, char const *var)
 		return (NULL);
 	for (int i = 0 ; envp[i] ; i++)
 		if (my_strncmp(envp[i], var, len) == 0)
-			return (my_str_to_word_array(&envp[i][len], ":"));
+			return (my_str_to_word_array(&envp[i][len], ':'));
 	return (NULL);
 }

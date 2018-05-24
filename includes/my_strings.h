@@ -17,7 +17,6 @@ void my_putchar(char c);
 void my_puterror(char const *str);
 int my_putnbr_base(int nb, char const *base);
 int my_put_nbr(int nb);
-void my_putstr(char const *str);
 char *my_revstr(char *str);
 int my_show_word_array(char * const *tab);
 char *my_strcapitalize(char *str);

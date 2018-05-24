@@ -32,7 +32,6 @@ SRC	=	$(SRC_DIR)/add_delete_element.c\
 		$(SRC_DIR)/my_binary_to_int.c\
 		$(SRC_DIR)/my_char_is_alpha_num.c\
 		$(SRC_DIR)/find_line_env.c\
-		$(SRC_DIR)/path_to_array.c\
 		$(SRC_DIR)/my_strdupcat.c\
 		$(SRC_DIR)/my_realloc.c\
 		$(SRC_DIR)/find_line_env.c\
@@ -40,6 +39,8 @@ SRC	=	$(SRC_DIR)/add_delete_element.c\
 		$(SRC_DIR)/puts_error.c\
 		$(SRC_DIR)/my_array_free.c\
 		$(SRC_DIR)/check_string.c\
+		$(SRC_DIR)/my_str_to_word_array.c\
+		$(SRC_DIR)/get_next_line.c\
 
 AR	=	ar rc
 
@@ -47,7 +48,7 @@ CC	=	gcc
 
 CFLAGS	=	#-Wall -Wextra -Werror
 
-CPPFLAGS=	-I../../include/
+CPPFLAGS=	-I../../includes/
 
 OBJ	=	$(SRC:.c=.o)
 

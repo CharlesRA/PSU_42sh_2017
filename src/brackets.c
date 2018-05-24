@@ -12,7 +12,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "shell.h"
 #include "my_strings.h"
 #include "linked_list.h"
 #include "minishell.h"

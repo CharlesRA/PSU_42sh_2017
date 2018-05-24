@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "minishell.h"
+#include "str.h"
 
 void exit_shell_cmd(char **cmd, int status)
 {

@@ -6,7 +6,7 @@
 */
 
 #include "lexer.h"
-
+#include "str.h"
 static int add_node(char *data, int len, node_t *last, type_t type)
 {
 	node_t *new = malloc(sizeof(node_t));
@@ -26,7 +26,7 @@ static int add_node(char *data, int len, node_t *last, type_t type)
 		for (int i = 0 ; i < len ; i++)
 			tmp[i] = data[i];
 		tmp[len] = 0;
-		new->data = my_str_to_word_array(tmp, " \t");
+		new->data = my_str_to_word_array(tmp, ' ');
 		free(tmp);
 	}
 	return (0);

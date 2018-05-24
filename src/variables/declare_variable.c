@@ -9,7 +9,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "variables.h"
-#include "shell.h"
 
 static int check_invalid(char *name)
 {

@@ -11,7 +11,6 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <stdio.h>
-#include "shell.h"
 #include "minishell.h"
 //#include "builtins.h"
 #include "str.h"

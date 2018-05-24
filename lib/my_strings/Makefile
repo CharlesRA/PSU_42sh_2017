@@ -20,7 +20,7 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	ar rc $(NAME) $(OBJ)
 	cp $(NAME) ../
-	cp $(HEAD) ../../include/
+	cp $(HEAD) ../../includes/
 
 clean:
 	$(RM) $(OBJ)

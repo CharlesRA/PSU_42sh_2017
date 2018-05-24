@@ -9,6 +9,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include "minishell.h"
+#include "str.h"
 
 void change_input_output(command_t const *command)
 {

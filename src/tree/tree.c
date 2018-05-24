@@ -7,7 +7,7 @@
 
 #include "minishell.h"
 #include "lexer.h"
-
+#include "str.h"
 void destroy_nodes(node_t *node)
 {
 	if (node == NULL)
