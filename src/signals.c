@@ -23,7 +23,7 @@ void ignore(int a)
 
 int check_signal(int wstatus)
 {
-	wstatus = WEXITSTATUS(wstatus);
+/*	wstatus = WEXITSTATUS(wstatus);
 	for (int i = 0; i != 31; i++) {
 		if (WTERMSIG(wstatus) == i + 1) {
 			wstatus = wstatus < 128 ? wstatus += 128 : wstatus;
@@ -32,5 +32,5 @@ int check_signal(int wstatus)
 			my_putserr("\n");
 		}
 	}
-	return (wstatus);
+	return (wstatus);*/
 }
