@@ -8,6 +8,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include "minishell.h"
+#include "signals.h"
 
 void prompt_int(int a)
 {
@@ -22,13 +23,14 @@ void ignore(int a)
 
 int check_signal(int wstatus)
 {
-	if (WIFEXITED(wstatus))
-		return (WEXITSTATUS(wstatus));
-	if (WIFSIGNALED(wstatus)) {
-		my_puterror(strsignal(WTERMSIG(wstatus)));
-		if (WCOREDUMP(wstatus))
-			my_puterror(" (core dumped)");
-		my_puterror("\n");
+	wstatus = WEXITSTATUS(wstatus);
+	for (int i = 0; i != 31; i++) {
+		if (WTERMSIG(wstatus) == i + 1) {
+			wstatus = wstatus < 128 ? wstatus += 128 : wstatus;
+			wstatus = wstatus;
+			my_putserr(err[i].message);
+			my_putserr("\n");
+		}
 	}
 	return (wstatus);
 }
