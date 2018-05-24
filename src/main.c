@@ -41,6 +41,5 @@ int main(int ac, char **av, char **envp)
 	if (isatty(0) && non_canonic_mode(0) == 84)
 		return (84);
 	ret = minishell(envp);
-	non_canonic_mode(1);
 	return (ret);
 }

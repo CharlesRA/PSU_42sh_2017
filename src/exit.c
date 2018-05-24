@@ -20,5 +20,6 @@ void exit_shell(int status)
 {
 	if (isatty(0))
 		my_putstr("exit\n");
+	non_canonic_mode(1);
 	exit(status);
 }
