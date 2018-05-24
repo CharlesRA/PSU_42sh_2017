@@ -38,7 +38,7 @@ char *get_command_line(command_t *command)
 	command->binaries = env_var(command->env, "PATH=");
 	if (command->env[i] == NULL)
 		return (NULL);
-	for (int i = 0; command->binaries[i] != NULL; i++)
+	for (int i = 0; command->binaries[i] != NULL; i++) {
 		command->binaries[i] = my_strdupcat(command->binaries[i], "/");
 		command->binaries[i] = my_strdupcat(command->binaries[i], command->node->data[0]);
 		if (access(command->binaries[i], X_OK) == 0)
