@@ -4,3 +4,4 @@
 42sh
 *.a
 *.o
+vgcore*
