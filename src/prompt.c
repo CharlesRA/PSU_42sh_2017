@@ -30,12 +30,13 @@ void *add_data(circular_dll_t *list, char *read)
 
 void *generate_auto_complete(DIR *rep, circular_dll_t *list)
 {
-	struct dirent* data = NULL;
+	struct dirent* data = readdir(rep);
 	circular_dll_t *temp = list->go_to[NEXT];
 
-	while ((data = readdir(rep)) != NULL) {
+	while (data != NULL) {
 		if (add_data(temp, data->d_name) == NULL)
 			return (NULL);
+		data = readdir(rep);
 	}
 	return ((void *) 1);
 }
@@ -49,30 +50,22 @@ void display_prompt(void)
 
 void prepare_auto_complete(command_t *command, circular_dll_t *list)
 {
-	size_t size = 0;
-	char **array;
 	circular_dll_t *parsing = NULL;
-	int i = 0;
 	DIR *rep = NULL;
 
-		while (command->env[i] != NULL) {
-			if (my_strstr(command->env[i], "PATH=") == 1) {
-				str_to_word_binaries(command->env[i], command);
-				break;
-			}
-			i++;
-		}
-		// if (command->env[i] == NULL) {
-		// 	command->return_value = 1;
-		// 	error_command(command);
-		// 	return (NULL);
-		// }
-		for (int i = 0; command->binaries[i] != NULL; i++) {
-			rep = opendir(command->binaries[i]);
+	command->binaries = env_var(command->env, "PATH=");
+	// if (command->env[i] == NULL) {
+	// 	command->return_value = 1;
+	// 	error_command(command);
+	// 	return (NULL);
+	// }
+	for (int i = 0 ; command->binaries[i] != NULL ; i++) {
+		rep = opendir(command->binaries[i]);
+		if (rep)
 			generate_auto_complete(rep, list);
-		}
-		rep = opendir(".");
-		generate_auto_complete(rep, list);
+	}
+	rep = opendir(".");
+	generate_auto_complete(rep, list);
 }
 
 int prompt(command_t *command)
