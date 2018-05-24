@@ -67,8 +67,11 @@ static void check_path(char *cmd, char **var, command_t *command)
 int do_cd(char *cmd, command_t *command)
 {
 	char **var = NULL;
-	char **change = create_old_pwd();
+	char **change;
 
+	if (command->node->parent->type == PIPE)
+		return (0);
+	change = create_old_pwd();
 	if (cmd == NULL || my_strcmp(cmd, "~") == 0) {
 		command->ret = special_cd(command->env, var, "HOME=");
 		if (command->ret == 1)

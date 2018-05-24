@@ -23,6 +23,8 @@ int cmd_setenv(command_t *command)
 {
 	int len = my_tablen(command->node->data);
 
+	if (command->node->parent->type == PIPE)
+		return (0);
 	if (len == 1) {
 		display_env(command);
 		command->ret = 0;
@@ -38,10 +40,12 @@ int cmd_unsetenv(command_t *command)
 {
 	int len = my_tablen(command->node->data);
 
+	if (command->node->parent->type == PIPE)
+		return (0);
 	if (len > 2) {
 		my_puterror("unsetenv: Too many arguments.\n");
 		command->ret = 1;
-	} else if (len < 1) {
+	} else if (len < 2) {
 		my_puterror("unsetenv: Too few arguments.\n");
 		command->ret = 1;
 	} else
@@ -59,8 +63,10 @@ int cmd_exit(command_t *command)
 		}
 		command->ret = my_getnbr(command->node->data[1]);
 	}
-	destroy_tab(command->node->data);
-	destroy_tab(command->env);
-	exit_shell(command->ret);
+	if (command->node->parent->type == ROOT) {
+		destroy_tab(command->node->data);
+		destroy_tab(command->env);
+		exit_shell(command->ret);
+	}
 	return (0);
 }
