@@ -31,21 +31,26 @@ char *strcat_del(char const *path, char const *prog, char del)
 
 char *get_command_line(command_t *command)
 {
-	int i = 0;
+	char **path = NULL;
+	char *tmp = NULL;
 
 	if (access(command->node->data[0], F_OK) == 0)
 		return (my_strdup(command->node->data[0]));
-	command->binaries = env_var(command->env, "PATH=");
-	if (command->env[i] == NULL)
+	path = env_var(command->env, "PATH=");
+	if (path == NULL)
 		return (NULL);
-	for (int i = 0; command->binaries[i] != NULL; i++) {
-		command->binaries[i] = my_strdupcat(command->binaries[i], "/");
-		command->binaries[i] = my_strdupcat(command->binaries[i], command->node->data[0]);
-		if (access(command->binaries[i], X_OK) == 0)
-			return (command->binaries[i]);
+	for (int n = 0 ; path[n] ; n++) {
+		tmp = strcat_del(path[n], command->node->data[0], '/');
+		if (tmp == NULL)
+			break;
+		if (access(tmp, F_OK) == 0) {
+			destroy_tab(path);
+			return (tmp);
+		}
+		free(tmp);
 	}
 	my_puterror(command->node->data[0]);
 	my_puterror(": Command not found.\n");
-	destroy_tab(command->binaries);
+	destroy_tab(path);
 	return (NULL);
 }

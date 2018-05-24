@@ -50,22 +50,22 @@ void display_prompt(void)
 
 void prepare_auto_complete(command_t *command, circular_dll_t *list)
 {
-	circular_dll_t *parsing = NULL;
-	DIR *rep = NULL;
-
-	command->binaries = env_var(command->env, "PATH=");
-	// if (command->env[i] == NULL) {
-	// 	command->return_value = 1;
-	// 	error_command(command);
-	// 	return (NULL);
+	// circular_dll_t *parsing = NULL;
+	// DIR *rep = NULL;
+	//
+	// command->binaries = env_var(command->env, "PATH=");
+	// // if (command->env[i] == NULL) {
+	// // 	command->return_value = 1;
+	// // 	error_command(command);
+	// // 	return (NULL);
+	// // }
+	// for (int i = 0 ; command->binaries[i] != NULL ; i++) {
+	// 	rep = opendir(command->binaries[i]);
+	// 	if (rep)
+	// 		generate_auto_complete(rep, list);
 	// }
-	for (int i = 0 ; command->binaries[i] != NULL ; i++) {
-		rep = opendir(command->binaries[i]);
-		if (rep)
-			generate_auto_complete(rep, list);
-	}
-	rep = opendir(".");
-	generate_auto_complete(rep, list);
+	// rep = opendir(".");
+	// generate_auto_complete(rep, list);
 }
 
 int prompt(command_t *command)
@@ -77,18 +77,18 @@ int prompt(command_t *command)
 
 	do {
 		prepare_auto_complete(command, list);
-		if (cmd)
-			free(cmd);
-		if (isatty(0)) {
+		// if (cmd)
+		// 	free(cmd);
+		// if (isatty(0)) {
 			display_prompt();
-			cmd = get_next_line(0, list);
-		}
-		else {
+		// 	cmd = get_next_line(0, list);
+		// }
+		// else {
 			if (getline(&cmd, &size, stdin) == -1)
 				exit_shell(command->ret);
 			if (cmd && cmd[strlen(cmd) - 1] == '\n')
 				cmd[strlen(cmd) - 1] = '\0';
-		}
+		// }
 		if (cmd == NULL) {
 			destroy_tab(command->env);
 			exit_shell(command->ret);

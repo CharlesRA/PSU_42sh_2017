@@ -33,13 +33,13 @@ int non_canonic_mode(int i)
 
 int main(int ac, char **av, char **envp)
 {
-	int i = find_correct_line_env(envp , "TERM=");
-	int err;
-	int ret = 0;
-
-	setupterm(envp[i] + 5, 1, &err);
-	if (isatty(0) && non_canonic_mode(0) == 84)
-		return (84);
-	ret = minishell(envp);
-	return (ret);
+	// int i = find_correct_line_env(envp , "TERM=");
+	// int err;
+	// int ret = 0;
+	return (minishell(envp));
+	// if (i != -1)
+	// 	setupterm(envp[i] + 5, 1, &err);
+	// if (isatty(0) && non_canonic_mode(0) == 84)
+	// 	return (84);
+	// ret = ;
 }
