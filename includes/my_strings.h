@@ -31,7 +31,6 @@ char *my_strlowcase(char *str);
 char *my_strncat(char *dest, char const *src, int nb);
 int my_strncmp(char const *s1, char const *s2, int n);
 char *my_strncpy(char *dest, char const *src, int n);
-char *my_strstr(char const *str, char const *to_find);
 void destroy_tab(char **tab);
 void destroy_triple_tab(char ***tab);
 int my_tablen(char **tab);

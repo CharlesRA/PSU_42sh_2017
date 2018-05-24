@@ -17,7 +17,8 @@ void pipe_node(command_t *command)
 	int ret = 0;
 	command_t execute = {NULL, command->env, command->output,
 			command->input, command->fd_tmp,
-			{command->pipe_fd[0], command->pipe_fd[1]}, command->ret};
+			{command->pipe_fd[0], command->pipe_fd[1]}, command->ret,
+			command->binaries, command->row};
 
 	while (command->node->left->type != COMMAND)
 		command->node = command->node->left;

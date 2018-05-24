@@ -121,6 +121,8 @@ char *get_next_line(int fd, circular_dll_t *list)
 	int nbr = read(fd, buffer, 3);
 	int to_copy = 0;
 
+	if (buffer[0] == 4)
+		return (NULL);
 	buffer[nbr] = '\0';
 	if (nbr != 3) {
 		if (buffer[0] != 9)

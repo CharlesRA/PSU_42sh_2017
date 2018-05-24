@@ -18,6 +18,7 @@ SRC	=	$(SRC_DIR)/add_delete_element.c\
 		$(SRC_DIR)/my_put_digits.c\
 		$(SRC_DIR)/my_strdupcat.c\
 		$(SRC_DIR)/puts.c\
+		$(SRC_DIR)/my_strstr.c\
 		$(SRC_DIR)/my_print_hexa_with_caps.c\
 		$(SRC_DIR)/my_print_hexa_without_caps.c\
 		$(SRC_DIR)/my_compute_power_rec.c\
@@ -41,6 +42,7 @@ SRC	=	$(SRC_DIR)/add_delete_element.c\
 		$(SRC_DIR)/check_string.c\
 		$(SRC_DIR)/my_str_to_word_array.c\
 		$(SRC_DIR)/get_next_line.c\
+		$(SRC_DIR)/path_to_array.c\
 
 AR	=	ar rc
 

@@ -5,6 +5,7 @@
 ** all signals functions
 */
 
+#include "str.h"
 #include <string.h>
 #include <sys/wait.h>
 #include "minishell.h"
@@ -33,4 +34,5 @@ int check_signal(int wstatus)
 		}
 	}
 	return (wstatus);*/
+	return (0);
 }
