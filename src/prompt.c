@@ -30,14 +30,13 @@ int prompt(command_t *command)
 			free(cmd);
 		if (isatty(0))
 			display_prompt();
-		//cmd = get_next_line(0);
 		if (getline(&cmd, &size, stdin) == -1)
 			exit_shell(command->ret);
-		cmd[strlen(cmd) - 1] = '\0';
 		if (cmd == NULL) {
 			destroy_tab(command->env);
 			exit_shell(command->ret);
 		}
+		cmd[strlen(cmd) - 1] = '\0';
 	} while (cmd[0] == 0);
 	value = create_tree(&(command->node), cmd);
 	free(cmd);

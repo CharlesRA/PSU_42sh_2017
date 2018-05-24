@@ -16,7 +16,8 @@ static int is_command(char c)
 
 static int is_separator(char c)
 {
-	if (c == '&' || c == '|' || c == ';' || is_bracket(c) || is_parenthesis(c))
+	if (c == '&' || c == '|' || c == ';' || is_bracket(c) ||
+	is_parenthesis(c))
 		return (1);
 	return (0);
 }

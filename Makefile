@@ -47,7 +47,7 @@ SRCT	=	tests/tests.c
 
 CPPFLAGS=	-Iincludes/
 
-CFLAGS	=	##-W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter
+CFLAGS	=	-W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter
 
 OBJ	=	$(SRC:.c=.o)
 

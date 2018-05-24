@@ -8,6 +8,7 @@
 #include "minishell.h"
 #include "lexer.h"
 #include "str.h"
+
 void destroy_nodes(node_t *node)
 {
 	if (node == NULL)
@@ -33,6 +34,24 @@ static int init_tree(node_t **root)
 	return (0);
 }
 
+static int is_ambiguous(node_t *node, node_t *check)
+{
+	return ((node->type == PIPE && check->type == TWO_LEFT_BRACKET) ||
+		(node->type == ONE_LEFT_BRACKET &&
+		check->type == TWO_LEFT_BRACKET) ||
+		(node->type == PIPE && check->type == ONE_LEFT_BRACKET) ||
+		(node->type == ONE_RIGHT_BRACKET &&
+		check->type == TWO_RIGHT_BRACKET) ||
+		(node->type == TWO_RIGHT_BRACKET &&
+		check->type == TWO_RIGHT_BRACKET) ||
+		(node->type == TWO_RIGHT_BRACKET &&
+		check->type == ONE_RIGHT_BRACKET) ||
+		(node->type == ONE_RIGHT_BRACKET &&
+		check->type == ONE_RIGHT_BRACKET) ||
+		(node->type == ONE_LEFT_BRACKET &&
+		check->type == ONE_LEFT_BRACKET));
+}
+
 static int is_error(node_t **root)
 {
 	node_t *check = (*root)->right;
@@ -46,14 +65,7 @@ static int is_error(node_t **root)
 	}
 	for (node_t *node = (*root)->right ; node->right ; node = node->right) {
 		check = node->right;
-		if ((node->type == PIPE && check->type == TWO_LEFT_BRACKET) ||
-		(node->type == ONE_LEFT_BRACKET && check->type == TWO_LEFT_BRACKET) ||
-		(node->type == PIPE && check->type == ONE_LEFT_BRACKET) ||
-		(node->type == ONE_RIGHT_BRACKET && check->type == TWO_RIGHT_BRACKET) ||
-		(node->type == TWO_RIGHT_BRACKET && check->type == TWO_RIGHT_BRACKET) ||
-		(node->type == TWO_RIGHT_BRACKET && check->type == ONE_RIGHT_BRACKET) ||
-		(node->type == ONE_RIGHT_BRACKET && check->type == ONE_RIGHT_BRACKET) ||
-		(node->type == ONE_LEFT_BRACKET && check->type == ONE_LEFT_BRACKET)) {
+		if (is_ambiguous(node, check)) {
 			my_putstr(AMBIGUOUS);
 			(*root)->type = 0;
 			return (1);
