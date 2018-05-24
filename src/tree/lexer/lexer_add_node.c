@@ -7,10 +7,10 @@
 
 #include "lexer.h"
 #include "str.h"
-static int add_node(char *data, int len, node_t *last, type_t type)
+
+static int add_node(char **data, int length, node_t *last, type_t type)
 {
 	node_t *new = malloc(sizeof(node_t));
-	char *tmp = NULL;
 
 	if (new == NULL)
 		return (1);
@@ -20,58 +20,55 @@ static int add_node(char *data, int len, node_t *last, type_t type)
 	new->data = NULL;
 	last->right = new;
 	if (type == COMMAND) {
-		tmp = malloc(len + 1);
-		if (tmp == NULL)
+		new->data = malloc(sizeof(char *) * (length + 1));
+		if (new->data == NULL)
 			return (1);
-		for (int i = 0 ; i < len ; i++)
-			tmp[i] = data[i];
-		tmp[len] = 0;
-		new->data = my_str_to_word_array(tmp, ' ');
-		free(tmp);
+		for (int i = 0 ; i < length ; i++) {
+			new->data[i] = my_strdup(data[i]);
+			if (new->data[i] == NULL)
+				return (1);
+		}
+		new->data[length] = NULL;
 	}
 	return (0);
 }
 
-int add_command(char *cmd, int *curs, node_t *last)
+int add_command(char **cmd, node_t *last, int *i)
 {
-	while (is_word(cmd[curs[1]]) || is_quote(cmd[curs[1]]) ||
-	cmd[curs[1]] == ' ')
-		curs[1]++;
-	return (add_node(&cmd[curs[0]], curs[1] - curs[0], last, COMMAND));
+	int tmp = 1;
+
+	while (cmd[tmp] && (is_word(cmd[tmp][0]) || is_quote(cmd[tmp][0])))
+		tmp++;
+	*i += tmp - 1;
+	return (add_node(&cmd[0], tmp, last, COMMAND));
 }
 
-int add_separator(char *cmd, int *curs, node_t *last)
+int add_separator(char *cmd, node_t *last)
 {
 	type_t type;
 
-	switch (cmd[curs[0]]) {
+	switch (cmd[0]) {
 	case '|':
-		type = (cmd[curs[1]] == '|' ? OR : PIPE);
-		curs[1] += (type == OR ? 1 : 0);
+		type = (cmd[1] == '|' ? OR : PIPE);
 		break;
 	case '&':
-		type = (cmd[curs[1]] == '&' ? AND : UNKNOWN);
-		curs[1] += (type == AND ? 1 : 0);
+		type = (cmd[1] == '&' ? AND : UNKNOWN);
 		break;
 	case ';':
-		while (cmd[curs[1]] == ';' || cmd[curs[1]] == ' ' || cmd[curs[1]] == '\t')
-			curs[1]++;
 		type = SEMICOLON;
 		break;
 	case '(':
 	case ')':
-		type = (cmd[curs[0]] == '(' ? OPEN_PARENTHESIS : CLOSED_PARENTHESIS);
+		type = (cmd[1] == '(' ? OPEN_PARENTHESIS : CLOSED_PARENTHESIS);
 		break;
 	case '<':
-		type = (cmd[curs[1]] == '<' ? TWO_LEFT_BRACKET : ONE_LEFT_BRACKET);
-		curs[1] += (type == TWO_LEFT_BRACKET ? 1 : 0);
+		type = (cmd[1] == '<' ? TWO_LEFT_BRACKET : ONE_LEFT_BRACKET);
 		break;
 	case '>':
-		type = (cmd[curs[1]] == '>' ? TWO_RIGHT_BRACKET : ONE_RIGHT_BRACKET);
-		curs[1] += (type == TWO_RIGHT_BRACKET ? 1 : 0);
+		type = (cmd[1] == '>' ? TWO_RIGHT_BRACKET : ONE_RIGHT_BRACKET);
 		break;
 	default:
 		return (1);
 	}
-	return (add_node(&cmd[curs[0]], curs[1] - curs[0], last, type));
+	return (add_node(&cmd, 0, last, type));
 }

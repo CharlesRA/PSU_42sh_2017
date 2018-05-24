@@ -23,21 +23,17 @@ static int is_separator(char c)
 
 int lexing(node_t **root, char *cmd)
 {
-	int curs[2] = {0, 0};
 	node_t *last = *root;
+	char **array = my_str_to_word_array(cmd, ' ');
 	int ret = 0;
 
-	while (cmd[curs[0]] && ret == 0) {
-		if (is_command(cmd[curs[0]]))
-			ret = add_command(cmd, curs, last);
-		else if (is_separator(cmd[curs[0]])) {
-			curs[1]++;
-			ret = add_separator(cmd, curs, last);
-		} else
-			return (1);
-		while (cmd[curs[1]] == ' ' || cmd[curs[1]] == '\t')
-			curs[1]++;
-		curs[0] = curs[1];
+	if (array == NULL)
+		return (1);
+	for (int i = 0 ; array[i] && ret == 0 ; i++) {
+		if (is_command(array[i][0]))
+			ret = add_command(&array[i], last, &i);
+		else if (is_separator(array[i][0]))
+			ret = add_separator(array[i], last);
 		last = last->right;
 	}
 	return (ret);
