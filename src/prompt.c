@@ -76,13 +76,13 @@ int prompt(command_t *command)
 	circular_dll_t *list = create_list();
 
 	do {
-		prepare_auto_complete(command, list);
+		//prepare_auto_complete(command, list);
 		// if (cmd)
 		// 	free(cmd);
-		// if (isatty(0)) {
+		if (isatty(0)) {
 			display_prompt();
 		// 	cmd = get_next_line(0, list);
-		// }
+		}
 		// else {
 			if (getline(&cmd, &size, stdin) == -1)
 				exit_shell(command->ret);
