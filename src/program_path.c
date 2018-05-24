@@ -35,18 +35,11 @@ char *get_command_line(command_t *command)
 
 	if (access(command->node->data[0], F_OK) == 0)
 		return (my_strdup(command->node->data[0]));
-	while (command->env[i] != NULL) {
-		if (my_strstr(command->env[i], "PATH=") == 1) {
-			str_to_word_binaries(command->env[i], command);
-			break;
-		}
-		i++;
-	}
+	command->binaries = env_var(command->env, "PATH=");
 	if (command->env[i] == NULL)
 		return (NULL);
 	for (int i = 0; command->binaries[i] != NULL; i++)
 		command->binaries[i] = my_strdupcat(command->binaries[i], "/");
-	for (int i = 0; command->binaries[i] != NULL; i++) {
 		command->binaries[i] = my_strdupcat(command->binaries[i], command->node->data[0]);
 		if (access(command->binaries[i], X_OK) == 0)
 			return (command->binaries[i]);
