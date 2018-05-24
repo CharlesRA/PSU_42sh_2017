@@ -55,6 +55,8 @@ int calcul_len(char const *str, char extra);
 char **my_str_to_word_array(char *str, char extra);
 int my_putstr(char const *str);
 char **my_str_to_word_array(char *str, char extra);
-
+int my_strstr(char *str, char const *to_find);
+int my_putserr(char *str);
+char *get_next_line(int fd, circular_dll_t *list);
 
 #endif

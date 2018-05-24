@@ -7,6 +7,7 @@
 
 #include <unistd.h>
 #include "minishell.h"
+#include "str.h"
 
 char *strcat_del(char const *path, char const *prog, char del)
 {
@@ -30,26 +31,28 @@ char *strcat_del(char const *path, char const *prog, char del)
 
 char *get_command_line(command_t *command)
 {
-	char **path = NULL;
-	char *tmp = NULL;
+	int i = 0;
 
 	if (access(command->node->data[0], F_OK) == 0)
 		return (my_strdup(command->node->data[0]));
-	path = env_var(command->env, "PATH=");
-	if (path == NULL)
-		return (NULL);
-	for (int n = 0 ; path[n] ; n++) {
-		tmp = strcat_del(path[n], command->node->data[0], '/');
-		if (tmp == NULL)
+	while (command->env[i] != NULL) {
+		if (my_strstr(command->env[i], "PATH=") == 1) {
+			str_to_word_binaries(command->env[i], command);
 			break;
-		if (access(tmp, F_OK) == 0) {
-			destroy_tab(path);
-			return (tmp);
 		}
-		free(tmp);
+		i++;
+	}
+	if (command->env[i] == NULL)
+		return (NULL);
+	for (int i = 0; command->binaries[i] != NULL; i++)
+		command->binaries[i] = my_strdupcat(command->binaries[i], "/");
+	for (int i = 0; command->binaries[i] != NULL; i++) {
+		command->binaries[i] = my_strdupcat(command->binaries[i], command->node->data[0]);
+		if (access(command->binaries[i], X_OK) == 0)
+			return (command->binaries[i]);
 	}
 	my_puterror(command->node->data[0]);
 	my_puterror(": Command not found.\n");
-	destroy_tab(path);
+	destroy_tab(command->binaries);
 	return (NULL);
 }

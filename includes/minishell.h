@@ -20,7 +20,6 @@
 #define AMBIGUOUS "Ambiguous output redirect.\n"
 #define NULL_COMMAND "Invalid null command.\n"
 
-
 typedef struct s_complete
 {
 	char *file;
@@ -51,6 +50,13 @@ typedef struct node {
 	type_t type;
 } node_t;
 
+typedef struct s_line
+{
+	char *command;
+	circular_dll_t *arguments;
+} line_t;
+
+
 typedef struct list {
 	node_t *node;
 	struct list *next;
@@ -64,6 +70,8 @@ typedef struct command {
 	int fd_tmp;
 	int pipe_fd[2];
 	uint8_t ret;
+	char **binaries;
+	int row;
 } command_t;
 
 typedef struct s_dot_int
@@ -128,5 +136,6 @@ void interro_dot(command_t *command);
 int check_signal(int wstatus);
 int brackets(command_t *command);
 void check_if_pipe_and_dup(command_t *command);
+void str_to_word_binaries(char *str, command_t *new);
 
 #endif

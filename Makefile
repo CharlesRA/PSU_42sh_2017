@@ -9,7 +9,7 @@ NAME	=	42sh
 
 NAMET	=	unit_tests
 
-CC	=	gcc
+CC	=	gcc -g3
 
 SRC	=	src/brackets.c \
 		src/brackets_replace_arg.c \
@@ -47,7 +47,7 @@ SRCT	=	tests/tests.c
 
 CPPFLAGS=	-Iincludes/
 
-CFLAGS	=	##-W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter
+CFLAGS	=	 -g3 -lncurses ##-W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter
 
 OBJ	=	$(SRC:.c=.o)
 
