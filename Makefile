@@ -9,7 +9,7 @@ NAME	=	42sh
 
 NAMET	=	unit_tests
 
-CC	=	gcc -g3
+CC	=	gcc
 
 SRC	=	src/brackets.c \
 		src/brackets_replace_arg.c \
@@ -41,13 +41,14 @@ SRC	=	src/brackets.c \
 		src/var.c \
 		src/variables/cwd.c \
 		src/variables/declare_variable.c \
-		src/variables/handle_variables.c
+		src/variables/handle_variables.c \
+		src/variables/set_builtin.c \
 
 SRCT	=	tests/tests.c
 
-CPPFLAGS=	-Iincludes/
+CFLAGS	=	-g3 -W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter
 
-CFLAGS	=	-g3 -lncurses -W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter
+CPPFLAGS=	-I./includes/
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -55,7 +56,7 @@ OBJT	=	tests.o
 
 LIB_DIR	=	lib/
 
-LDFLAGS	=	-L$(LIB_DIR) -lmy -lmy_strings
+LDFLAGS	=	-L$(LIB_DIR) -lmy -lmy_strings -lncurses
 
 all:	$(NAME)
 
@@ -64,7 +65,7 @@ lib_make:
 	make -C $(LIB_DIR)my_strings
 
 $(NAME):	lib_make $(OBJ)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJ) $(LDFLAGS)
+	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 
 tests_run:	lib_make
 	$(CC) --coverage -c $(SRCT)
