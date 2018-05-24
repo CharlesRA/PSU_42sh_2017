@@ -37,8 +37,7 @@ int main(int ac, char **av, char **envp)
 	int err;
 	int ret = 0;
 
-	envp[i] += 5;
-	setupterm(envp[i] , 1, &err);
+	setupterm(envp[i] + 5, 1, &err);
 	if (isatty(0) && non_canonic_mode(0) == 84)
 		return (84);
 	ret = minishell(envp);
