@@ -505,7 +505,7 @@ TESTS=
 [960-END]
 
 [961]
-NAME="print envp"
+NAME="print envp  "
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
@@ -529,3 +529,78 @@ TESTS=
     echo "setenv loutre"
     echo "unsetenv loutre"
 [963-END]
+
+[964]
+NAME="complex setenv && env "
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "env && setenv pouf paf && env"
+[964-END]
+
+[965]
+NAME="complex setenv && unsetenv && env "
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "env && setenv pouf paf && unsetenv pouf && env"
+[965-END]
+
+[966]
+NAME="complex setenv && || unsetenv env "
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "env && unsetenv lala lo || setenv lala lo && env"
+[966-END]
+
+[967]
+NAME="set patate=cd cd -"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "set patate=cd"
+    echo "$patate"
+    echo "cd -"
+[967-END]
+
+[968]
+NAME="complex setenv && || unsetenv env "
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "env && unsetenv lala lo || setenv lala lo && env"
+[968-END]
+
+[969]
+NAME="set a = &&"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "set a=&&"
+[969-END]
+
+[970]
+NAME="va + alias + &&"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "alias jambon ls && set frite=-l && jambon $frite"
+    echo "alias jambon ls && set frite=-l && jambon $frite"
+[970-END]
+
+[971]
+NAME="redirection inverse"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+	echo "fichier > lol"    
+[971-END]
+
+[972]
+NAME="delete tmp (CECI N'EST PAS UN TEST)"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+	echo "rm lol && rm fichier"
+[972-END]
