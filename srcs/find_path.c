@@ -79,7 +79,7 @@ char *find_variable_path(char **envp, char *command, shell_t *tcsh)
 
 	while (envp[i] != NULL) {
 		if (my_strstr(envp[i], "PATH=") == 1) {
-			new->binaries = my_str_to_word_array(envp[i] + 5, ':');
+			tcsh->binaries = my_str_to_word_array(envp[i] + 5, ':');
 			break;
 		}
 		i++;
