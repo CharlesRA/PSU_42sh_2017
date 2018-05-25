@@ -24,16 +24,26 @@ int condition_priority_redirection(shell_t *new, int *i, int *j, char *str)
 		*i += 1;
 		*j += 1;
 	}
+	else if (str[*i] == '&' && str[*i + 1] == '&') {
+		new->priority[*j] = AND;
+		*i += 1;
+		*j += 1;
+	}
+	else if (str[*i] == '|' && str[*i + 1] == '|') {
+		new->priority[*j] = OR;
+		*i += 1;
+		*j += 1;
+	}
 	return (0);
 }
 
 int condition_priority(shell_t *new, int *i, int *j, char *str)
 {
-	if (str[*i] == '|') {
+	if (str[*i] == '|' && str[*i + 1] != '|') {
 		new->priority[*j] = PIPE;
 		*j += 1;
 	}
-	else if (str[*i] == ';') {
+	else if (str[*i] == ';' && str[*i + 1] != ';') {
 		new->priority[*j] = SEMICOLON;
 		*j += 1;
 	}
