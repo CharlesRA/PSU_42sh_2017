@@ -28,6 +28,7 @@ EXE	=	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/error.c\
 		$(SRC_DIR)/cd.c\
 		$(SRC_DIR)/builtin.c\
+		$(SRC_DIR)/echo.c\
 		$(SRC_DIR)/env.c\
 		$(SRC_DIR)/loop.c\
 		$(SRC_DIR)/setenv.c\

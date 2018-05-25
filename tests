@@ -123,3 +123,100 @@ TESTS=
   echo 'ls -l'
   echo 'exit 45|cat /etc/resolv.conf'
 [912-END]
+
+[914]
+NAME="Testing pipe + builtin"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "cd .. && echo OK"
+[914-END]
+
+[915]
+NAME="Testing inhibitor"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "ls \ -l"
+[915-END]
+
+[916]
+NAME="Testing valeur return correct command wrong"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "azazaz"
+  echo "echo $?"
+[916-END]
+
+[917]
+NAME="Testing set wrong"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "echo set"
+[917-END]
+
+[918]
+NAME="Testing exit"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "exit"
+[918-END]
+
+[919]
+NAME="Testing exit return nb"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "exit 10"
+[919-END]
+
+[920]
+NAME="Testing redirection"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "echo "aabb" > fichier"
+[920-END]
+
+[921]
+NAME="Testing globbing *"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "ls *"
+[921-END]
+
+[922]
+NAME="Testing globbing t*"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "ls t*"
+[922-END]
+
+[923]
+NAME="Testing globbing [m]* simple"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "ls [m]*"
+[923-END]
+
+[924]
+NAME="Testing globbing [z]* ls no match"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "ls [z]*"
+[924-END]
+
+[925]
+NAME="Testing globbing [a-z]*"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "ls [a-z]*"
+[925-END]

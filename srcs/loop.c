@@ -33,7 +33,8 @@ int apply_command(shell_t *new, char **envp, int *proc)
 			continue;
 		}
 		if (check_builtin(new, new->command) == 1
-		&& my_strcmp(new->command, "env") != 0)
+		&& my_strcmp(new->command, "env") != 0
+		&& my_strcmp(new->command, "echo") != 0)
 			case_builtin(proc, new, envp);
 		else {
 			*proc += 1;
