@@ -12,68 +12,77 @@
 #include "nbr.h"
 #include "bultin.h"
 
-int wait_process_semicolon(shell_t *new, int i, int *proc)
+int builtin_to_be_fork(char *command)
 {
-	if (new->priority[i] == SEMICOLON
-	|| new->priority[i] == OR
-	|| new->priority[i] == AND)
-		wait_process(proc, new);
+	for (int i = 0; tab[i].builtin != NULL; i++)
+		if (strcmp(command, tab[i].builtin) == 0
+		&& tab[i].to_be_fork == 1) {
+			return (1);
+		}
+	return (0);
+}
+
+int wait_process_semicolon(shell_t *tcsh, int i, int *proc)
+{
+	if (tcsh->priority[i] == SEMICOLON
+	|| tcsh->priority[i] == OR
+	|| tcsh->priority[i] == AND)
+		wait_process(proc, tcsh);
 	get_index(i, 1);
 	return (0);
 }
 
-int apply_command(shell_t *new, char **envp, int *proc)
+int apply_command(shell_t *tcsh, char **envp, int *proc)
 {
 	int  pipe_fd[2] = {0, 0};
 	int temp = -1;
 
-	for (int i = 0; new->priority[i] != '\0'; i++) {
-		wait_process_semicolon(new, i, proc);
-		if ((new->command = choose_command(new, &i, envp)) == NULL) {
-			new->different_command++;
+	for (int i = 0; tcsh->priority[i] != '\0'; i++) {
+		wait_process_semicolon(tcsh, i, proc);
+		if ((tcsh->command = choose_command(tcsh, &i, envp)) == NULL) {
+			tcsh->different_command++;
 			continue;
 		}
-		if (check_builtin(new, new->command) == 1
-		&& my_strcmp(new->command, "env") != 0
-		&& my_strcmp(new->command, "echo") != 0)
-			case_builtin(proc, new, envp);
+		if (check_builtin(tcsh->command) == 1
+		&& builtin_to_be_fork(tcsh->command) == 0)
+			case_builtin(proc, tcsh, envp);
 		else {
 			*proc += 1;
-			temp = case_fork(temp, pipe_fd, new, envp);
+			temp = case_fork(temp, pipe_fd, tcsh, envp);
 		}
-		new->different_command++;
+		tcsh->different_command++;
 	}
 	return (0);
 }
 
-char **loop_command(shell_t *new, char **envp)
+char **loop_command(shell_t *tcsh, char **envp)
 {
 	int proc = 0;
 
-	apply_command(new, envp, &proc);
-	wait_process(&proc, new);
+	apply_command(tcsh, envp, &proc);
+	wait_process(&proc, tcsh);
 	return (envp);
 }
 
-int loop(shell_t *new, char **envp)
+int loop(shell_t *tcsh, char **envp)
 {
 	char *command = NULL;
 
 	while (1) {
 		if (isatty(0) == 1)
 			my_putstr("$> : ");
-		command = get_the_command(new);
+		command = get_the_command(tcsh);
 		if (command == NULL)
 			continue;
 		if (strcmp(command, "exit") == 0)
 			return (0);
 		if (strstr(command, "!!") != NULL) {
-			command = history_handling(new->history, command);
+			command = history_handling(tcsh->history, command);
 		}
 		if (command == NULL)
 			continue;
-		add_back(new->history, command);
-			envp = loop_command(new, envp);
+		add_back(tcsh->history, command);
+			envp = loop_command(tcsh, envp);
 	}
 	return (0);
 }
