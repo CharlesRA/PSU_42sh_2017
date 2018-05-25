@@ -27,9 +27,10 @@ int apply_command(shell_t *new, char **envp, int *proc)
 	int  pipe_fd[2] = {0, 0};
 	int temp = -1;
 
-	for (int i = 0; new->priority[i] != '\0'; i++) {
+	for (int i = 0 ; new->priority[i] != '\0' ; i++) {
 		wait_process_semicolon(new, i, proc);
-		if ((new->command = choose_command(new, &i, envp)) == NULL) {
+		new->command = choose_command(new, &i, envp);
+		if (new->command == NULL) {
 			new->different_command++;
 			continue;
 		}
@@ -65,9 +66,8 @@ int loop(shell_t *new, char **envp)
 		command = get_the_command(new);
 		if (command == NULL)
 			continue;
-		if (strstr(command, "!!") != NULL) {
+		if (strstr(command, "!!") != NULL)
 			command = history_handling(new->history, command);
-		}
 		if (command == NULL)
 			continue;
 		add_back(new->history, command);

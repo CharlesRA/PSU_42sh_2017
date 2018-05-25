@@ -23,12 +23,9 @@ void wait_process(int *nbr, shell_t *new)
 
 int change_fdin(int *pipe_fd, shell_t *new)
 {
-	int fd_in = 1;
-
 	close(pipe_fd[1]);
-	fd_in = pipe_fd[0];
 	new->different_command++;
-	return (fd_in);
+	return (pipe_fd[0]);
 }
 
 int operator(char c)
@@ -44,17 +41,14 @@ int operator(char c)
 
 int char_is_an_operator(char const *str, int *i, int mod)
 {
-	if ((str[*i] == '|'  && str[*i + 1] != '|'
-	|| str[*i] == '|'  && str[*i + 1] == '|'
-	|| str[*i] == ';'  && str[*i + 1] != ';'
-	|| str[*i] == '&'  && str[*i + 1] == '&'
-	|| (str[*i] == '<' && str[*i + 1] == '<')
-	|| (str[*i] == '>' && str[*i + 1] == '>')
-	|| (str[*i] == '<' && str[*i + 1] != '<')
-	|| (str[*i] == '>' && str[*i + 1] != '>')) && mod == 1) {
+	if ((str[*i] == '|'
+	|| str[*i] == '<'
+	|| str[*i] == '>'
+	|| (str[*i] == ';'  && str[*i + 1] != ';')
+	|| (str[*i] == '&'  && str[*i + 1] == '&')) && mod == 1) {
 		if ((str[*i] == '<' && str[*i + 1] != '<')
 		|| (str[*i] == '>' && str[*i + 1] != '>'))
-			i+= 1;
+			i += 1;
 		return (1);
 	}
 	return (0);
@@ -63,11 +57,10 @@ int char_is_an_operator(char const *str, int *i, int mod)
 char *find_home(char **env)
 {
 	char *str = NULL;
-	int i = 0;
+	int i = find_correct_line_env(env, "HOME=");
 	int j = 0;
 	int k = 5;
 
-	i = find_correct_line_env(env, "HOME=");
 	if (i != -1) {
 		str = malloc(sizeof(char) * my_strlen(env[i]));
 		if (str == NULL)

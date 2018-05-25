@@ -109,11 +109,8 @@ char **change_directory(shell_t *new, char **env)
 		if (temp == NULL)
 			return (NULL);
 		cwd = temp;
-	}
-	else {
-		if (change_directory_part_two(new, env) == 84)
-			return (NULL);
-	}
+	} else if (change_directory_part_two(new, env) == 84)
+		return (NULL);
 	env = change_pwd(env);
 	return (env);
 }

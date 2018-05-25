@@ -14,7 +14,7 @@ void add_variable(circular_dll_t *variables, variable_t *new_variable)
 {
 	variable_t *copy = malloc(sizeof(*copy));
 	circular_dll_t *temp = variables->go_to[NEXT];
-	variable_t *actual = (variable_t *)temp->data;
+	variable_t *actual = (variable_t *) temp->data;
 
 	if (copy == NULL)
 		return;
@@ -22,9 +22,9 @@ void add_variable(circular_dll_t *variables, variable_t *new_variable)
 	copy->value = new_variable->value;
 	if (copy->name == NULL || copy->value == NULL)
 		return;
-	for (; temp != variables; temp = temp->go_to[NEXT]) {
+	for ( ; temp != variables ; temp = temp->go_to[NEXT]) {
 		printf("passage\n");
-		actual = (variable_t *)temp->data;
+		actual = (variable_t *) temp->data;
 		if (strcmp(actual->name, copy->name) > 0) {
 			add_back(temp, copy);
 			break;
@@ -43,10 +43,7 @@ void add_variable(circular_dll_t *variables, variable_t *new_variable)
 
 variable_t *set_new_variable(variable_t *new_variable, char *value)
 {
-	if (value == NULL)
-		new_variable->value = strdup("\0");
-	else
-		new_variable->value = strdup(value);
+	new_variable->value = strdup(value == NULL ? "\0" : value);
 	if (new_variable->value == NULL)
 		return (NULL);
 	return (new_variable);

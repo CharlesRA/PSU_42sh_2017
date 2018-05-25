@@ -66,8 +66,7 @@ int operator_pipe_redirect_file(shell_t *new, int i, int *pipe, char *path)
 	else if (new->priority[i + 1] == ONE_RIGHT) {
 		fd = open(path, O_WRONLY | O_CREAT, 0666);
 		dup2(fd, 1);
-	}
-	else if (new->priority[i + 1] == TWO_RIGHT) {
+	} else if (new->priority[i + 1] == TWO_RIGHT) {
 		fd = open(path, O_WRONLY | O_APPEND | O_CREAT, 0666);
 		dup2(fd, 1);
 	}
