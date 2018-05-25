@@ -29,7 +29,7 @@ char *get_the_command(shell_t *tcsh)
 
 	if (getline(&command, &size, stdin) == -1)
 		exit(tcsh->return_value);
-	if ((size = my_strlen(command)) == 1)
+	if ((size = my_strlen(command)) == 0)
 		return (NULL);
 	tcsh->array = my_str_to_word_array(command, ' ');
 	if (tcsh->array == NULL
