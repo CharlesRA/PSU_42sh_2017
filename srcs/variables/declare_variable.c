@@ -22,10 +22,10 @@ static int is_letter(char c)
 
 static int check_invalid(char *name)
 {
+	int len = (name == NULL ? 0 : strlen(name));
+
 	if (name == NULL)
 		return (1);
-	int len = strlen(name);
-
 	if (name[len - 1] == '$') {
 		fprintf(stderr, "Illegal variable name.\n");
 		return (1);
@@ -48,8 +48,8 @@ static char *dup_to_char(char *str, char c)
 
 	if (str == NULL)
 		return (NULL);
-	for (; str[len] != c && str[len]; len++);
-	return(strndup(str, len));
+	for ( ; str[len] != c && str[len] ; len++);
+	return (strndup(str, len));
 }
 
 static void display_variables(circular_dll_t *variables,
@@ -57,10 +57,10 @@ static void display_variables(circular_dll_t *variables,
 {
 	circular_dll_t *temp = variables->go_to[NEXT];
 
-	printf("\t\t%s\n", (char *)history->go_to[PREV]->data);
-	for (; temp != variables; temp = temp->go_to[NEXT]) {
-		printf("%s\t%s\n", ((variable_t *)temp->data)->name,
-		((variable_t *)temp->data)->value);
+	printf("\t\t%s\n", (char *) history->go_to[PREV]->data);
+	for ( ; temp != variables ; temp = temp->go_to[NEXT]) {
+		printf("%s\t%s\n", ((variable_t *) temp->data)->name,
+		((variable_t *) temp->data)->value);
 		fflush(stdout);
 	}
 }
@@ -78,7 +78,7 @@ char **declare_variable(shell_t *tcsh, char **envp)
 		display_variables(tcsh->variables, tcsh->history);
 		return (envp);
 	}
-	for (int i = 1; copy[i] != NULL; i++) {
+	for (int i = 1 ; copy[i] != NULL ; i++) {
 		new_variable->name = dup_to_char(copy[i], '=');
 		if (check_invalid(new_variable->name) == 1) {
 			tcsh->return_value = 1;
@@ -86,13 +86,12 @@ char **declare_variable(shell_t *tcsh, char **envp)
 		}
 		if (strstr(copy[i], "=") == NULL && copy[i + 1] != NULL
 		&& strcmp(copy[i + 1], "=") == 0) {
-			i+=2;
+			i += 2;
 			new_variable = set_new_variable(new_variable,
-				copy[i]);
-		} else if (strstr(copy[i], "=") != NULL) {
+							copy[i]);
+		} else if (strstr(copy[i], "=") != NULL)
 			new_variable = set_new_variable(new_variable,
-			strstr(copy[i], "=") + 1);
-		}
+						strstr(copy[i], "=") + 1);
 		add_variable(tcsh->variables, new_variable);
 	}
 	return (envp);

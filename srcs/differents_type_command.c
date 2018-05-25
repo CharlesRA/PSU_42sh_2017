@@ -25,7 +25,7 @@ char *command, char **envp)
 	int i = get_index(0, 0);
 
 	operator_pipe_redirect_file(new, i, pipe_fd, new->path);
-	if (check_builtin(new, command) == 1) {
+	if (check_builtin(command) == 1) {
 		apply_builtin(command, new, envp);
 		exit(0);
 	}

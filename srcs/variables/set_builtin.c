@@ -14,9 +14,10 @@ void add_variable(circular_dll_t *variables, variable_t *new_variable)
 {
 	variable_t *copy = malloc(sizeof(*copy));
 	circular_dll_t *temp = variables->go_to[NEXT];
-	variable_t *actual = (variable_t *)temp->data;
+	variable_t *actual = (variable_t *) temp->data;
 
-	if (copy == NULL)
+	if (copy == NULL || new_variable->name == NULL ||
+	new_variable->value == NULL)
 		return;
 	copy->name = new_variable->name;
 	copy->value = new_variable->value;
@@ -42,10 +43,7 @@ void add_variable(circular_dll_t *variables, variable_t *new_variable)
 
 variable_t *set_new_variable(variable_t *new_variable, char *value)
 {
-	if (value == NULL)
-		new_variable->value = strdup("\0");
-	else
-		new_variable->value = strdup(value);
+	new_variable->value = strdup(value == NULL ? "\0" : value);
 	if (new_variable->value == NULL)
 		return (NULL);
 	return (new_variable);

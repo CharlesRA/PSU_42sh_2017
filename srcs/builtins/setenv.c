@@ -30,7 +30,7 @@ int overwrite_env(char *envp, shell_t *new)
 
 int check_invalid_char(char *str)
 {
-	for (int i = 0; str[i]; i++) {
+	for (int i = 0 ; str[i] ; i++) {
 		if ((str[i] < 'A' || str[i] > 'Z')
 		&& (str[i] < 'a' || str[i] > 'z')
 		&& (str[i] < '0' || str[i] > '9')

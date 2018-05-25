@@ -133,11 +133,10 @@ TESTS=
 [914-END]
 
 [915]
-NAME="Testing inhibitor"
+NAME="Testing just call folder"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
-  echo "ls \ -l"
   echo "srcs"
 [915-END]
 
@@ -422,3 +421,111 @@ CLEAN=""
 TESTS=
     echo " "
 [950-END]
+
+[951]
+NAME="simple inhibitor with ls"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "ls \"
+    echo "-l"
+[951-END]
+
+[952]
+NAME="simple inhibitor"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "\"
+[952-END]
+
+[953]
+NAME="simple inhibitor with space"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "ls \ "
+[953-END]
+
+[954]
+NAME="simple which whit no argu"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "which"
+[954-END]
+
+[955]
+NAME="simple which whit ls WROONNNNGGG"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "which ls"
+[955-END]
+
+[956]
+NAME="simple which whit pwd"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "which pwd"
+[956-END]
+
+[957]
+NAME="simple which whit ls WROONNNNGGG"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "which ls"
+[957-END]
+
+[958]
+NAME="simple which with false argu"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "which patate"
+[958-END]
+
+[959]
+NAME="simple unsetenv PATH"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "unsetenv PATH"
+    echo "ls"
+[959-END]
+
+[960]
+NAME="setenv simple variable"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "setenv patate chaude"
+[960-END]
+
+[961]
+NAME="print envp"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "env"
+[961-END]
+
+[962]
+NAME="unsetenv PATH + ls"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "unsetenv PATH"
+    echo "ls"
+[962-END]
+
+[963]
+NAME="setenv va and unsetenv va"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "setenv loutre"
+    echo "unsetenv loutre"
+[963-END]

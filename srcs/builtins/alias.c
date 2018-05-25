@@ -16,16 +16,16 @@
 void find_occurence_alias(shell_t *tcsh, circular_dll_t *temp, int i)
 {
 	if (strcmp(tcsh->different_command[0][i]
-	, ((alias_t*)temp->data)->alias) == 0)
+	, ((alias_t *)temp->data)->alias) == 0)
 		tcsh->different_command[0][i]
-	= strdup(((alias_t*)temp->data)->value);
+	= strdup(((alias_t *)temp->data)->value);
 }
 
 void replace_alias(shell_t *tcsh)
 {
 	circular_dll_t *temp = NULL;
 
-	for (int i = 0; tcsh->different_command[0][i]; i++) {
+	for (int i = 0 ; tcsh->different_command[0][i] ; i++) {
 		temp = tcsh->alias->go_to[NEXT];
 		while (temp != tcsh->alias) {
 			find_occurence_alias(tcsh, temp, i);
@@ -50,8 +50,7 @@ char **create_alias(shell_t *tcsh, char **env)
 {
 	if (my_array_len(tcsh->different_command[0]) == 3
 	&& add_alias_to_list(tcsh->alias, tcsh->different_command[0][1]
-	, tcsh->different_command[0][2]) == NULL) {
+	, tcsh->different_command[0][2]) == NULL)
 		return (NULL);
-	}
 	return (env);
 }

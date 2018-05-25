@@ -175,7 +175,7 @@ char *path_to_binaries(char **envp, shell_t *tcsh, char *command)
 		tcsh->different_command[0][0] = my_strdup("env");
 		return (tcsh->different_command[0][0]);
 	}
-	for (int i = 0; tab[i].builtin != NULL; i++)
+	for (int i = 0 ; tab[i].builtin != NULL ; i++)
 		if (my_strcmp(command, tab[i].builtin) == 0)
 			return (tcsh->different_command[0][0]);
 	if (find_variable_path(envp, command, tcsh) == NULL)
