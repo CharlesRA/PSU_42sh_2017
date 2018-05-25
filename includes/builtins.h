@@ -18,7 +18,6 @@ char **print_env(shell_t *new, char **envp);
 char **apply_builtin(const char *command, shell_t *new, char **envp);
 /*____________________________________________________________________________*/
 
-
 struct s_flags {
 	char *builtin;
 	void *function;

@@ -56,7 +56,6 @@ typedef struct s_line
 	circular_dll_t *arguments;
 } line_t;
 
-
 typedef struct list {
 	node_t *node;
 	struct list *next;
@@ -80,6 +79,8 @@ typedef struct s_dot_int
 	int idx;
 	char *src;
 } dot_int_t;
+
+void globing(command_t *command);
 
 int check_builtin(command_t *command);
 

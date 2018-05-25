@@ -4,38 +4,28 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-ALL_DIR	tests/Makefile	/^ALL_DIR = 	$(SRCS)\\$/;"	m
 AMBIGUOUS	includes/define.h	14;"	d
 AMBIGUOUS	includes/minishell.h	20;"	d
 AND	includes/minishell.h	/^	AND,$/;"	e	enum:type
 AR	lib/my/Makefile	/^AR	=	ar rc$/;"	m
-BUILTINS	tests/Makefile	/^BUILTINS=	$(SRCS)builtins\/$/;"	m
 BUILTINS_H	includes/builtins.h	9;"	d
 CC	Makefile	/^CC	=	gcc$/;"	m
 CC	lib/my/Makefile	/^CC	=	gcc$/;"	m
 CC	lib/my_strings/Makefile	/^CC	=	gcc -W -Wall -Wextra -pedantic$/;"	m
-CC	tests/Makefile	/^CC	=	gcc$/;"	m
-CFLAGS	Makefile	/^CFLAGS	=	-g3 -W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter$/;"	m
+CFLAGS	Makefile	/^CFLAGS	=	-W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter$/;"	m
 CFLAGS	lib/my/Makefile	/^CFLAGS	=	#-Wall -Wextra -Werror$/;"	m
-CFLAGS	tests/Makefile	/^CFLAGS	=	-lcriterion --coverage$/;"	m
 CLOSED_PARENTHESIS	includes/minishell.h	/^	CLOSED_PARENTHESIS,$/;"	e	enum:type
 COMMAND	includes/minishell.h	/^	COMMAND,$/;"	e	enum:type
 COMMANDS_H_	includes/commands.h	9;"	d
 CPPFLAGS	Makefile	/^CPPFLAGS=	-I.\/includes\/$/;"	m
 CPPFLAGS	lib/my/Makefile	/^CPPFLAGS=	-I..\/..\/includes\/$/;"	m
-CPPFLAGS	tests/Makefile	/^CPPFLAGS=	-I..\/includes\/$/;"	m
 DEFINE_H	includes/define.h	9;"	d
-ERRORS	tests/Makefile	/^ERRORS=		$(SRCS)errors\/$/;"	m
 ERROR_CD	includes/define.h	11;"	d
-GCNO_OBJ	tests/Makefile	/^GCNO_OBJ	=	$(SRC_TEST:.c=.gcno)$/;"	m
 HEAD	lib/my_strings/Makefile	/^HEAD	=	my_strings.h$/;"	m
-HISTORY_SRCS	tests/Makefile	/^HISTORY_SRCS=	$(SRCS)history\/$/;"	m
 LDFLAGS	Makefile	/^LDFLAGS	=	-L$(LIB_DIR) -lmy -lmy_strings -lncurses$/;"	m
-LDFLAGS	tests/Makefile	/^LDFLAGS	=	-lcriterion --coverage -L..\/lib\/ -lmy$/;"	m
 LEXER_H_	includes/lexer.h	9;"	d
 LIB_DIR	Makefile	/^LIB_DIR	=	lib\/$/;"	m
 LIB_DIR	lib/my/Makefile	/^LIB_DIR	=	..$/;"	m
-LIB_DIR	tests/Makefile	/^LIB_DIR	=	..\/lib\/my$/;"	m
 LIST_H	includes/linked_list.h	9;"	d
 MINISHELL_H_	includes/minishell.h	9;"	d
 MY_FILES_H_	includes/my_files.h	9;"	d
@@ -45,7 +35,6 @@ MY_STRINGS_H_	lib/my_strings/my_strings.h	9;"	d
 NAME	Makefile	/^NAME	=	42sh$/;"	m
 NAME	lib/my/Makefile	/^NAME	=	libmy.a$/;"	m
 NAME	lib/my_strings/Makefile	/^NAME	=	libmy_strings.a$/;"	m
-NAME	tests/Makefile	/^NAME	=	42sh$/;"	m
 NAMET	Makefile	/^NAMET	=	unit_tests$/;"	m
 NBR_DIR	includes/linked_list.h	/^	NBR_DIR$/;"	e	enum:e_dir
 NBR_H	includes/nbr.h	9;"	d
@@ -55,44 +44,30 @@ NULL_COMMAND	includes/minishell.h	21;"	d
 OBJ	Makefile	/^OBJ	=	$(SRC:.c=.o)$/;"	m
 OBJ	lib/my/Makefile	/^OBJ	=	$(SRC:.c=.o)$/;"	m
 OBJ	lib/my_strings/Makefile	/^OBJ	=	$(SRC:.c=.o)$/;"	m
-OBJ	tests/Makefile	/^OBJ	=	$(SRC_TEST:.c=.o)$/;"	m
 OBJT	Makefile	/^OBJT	=	tests.o$/;"	m
-OBJ_CRITERION	tests/Makefile	/^OBJ_CRITERION	=	$(SRC_TEST:.c=.gcda)$/;"	m
 ONE_LEFT_BRACKET	includes/minishell.h	/^	ONE_LEFT_BRACKET,$/;"	e	enum:type
 ONE_RIGHT_BRACKET	includes/minishell.h	/^	ONE_RIGHT_BRACKET,$/;"	e	enum:type
 OPEN_PARENTHESIS	includes/minishell.h	/^	OPEN_PARENTHESIS,$/;"	e	enum:type
 OR	includes/minishell.h	/^	OR,$/;"	e	enum:type
-PARSING	tests/Makefile	/^PARSING=	$(SRCS)parsing\/$/;"	m
 PERM_DENIED	includes/define.h	13;"	d
 PERM_DENIED	includes/minishell.h	19;"	d
 PIPE	includes/minishell.h	/^	PIPE,$/;"	e	enum:type
 PREV	includes/linked_list.h	/^	PREV,$/;"	e	enum:e_dir
 READ_SIZE	includes/my_files.h	12;"	d
 READ_SIZE	lib/my/get_next_line.h	17;"	d
-RM	tests/Makefile	/^RM	=	rm -f$/;"	m
 ROOT	includes/minishell.h	/^	ROOT = 45,$/;"	e	enum:type
 SEMICOLON	includes/minishell.h	/^	SEMICOLON,$/;"	e	enum:type
 SIGNAL_H	includes/signals.h	9;"	d
 SRC	Makefile	/^SRC	=	src\/globing.c \\$/;"	m
 SRC	lib/my/Makefile	/^SRC	=	$(SRC_DIR)\/add_delete_element.c\\$/;"	m
 SRC	lib/my_strings/Makefile	/^SRC	=	$(wildcard *.c)$/;"	m
-SRCS	tests/Makefile	/^SRCS=	..\/srcs\/$/;"	m
 SRCT	Makefile	/^SRCT	=	tests\/tests.c$/;"	m
 SRC_DIR	lib/my/Makefile	/^SRC_DIR	=	.$/;"	m
-SRC_TEST	tests/Makefile	/^SRC_TEST=	$(VAR_SRCS)handle_variables.c\\$/;"	m
 STR_H	includes/str.h	9;"	d
 TWO_LEFT_BRACKET	includes/minishell.h	/^	TWO_LEFT_BRACKET,$/;"	e	enum:type
 TWO_RIGHT_BRACKET	includes/minishell.h	/^	TWO_RIGHT_BRACKET,$/;"	e	enum:type
-Test	tests/ut_handle_variables.c	/^Test(replace_variable, easy_replace01)$/;"	f
-Test	tests/ut_handle_variables.c	/^Test(replace_variable, easy_replace02)$/;"	f
-Test	tests/ut_handle_variables.c	/^Test(replace_variable, easy_replace03)$/;"	f
-Test	tests/ut_history.c	/^Test(history, null_history, .init = redirect_all_std)$/;"	f
-Test	tests/ut_history.c	/^Test(history, simple_replace01, .init = redirect_all_std)$/;"	f
-Test	tests/ut_history.c	/^Test(history, simple_replace02, .init = redirect_all_std)$/;"	f
-Test	tests/ut_history.c	/^Test(history, simple_replace03)$/;"	f
 UNKNOWN	includes/minishell.h	/^	UNKNOWN,$/;"	e	enum:type
 VAR42_	includes/variables.h	9;"	d
-VAR_SRCS	tests/Makefile	/^VAR_SRCS=	$(SRCS)variables\/$/;"	m
 WRONG_ARCH	includes/minishell.h	18;"	d
 WRONG_ARCHITECTURE	includes/define.h	12;"	d
 add_back	lib/my/add_delete_element.c	/^int add_back(circular_dll_t *element, void *new_data)$/;"	f
@@ -345,10 +320,8 @@ prompt	src/prompt.c	/^int prompt(command_t *command)$/;"	f
 prompt_int	src/signals.c	/^void prompt_int(int a)$/;"	f
 put_zeros	lib/my_strings/my_printf_tools.c	/^int put_zeros(char c)$/;"	f
 read_back	lib/my/read_list.c	/^void read_back(circular_dll_t *list)$/;"	f
-read_front	lib/my/add_delete_element.c	/^void read_front(circular_dll_t *list)$/;"	f
 read_front	lib/my/read_list.c	/^void read_front(circular_dll_t *list)$/;"	f
 recons	lib/my/get_next_line.c	/^char* recons(char *buffer, char *result, int to_copy)$/;"	f
-redirect_all_std	tests/ut_history.c	/^void redirect_all_std(void)$/;"	f
 redirect_or_pipe_node	src/minishell.c	/^void redirect_or_pipe_node(command_t *command)$/;"	f
 replace_var	src/var.c	/^static int replace_var(char **str, char **envp, uint8_t ret)$/;"	f	file:
 replace_variable	src/variables/handle_variables.c	/^int replace_variable(circular_dll_t *variables, char **envp, char *command)$/;"	f

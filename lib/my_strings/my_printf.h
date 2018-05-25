@@ -19,6 +19,7 @@ typedef struct list {
 	int nb_bytes;
 } list_t;
 
+int my_putstr(char const *str);
 int check_if_regular(char c);
 char check_conversion(char const *str, int i);
 int display_element(va_list ap, list_t *element);

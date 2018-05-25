@@ -5,6 +5,7 @@
 ** lexer
 */
 
+#include "str.h"
 #include "lexer.h"
 
 static int is_command(char c)

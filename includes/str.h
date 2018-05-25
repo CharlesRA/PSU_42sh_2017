@@ -17,6 +17,8 @@ typedef struct info_t {
 	char *nbr_char;
 } info_t;
 
+int is_letter(char c);
+int is_alphanum(char const *str);
 int my_str_isspace_num(char *str);
 int my_char_isalpha_num(char alpha);
 char **my_array_dup(char **map);

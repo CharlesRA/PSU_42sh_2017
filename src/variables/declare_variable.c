@@ -10,6 +10,7 @@
 #include <string.h>
 #include "variables.h"
 #include "linked_list.h"
+#include "str.h"
 
 static int check_invalid(char *name)
 {

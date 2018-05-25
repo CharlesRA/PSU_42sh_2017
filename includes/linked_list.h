@@ -21,6 +21,7 @@ typedef struct s_circular_double_linked_list
 	struct s_circular_double_linked_list *go_to[NBR_DIR];
 } circular_dll_t;
 
+int list_len(circular_dll_t *list);
 void delete_element(circular_dll_t **element);
 circular_dll_t *create_list(void);
 void add_front(circular_dll_t *element, void *card);

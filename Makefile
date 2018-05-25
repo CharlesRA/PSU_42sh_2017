@@ -44,7 +44,7 @@ SRC	=	src/globing.c \
 
 SRCT	=	tests/tests.c
 
-CFLAGS	=	-g3 -W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter
+CFLAGS	=	-W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter
 
 CPPFLAGS=	-I./includes/
 

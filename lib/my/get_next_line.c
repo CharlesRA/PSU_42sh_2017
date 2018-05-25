@@ -59,12 +59,12 @@ char *auto_complete(char *result, circular_dll_t *list, char *line)
 	info = my_str_to_word_array(result, ' ');
 	arg = info[my_array_len(info) - 1];
 	while (temp != list) {
-		if (strncmp(arg, ((complete_t *)temp->data)->file, strlen(arg)) == 0) {
-			((complete_t *)temp->data)->valid = strdup(((complete_t *)temp->data)->file);
-		}
-		else {
+		if (strncmp(arg, ((complete_t *)temp->data)->file
+		, strlen(arg)) == 0)
+			((complete_t *)temp->data)->valid
+			= strdup(((complete_t *)temp->data)->file);
+		else
 			((complete_t *)temp->data)->valid = "\0";
-		}
 		temp = temp->go_to[NEXT];
 	}
 	return (check_valid_path(list, result, arg));

@@ -11,6 +11,7 @@
 #include <errno.h>
 #include "minishell.h"
 #include "glob.h"
+#include "str.h"
 
 static int is_globing(char *str)
 {
@@ -56,6 +57,7 @@ static void add_in_list_new_arg(glob_t *globbuf
 , circular_dll_t *new_args, command_t *command)
 {
 	int end = globbuf->gl_pathc + globbuf->gl_offs;
+
 	for (int i = globbuf->gl_offs; i != end; i++)
 		add_back(new_args, my_strdup(globbuf->gl_pathv[i]));
 	apply_new_args(new_args, command);
