@@ -16,6 +16,7 @@ char **print_env(shell_t *new, char **envp);
 char **apply_builtin(const char *command, shell_t *new, char **envp);
 char **print_echo(shell_t *new, char **env);
 char **create_alias(shell_t *new, char **env);
+char **exit_shell(shell_t *new, char **env);
 
 
 struct s_flags {
@@ -30,7 +31,7 @@ static struct s_flags tab[] = {
 	{"unsetenv", &unset_env},
 	{"echo", &print_echo},
 	{"alias", &create_alias},
-	{"exit", NULL},
+	{"exit", &exit_shell},
 	{NULL, NULL},
 };
 
