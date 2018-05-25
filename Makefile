@@ -13,6 +13,10 @@ MAKE	=	/usr/bin/make
 
 SRC_DIR	=	./srcs
 
+HISTORY_DIR =	$(SRC_DIR)/history/
+
+VAR_DIR	=	$(SRC_DIR)/variables/
+
 LIB_DIR	=	./lib/my
 
 UT_DIR	=	./tests
@@ -34,6 +38,11 @@ EXE	=	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/command_and_priority.c\
 		$(SRC_DIR)/differents_type_command.c\
 		$(SRC_DIR)/globbing.c\
+		$(HISTORY_DIR)history.c\
+		$(VAR_DIR)declare_variable.c\
+		$(VAR_DIR)handle_variables.c\
+		$(VAR_DIR)set_builtin.c\
+		$(VAR_DIR)cwd.c\
 
 OBJ	=	$(EXE:.c=.o)
 
