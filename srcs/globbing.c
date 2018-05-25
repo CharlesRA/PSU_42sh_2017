@@ -71,7 +71,7 @@ void globing(shell_t *tcsh)
 		exit(84);
 	globbuf.gl_offs = take_none_glob(new_args, tcsh->different_command[0]);
 	globbuf.gl_pathc = 0;
-	for (int i = 1; i != my_array_len(tcsh->different_command[0]); i++) {
+	for (int i = 0; i != my_array_len(tcsh->different_command[0]); i++) {
 		if (is_globing(tcsh->different_command[0][i]) == 0)
 			continue;
 		if (start == 0) {
