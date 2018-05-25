@@ -39,6 +39,7 @@ static void operator_left(shell_t *new, int i, char *path)
 {
 	char *buffer = "\0";
 	size_t size = 0;
+	int fd = 0;
 
 	switch (new->priority[i + 1]) {
 	case ONE_LEFT:
