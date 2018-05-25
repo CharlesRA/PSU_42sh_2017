@@ -11,8 +11,7 @@ NAMET	=	unit_tests
 
 CC	=	gcc
 
-SRC	=	src/brackets.c \
-		src/brackets_replace_arg.c \
+SRC	=	src/globing.c \
 		src/builtin.c \
 		src/commands/commands_built_in.c \
 		src/commands/commands_cd.c \
@@ -22,7 +21,6 @@ SRC	=	src/brackets.c \
 		src/errors.c \
 		src/exit.c \
 		src/history/history.c \
-		src/interro_dot.c \
 		src/io_redirections.c \
 		src/main.c \
 		src/minishell.c \

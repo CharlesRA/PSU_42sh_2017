@@ -21,6 +21,28 @@ circular_dll_t *create_list(void)
 	return (root);
 }
 
+int list_len(circular_dll_t *list)
+{
+	int count = 0;
+	circular_dll_t *temp = list->go_to[NEXT];
+
+	while (temp != list) {
+		count++;
+		temp = temp->go_to[NEXT];
+	}
+	return (count);
+}
+
+void read_front(circular_dll_t *list)
+{
+	circular_dll_t *temp = list->go_to[NEXT];
+
+	while (temp != list) {
+		printf("%s\n", (char *)temp->data);
+		temp = temp->go_to[NEXT];
+	}
+}
+
 void delete_element(circular_dll_t **element)
 {
 	element[0]->go_to[PREV]->go_to[NEXT] = element[0]->go_to[NEXT];

@@ -66,8 +66,8 @@ uint8_t launch_program(command_t *command)
 {
 	char *cmd_path = get_command_line(command);
 
-	brackets(command);
-	interro_dot(command);
+	if (command->node->data[1] != NULL)
+		globing(command);
 	if (signal(SIGINT, ignore) == SIG_ERR)
 		my_perror("signal");
 	if (cmd_path == NULL)

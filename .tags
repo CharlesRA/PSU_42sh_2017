@@ -1,0 +1,394 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALL_DIR	tests/Makefile	/^ALL_DIR = 	$(SRCS)\\$/;"	m
+AMBIGUOUS	includes/define.h	14;"	d
+AMBIGUOUS	includes/minishell.h	20;"	d
+AND	includes/minishell.h	/^	AND,$/;"	e	enum:type
+AR	lib/my/Makefile	/^AR	=	ar rc$/;"	m
+BUILTINS	tests/Makefile	/^BUILTINS=	$(SRCS)builtins\/$/;"	m
+BUILTINS_H	includes/builtins.h	9;"	d
+CC	Makefile	/^CC	=	gcc$/;"	m
+CC	lib/my/Makefile	/^CC	=	gcc$/;"	m
+CC	lib/my_strings/Makefile	/^CC	=	gcc -W -Wall -Wextra -pedantic$/;"	m
+CC	tests/Makefile	/^CC	=	gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS	=	-g3 -W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter$/;"	m
+CFLAGS	lib/my/Makefile	/^CFLAGS	=	#-Wall -Wextra -Werror$/;"	m
+CFLAGS	tests/Makefile	/^CFLAGS	=	-lcriterion --coverage$/;"	m
+CLOSED_PARENTHESIS	includes/minishell.h	/^	CLOSED_PARENTHESIS,$/;"	e	enum:type
+COMMAND	includes/minishell.h	/^	COMMAND,$/;"	e	enum:type
+COMMANDS_H_	includes/commands.h	9;"	d
+CPPFLAGS	Makefile	/^CPPFLAGS=	-I.\/includes\/$/;"	m
+CPPFLAGS	lib/my/Makefile	/^CPPFLAGS=	-I..\/..\/includes\/$/;"	m
+CPPFLAGS	tests/Makefile	/^CPPFLAGS=	-I..\/includes\/$/;"	m
+DEFINE_H	includes/define.h	9;"	d
+ERRORS	tests/Makefile	/^ERRORS=		$(SRCS)errors\/$/;"	m
+ERROR_CD	includes/define.h	11;"	d
+GCNO_OBJ	tests/Makefile	/^GCNO_OBJ	=	$(SRC_TEST:.c=.gcno)$/;"	m
+HEAD	lib/my_strings/Makefile	/^HEAD	=	my_strings.h$/;"	m
+HISTORY_SRCS	tests/Makefile	/^HISTORY_SRCS=	$(SRCS)history\/$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS	=	-L$(LIB_DIR) -lmy -lmy_strings -lncurses$/;"	m
+LDFLAGS	tests/Makefile	/^LDFLAGS	=	-lcriterion --coverage -L..\/lib\/ -lmy$/;"	m
+LEXER_H_	includes/lexer.h	9;"	d
+LIB_DIR	Makefile	/^LIB_DIR	=	lib\/$/;"	m
+LIB_DIR	lib/my/Makefile	/^LIB_DIR	=	..$/;"	m
+LIB_DIR	tests/Makefile	/^LIB_DIR	=	..\/lib\/my$/;"	m
+LIST_H	includes/linked_list.h	9;"	d
+MINISHELL_H_	includes/minishell.h	9;"	d
+MY_FILES_H_	includes/my_files.h	9;"	d
+MY_PRINTF_H_	lib/my_strings/my_printf.h	9;"	d
+MY_STRINGS_H_	includes/my_strings.h	9;"	d
+MY_STRINGS_H_	lib/my_strings/my_strings.h	9;"	d
+NAME	Makefile	/^NAME	=	42sh$/;"	m
+NAME	lib/my/Makefile	/^NAME	=	libmy.a$/;"	m
+NAME	lib/my_strings/Makefile	/^NAME	=	libmy_strings.a$/;"	m
+NAME	tests/Makefile	/^NAME	=	42sh$/;"	m
+NAMET	Makefile	/^NAMET	=	unit_tests$/;"	m
+NBR_DIR	includes/linked_list.h	/^	NBR_DIR$/;"	e	enum:e_dir
+NBR_H	includes/nbr.h	9;"	d
+NEXT	includes/linked_list.h	/^	NEXT,$/;"	e	enum:e_dir
+NULL_COMMAND	includes/define.h	15;"	d
+NULL_COMMAND	includes/minishell.h	21;"	d
+OBJ	Makefile	/^OBJ	=	$(SRC:.c=.o)$/;"	m
+OBJ	lib/my/Makefile	/^OBJ	=	$(SRC:.c=.o)$/;"	m
+OBJ	lib/my_strings/Makefile	/^OBJ	=	$(SRC:.c=.o)$/;"	m
+OBJ	tests/Makefile	/^OBJ	=	$(SRC_TEST:.c=.o)$/;"	m
+OBJT	Makefile	/^OBJT	=	tests.o$/;"	m
+OBJ_CRITERION	tests/Makefile	/^OBJ_CRITERION	=	$(SRC_TEST:.c=.gcda)$/;"	m
+ONE_LEFT_BRACKET	includes/minishell.h	/^	ONE_LEFT_BRACKET,$/;"	e	enum:type
+ONE_RIGHT_BRACKET	includes/minishell.h	/^	ONE_RIGHT_BRACKET,$/;"	e	enum:type
+OPEN_PARENTHESIS	includes/minishell.h	/^	OPEN_PARENTHESIS,$/;"	e	enum:type
+OR	includes/minishell.h	/^	OR,$/;"	e	enum:type
+PARSING	tests/Makefile	/^PARSING=	$(SRCS)parsing\/$/;"	m
+PERM_DENIED	includes/define.h	13;"	d
+PERM_DENIED	includes/minishell.h	19;"	d
+PIPE	includes/minishell.h	/^	PIPE,$/;"	e	enum:type
+PREV	includes/linked_list.h	/^	PREV,$/;"	e	enum:e_dir
+READ_SIZE	includes/my_files.h	12;"	d
+READ_SIZE	lib/my/get_next_line.h	17;"	d
+RM	tests/Makefile	/^RM	=	rm -f$/;"	m
+ROOT	includes/minishell.h	/^	ROOT = 45,$/;"	e	enum:type
+SEMICOLON	includes/minishell.h	/^	SEMICOLON,$/;"	e	enum:type
+SIGNAL_H	includes/signals.h	9;"	d
+SRC	Makefile	/^SRC	=	src\/globing.c \\$/;"	m
+SRC	lib/my/Makefile	/^SRC	=	$(SRC_DIR)\/add_delete_element.c\\$/;"	m
+SRC	lib/my_strings/Makefile	/^SRC	=	$(wildcard *.c)$/;"	m
+SRCS	tests/Makefile	/^SRCS=	..\/srcs\/$/;"	m
+SRCT	Makefile	/^SRCT	=	tests\/tests.c$/;"	m
+SRC_DIR	lib/my/Makefile	/^SRC_DIR	=	.$/;"	m
+SRC_TEST	tests/Makefile	/^SRC_TEST=	$(VAR_SRCS)handle_variables.c\\$/;"	m
+STR_H	includes/str.h	9;"	d
+TWO_LEFT_BRACKET	includes/minishell.h	/^	TWO_LEFT_BRACKET,$/;"	e	enum:type
+TWO_RIGHT_BRACKET	includes/minishell.h	/^	TWO_RIGHT_BRACKET,$/;"	e	enum:type
+Test	tests/ut_handle_variables.c	/^Test(replace_variable, easy_replace01)$/;"	f
+Test	tests/ut_handle_variables.c	/^Test(replace_variable, easy_replace02)$/;"	f
+Test	tests/ut_handle_variables.c	/^Test(replace_variable, easy_replace03)$/;"	f
+Test	tests/ut_history.c	/^Test(history, null_history, .init = redirect_all_std)$/;"	f
+Test	tests/ut_history.c	/^Test(history, simple_replace01, .init = redirect_all_std)$/;"	f
+Test	tests/ut_history.c	/^Test(history, simple_replace02, .init = redirect_all_std)$/;"	f
+Test	tests/ut_history.c	/^Test(history, simple_replace03)$/;"	f
+UNKNOWN	includes/minishell.h	/^	UNKNOWN,$/;"	e	enum:type
+VAR42_	includes/variables.h	9;"	d
+VAR_SRCS	tests/Makefile	/^VAR_SRCS=	$(SRCS)variables\/$/;"	m
+WRONG_ARCH	includes/minishell.h	18;"	d
+WRONG_ARCHITECTURE	includes/define.h	12;"	d
+add_back	lib/my/add_delete_element.c	/^int add_back(circular_dll_t *element, void *new_data)$/;"	f
+add_command	src/tree/lexer/lexer_add_node.c	/^int add_command(char **cmd, node_t *last, int *i)$/;"	f
+add_data	src/prompt.c	/^void *add_data(circular_dll_t *list, char *read)$/;"	f
+add_field_width	lib/my_strings/add_elems.c	/^void add_field_width(list_t *element, char const *str, int *i)$/;"	f
+add_flag_to_elem	lib/my_strings/add_elems.c	/^void add_flag_to_elem(list_t *elmt, char c)$/;"	f
+add_flags	lib/my_strings/add_elems.c	/^void add_flags(list_t *element, char const *str, int *i)$/;"	f
+add_in_list_new_arg	src/globing.c	/^static void add_in_list_new_arg(glob_t *globbuf$/;"	f	file:
+add_length	lib/my_strings/add_elems.c	/^void add_length(list_t *element, char const *str, int *i)$/;"	f
+add_line_to_env	src/commands/commands_set_unsetenv.c	/^char **add_line_to_env(char **envp, char *line, int n)$/;"	f
+add_node	src/tree/lexer/lexer_add_node.c	/^static int add_node(char **data, int length, node_t *last, type_t type)$/;"	f	file:
+add_precision	lib/my_strings/add_elems.c	/^void add_precision(list_t *element, char const *str, int *i)$/;"	f
+add_separator	src/tree/lexer/lexer_add_node.c	/^int add_separator(char *cmd, node_t *last)$/;"	f
+add_to_output	src/tree/rpn.c	/^static int add_to_output(node_t **output, node_t **token)$/;"	f	file:
+add_to_stack	src/tree/make_tree.c	/^static int add_to_stack(list_t **stack, node_t *node)$/;"	f	file:
+add_variable	src/variables/set_builtin.c	/^void add_variable(circular_dll_t *variables, variable_t *new_variable)$/;"	f
+add_zeros	lib/my_strings/arguments.c	/^static void add_zeros(int str, int *bytes, list_t *elmt)$/;"	f	file:
+apply_new_args	src/globing.c	/^static void apply_new_args(circular_dll_t *new_args, command_t *command)$/;"	f	file:
+arguments	includes/minishell.h	/^	circular_dll_t *arguments;$/;"	m	struct:s_line
+associate	lib/my/binary_to_array.c	/^int *associate(char *binary)$/;"	f
+auto_complete	lib/my/get_next_line.c	/^char *auto_complete(char *result, circular_dll_t *list, char *line)$/;"	f
+auxiliary_modulo	lib/my_strings/printf_modulo.c	/^list_t *auxiliary_modulo(list_t *elmt, char const *str, int *i)$/;"	f
+base_min	lib/my_strings/arguments.c	/^int base_min(long long nb, char const *base, list_t *elmt)$/;"	f
+binaries	includes/minishell.h	/^	char **binaries;$/;"	m	struct:command
+binary_for_less	lib/my/my_print_binary.c	/^char *binary_for_less(int nbr, char *display)$/;"	f
+binary_for_plus	lib/my/my_print_binary.c	/^char *binary_for_plus(int nbr, char *display)$/;"	f
+builtin	includes/builtins.h	/^	char *builtin;$/;"	m	struct:s_flags
+calcul_len	lib/my/my_str_to_word_array.c	/^int calcul_len(char const *str, char extra)$/;"	f
+cd_in_cdpath	src/commands/commands_cd.c	/^static int cd_in_cdpath(char **cdpath, char const *folder)$/;"	f	file:
+change_cwd	src/variables/cwd.c	/^int change_cwd(variable_t *cwd)$/;"	f
+change_env	src/commands/commands_set_unsetenv.c	/^int change_env(command_t *command, char **cmd, int type)$/;"	f
+change_input_output	src/io_redirections.c	/^void change_input_output(command_t const *command)$/;"	f
+char_is_an_operator	src/commands/operator.c	/^int char_is_an_operator(char const *str, int *i, int mod)$/;"	f
+check_and_execute_process	src/program.c	/^static uint8_t check_and_execute_process(char *path, command_t *command)$/;"	f	file:
+check_backslash_n	lib/my/get_next_line.c	/^int check_backslash_n(char *str)$/;"	f
+check_builtin	src/builtin.c	/^int check_builtin(command_t *command)$/;"	f
+check_conversion	lib/my_strings/my_printf.c	/^char check_conversion(char const *str, int i)$/;"	f
+check_flag	lib/my_strings/my_printf_tools.c	/^int check_flag(list_t *elmt, char c)$/;"	f
+check_if_pipe_and_dup	src/program.c	/^void check_if_pipe_and_dup(command_t *command)$/;"	f
+check_if_regular	lib/my_strings/my_printf.c	/^int check_if_regular(char c)$/;"	f
+check_invalid	src/variables/declare_variable.c	/^static int check_invalid(char *name)$/;"	f	file:
+check_node	src/minishell.c	/^int check_node(command_t *command)$/;"	f
+check_path	src/commands/commands_cd.c	/^static void check_path(char *cmd, char **var, command_t *command)$/;"	f	file:
+check_replace_var	src/var.c	/^char **check_replace_var(char **tab, char **envp, uint8_t ret)$/;"	f
+check_signal	src/signals.c	/^int check_signal(int wstatus)$/;"	f
+check_valid_path	lib/my/get_next_line.c	/^char *check_valid_path(circular_dll_t *list, char *result, char *arg)$/;"	f
+circular_dll_t	includes/linked_list.h	/^} circular_dll_t;$/;"	t	typeref:struct:s_circular_double_linked_list
+clear_text	lib/my/get_next_line.c	/^char *clear_text(char *buffer, char *auto_complete, char *result)$/;"	f
+close_input_output	src/io_redirections.c	/^void close_input_output(command_t const *command)$/;"	f
+cmd_cd	src/commands/commands_built_in.c	/^int cmd_cd(command_t *command)$/;"	f
+cmd_env	src/commands/commands_built_in.c	/^int cmd_env(command_t *command)$/;"	f
+cmd_exit	src/commands/commands_built_in.c	/^int cmd_exit(command_t *command)$/;"	f
+cmd_setenv	src/commands/commands_built_in.c	/^int cmd_setenv(command_t *command)$/;"	f
+cmd_unsetenv	src/commands/commands_built_in.c	/^int cmd_unsetenv(command_t *command)$/;"	f
+command	includes/minishell.h	/^	char *command;$/;"	m	struct:s_line
+command	includes/minishell.h	/^typedef struct command {$/;"	s
+command_t	includes/minishell.h	/^} command_t;$/;"	t	typeref:struct:command
+complete_t	includes/minishell.h	/^} complete_t;$/;"	t	typeref:struct:s_complete
+conv	lib/my_strings/my_printf.h	/^	char conv;$/;"	m	struct:list
+count_lines_path	lib/my/path_to_array.c	/^void count_lines_path(char *str, command_t *new)$/;"	f
+count_malloc	lib/my/my_print_pointers.c	/^long long count_malloc(long long nbr)$/;"	f
+count_row_path	lib/my/path_to_array.c	/^char *count_row_path(char *str, command_t *new)$/;"	f
+count_words	lib/my/my_str_to_word_array.c	/^int count_words(char const *str, char extra)$/;"	f
+create_list	lib/my/add_delete_element.c	/^circular_dll_t *create_list(void)$/;"	f
+create_old_pwd	src/commands/commands_cd.c	/^static char **create_old_pwd(void)$/;"	f	file:
+create_tree	src/tree/tree.c	/^int create_tree(node_t **root, char *cmd)$/;"	f
+data	includes/linked_list.h	/^	void *data;$/;"	m	struct:s_circular_double_linked_list
+data	includes/minishell.h	/^	char **data;$/;"	m	struct:node
+declare_variable	src/variables/declare_variable.c	/^int declare_variable(circular_dll_t *variables, char **command,$/;"	f
+delete_element	lib/my/add_delete_element.c	/^void delete_element(circular_dll_t **element)$/;"	f
+destroy_node	src/tree/rpn_aux.c	/^void destroy_node(node_t *node)$/;"	f
+destroy_nodes	src/tree/tree.c	/^void destroy_nodes(node_t *node)$/;"	f
+destroy_tab	lib/my_strings/destroy.c	/^void destroy_tab(char **tab)$/;"	f
+destroy_triple_tab	lib/my_strings/destroy.c	/^void destroy_triple_tab(char ***tab)$/;"	f
+display_element	lib/my_strings/my_printf.c	/^int display_element(va_list ap, list_t *element)$/;"	f
+display_env	src/commands/commands_env.c	/^int display_env(command_t *command)$/;"	f
+display_prompt	src/prompt.c	/^void display_prompt(void)$/;"	f
+display_variables	src/variables/declare_variable.c	/^static void display_variables(circular_dll_t *variables,$/;"	f	file:
+do_cd	src/commands/commands_cd.c	/^int do_cd(char *cmd, command_t *command)$/;"	f
+do_modulo	lib/my_strings/my_printf.c	/^int do_modulo(va_list ap, char const *str, int *i)$/;"	f
+dot_int_t	includes/minishell.h	/^} dot_int_t;$/;"	t	typeref:struct:s_dot_int
+dup_to_char	src/variables/declare_variable.c	/^static char *dup_to_char(char const *str, char c)$/;"	f	file:
+e_dir	includes/linked_list.h	/^enum e_dir$/;"	g
+env	includes/minishell.h	/^	char **env;$/;"	m	struct:command
+env_var	src/commands/commands_env.c	/^char **env_var(char **envp, char const *var)$/;"	f
+err	includes/signals.h	/^struct s_error err[] = {$/;"	v	typeref:struct:s_error
+error	includes/signals.h	/^	int error;$/;"	m	struct:s_error
+execute_command	src/program.c	/^int execute_command(command_t *command)$/;"	f
+execute_process	src/program.c	/^static uint8_t execute_process(char const *path, command_t *command)$/;"	f	file:
+exit_shell	src/exit.c	/^void exit_shell(int status)$/;"	f
+exit_shell_cmd	src/exit.c	/^void exit_shell_cmd(char **cmd, int status)$/;"	f
+fd_tmp	includes/minishell.h	/^	int fd_tmp;$/;"	m	struct:command
+field	lib/my_strings/my_printf.h	/^	int field;$/;"	m	struct:list
+file	includes/minishell.h	/^	char *file;$/;"	m	struct:s_complete
+find_correct_line_env	lib/my/find_line_env.c	/^int find_correct_line_env(char **env, char *to_find)$/;"	f
+find_variable	src/variables/handle_variables.c	/^static int find_variable(circular_dll_t *variables, char **envp, char *command,$/;"	f	file:
+flag_basenum	lib/my_strings/flags.c	/^int flag_basenum(va_list ap, list_t *element)$/;"	f
+flag_caps_s	lib/my/my_print_string_witherror.c	/^void flag_caps_s(char const *str)$/;"	f
+flag_char	lib/my_strings/flags.c	/^int flag_char(va_list ap, list_t *element)$/;"	f
+flag_int	lib/my_strings/flags.c	/^int flag_int(va_list ap, list_t *element)$/;"	f
+flag_str	lib/my_strings/flags.c	/^int flag_str(va_list ap, list_t *element)$/;"	f
+flags	lib/my_strings/my_printf.h	/^	char flags[5];$/;"	m	struct:list
+function	includes/builtins.h	/^	void *function;$/;"	m	struct:s_flags
+generate_auto_complete	src/prompt.c	/^void *generate_auto_complete(DIR *rep, circular_dll_t *list)$/;"	f
+get_command_line	src/program_path.c	/^char *get_command_line(command_t *command)$/;"	f
+get_input	src/io_redirections.c	/^int get_input(node_t const *node, type_t type)$/;"	f
+get_next_line	lib/my/get_next_line.c	/^char *get_next_line(int fd, circular_dll_t *list)$/;"	f
+get_next_word	lib/my/check_string.c	/^char *get_next_word(char **end, char *str, char extra, int *indice)$/;"	f
+get_output	src/io_redirections.c	/^int get_output(node_t const *node, type_t type)$/;"	f
+globing	src/globing.c	/^void globing(command_t *command)$/;"	f
+go_to	includes/linked_list.h	/^	struct s_circular_double_linked_list *go_to[NBR_DIR];$/;"	m	struct:s_circular_double_linked_list	typeref:struct:s_circular_double_linked_list::s_circular_double_linked_list
+history_handling	src/history/history.c	/^char *history_handling(circular_dll_t *history_list, char *terminal_str)$/;"	f
+idx	includes/minishell.h	/^	int idx;$/;"	m	struct:s_dot_int
+ignore	src/signals.c	/^void ignore(int a)$/;"	f
+increase_count	lib/my/my_str_to_word_array.c	/^int increase_count(char const *str, int i, int count)$/;"	f
+increase_len	lib/my/my_str_to_word_array.c	/^int increase_len(char const *str, int *len)$/;"	f
+info_t	includes/str.h	/^typedef struct info_t {$/;"	s
+info_t	includes/str.h	/^} info_t;$/;"	t	typeref:struct:info_t
+init_list	lib/my_strings/my_printf_tools.c	/^list_t *init_list(char conv)$/;"	f
+init_tree	src/tree/tree.c	/^static int init_tree(node_t **root)$/;"	f	file:
+input	includes/minishell.h	/^	int input;$/;"	m	struct:command
+is_alphanum	src/errors.c	/^int is_alphanum(char const *str)$/;"	f
+is_ambiguous	src/tree/tree.c	/^static int is_ambiguous(node_t *node, node_t *check)$/;"	f	file:
+is_bracket	src/tree/lexer/lexer_check_type.c	/^int is_bracket(char c)$/;"	f
+is_command	src/tree/lexer/lexer.c	/^static int is_command(char c)$/;"	f	file:
+is_digit	lib/my_strings/is_digit.c	/^int is_digit(char c)$/;"	f
+is_error	src/tree/tree.c	/^static int is_error(node_t **root)$/;"	f	file:
+is_globing	src/globing.c	/^static int is_globing(char *str)$/;"	f	file:
+is_left_associativity	src/tree/rpn_aux.c	/^int is_left_associativity(node_t *data)$/;"	f
+is_letter	src/errors.c	/^int is_letter(char c)$/;"	f
+is_nbr	lib/my_strings/my_get_check_nbr.c	/^static int is_nbr(char const *str)$/;"	f	file:
+is_num	lib/my/is_num.c	/^int is_num(char const *str)$/;"	f
+is_number	src/errors.c	/^int is_number(char c)$/;"	f
+is_parenthesis	src/tree/lexer/lexer_check_type.c	/^int is_parenthesis(char c)$/;"	f
+is_quote	src/tree/lexer/lexer_check_type.c	/^int is_quote(char c)$/;"	f
+is_separator	src/tree/lexer/lexer.c	/^static int is_separator(char c)$/;"	f	file:
+is_word	src/tree/lexer/lexer_check_type.c	/^int is_word(char c)$/;"	f
+launch_program	src/program.c	/^uint8_t launch_program(command_t *command)$/;"	f
+left	includes/minishell.h	/^	struct node *left;$/;"	m	struct:node	typeref:struct:node::node
+length_mod	lib/my_strings/my_printf.h	/^	int length_mod;$/;"	m	struct:list
+length_modifier	lib/my_strings/arguments.c	/^int length_modifier(va_list ap, list_t *elmt, char *str)$/;"	f
+lexing	src/tree/lexer/lexer.c	/^int lexing(node_t **root, char *cmd)$/;"	f
+line_t	includes/minishell.h	/^} line_t;$/;"	t	typeref:struct:s_line
+list	includes/minishell.h	/^typedef struct list {$/;"	s
+list	lib/my_strings/my_printf.h	/^typedef struct list {$/;"	s
+list_len	lib/my/add_delete_element.c	/^int list_len(circular_dll_t *list)$/;"	f
+list_t	includes/minishell.h	/^} list_t;$/;"	t	typeref:struct:list
+list_t	lib/my_strings/my_printf.h	/^} list_t;$/;"	t	typeref:struct:list
+list_to_rpn	src/tree/rpn.c	/^int list_to_rpn(node_t **root)$/;"	f
+main	src/main.c	/^int main(int ac, char **av, char **envp)$/;"	f
+make_commands	src/minishell.c	/^static int make_commands(command_t *command)$/;"	f	file:
+make_num	lib/my_strings/my_get_check_nbr.c	/^static int make_num(char const *str, int start, int end)$/;"	f	file:
+make_num	lib/my_strings/my_getnbr.c	/^static int make_num(char const *str, int start, int end)$/;"	f	file:
+make_tree	src/tree/make_tree.c	/^int make_tree(node_t **root)$/;"	f
+message	includes/signals.h	/^	char *message;$/;"	m	struct:s_error
+min_value	lib/my_strings/my_strcmp.c	/^int min_value(int nb1, int nb2)$/;"	f
+minishell	src/minishell.c	/^int minishell(char **env)$/;"	f
+my_array_dup	lib/my/my_array_dup.c	/^char **my_array_dup(char **map)$/;"	f
+my_array_free	lib/my/my_array_free.c	/^void my_array_free(char **ptr)$/;"	f
+my_array_len	lib/my/my_array_len.c	/^int my_array_len(char **array)$/;"	f
+my_base_to_int	lib/my/my_binary_to_int.c	/^int my_base_to_int(char *nbr, char const *base)$/;"	f
+my_char_isalpha_num	lib/my/my_char_is_alpha_num.c	/^int my_char_isalpha_num(char alpha)$/;"	f
+my_compute_power_rec	lib/my/my_compute_power_rec.c	/^int my_compute_power_rec(int nb, int p)$/;"	f
+my_get_check_nbr	lib/my_strings/my_get_check_nbr.c	/^int my_get_check_nbr(char const *str, int *n)$/;"	f
+my_getnbr	lib/my/my_getnbr.c	/^int my_getnbr(char const *str)$/;"	f
+my_getnbr	lib/my_strings/my_getnbr.c	/^int my_getnbr(char const *str)$/;"	f
+my_int_len	lib/my/my_intlen.c	/^int my_int_len(int score)$/;"	f
+my_itoa	lib/my_strings/my_itoa.c	/^int my_itoa(int nb, char **str)$/;"	f
+my_long_putnbr_base	lib/my_strings/my_long_putnbr_base.c	/^int my_long_putnbr_base(long long nb, char const *base)$/;"	f
+my_nblen	lib/my_strings/my_itoa.c	/^int my_nblen(int nb)$/;"	f
+my_perror	src/errors.c	/^int my_perror(char const *str)$/;"	f
+my_print_percent	lib/my/my_print_percent.c	/^void my_print_percent(const char* str)$/;"	f
+my_printbinaire	lib/my/my_print_binary.c	/^char my_printbinaire(int nbr)$/;"	f
+my_printf	lib/my_strings/my_printf.c	/^int my_printf(char const *str, ...)$/;"	f
+my_printhexa_caps	lib/my/my_print_hexa_with_caps.c	/^void my_printhexa_caps(int nbr)$/;"	f
+my_printhexa_nocaps	lib/my/my_print_hexa_without_caps.c	/^void my_printhexa_nocaps(int nbr)$/;"	f
+my_printoctale	lib/my/my_put_octal.c	/^void my_printoctale(int nbr)$/;"	f
+my_printpointers	lib/my/my_print_pointers.c	/^void my_printpointers(long long nbr)$/;"	f
+my_put_nbr	lib/my_strings/my_put_nbr.c	/^int my_put_nbr(int nb)$/;"	f
+my_put_nbr_d	lib/my/my_put_digits.c	/^int my_put_nbr_d(int nb)$/;"	f
+my_put_nbr_i	lib/my/my_put_integrer.c	/^int my_put_nbr_i(int nb)$/;"	f
+my_put_unsignednbr	lib/my/my_print_unsigned_number.c	/^int my_put_unsignednbr(unsigned int nb)$/;"	f
+my_putchar	lib/my/my_putchar.c	/^void my_putchar(char c)$/;"	f
+my_putchar	lib/my_strings/my_putchar.c	/^void my_putchar(char c)$/;"	f
+my_puterror	lib/my_strings/my_puterror.c	/^void my_puterror(char const *str)$/;"	f
+my_putnbr_base	lib/my_strings/my_putnbr_base.c	/^int my_putnbr_base(int nb, char const *base)$/;"	f
+my_putserr	lib/my/puts_error.c	/^int my_putserr(char *str)$/;"	f
+my_putstr	lib/my/my_print_string.c	/^void my_putstr(char const *str)$/;"	f
+my_putstr	lib/my/puts.c	/^int my_putstr(char const *str)$/;"	f
+my_realloc_char	lib/my/my_realloc.c	/^void my_realloc_char(void *ptr, int size)$/;"	f
+my_realloc_char_star	lib/my/my_realloc.c	/^void my_realloc_char_star(void *ptr, int size)$/;"	f
+my_revstr	lib/my/my_revstr.c	/^char *my_revstr(char *str)$/;"	f
+my_revstr	lib/my_strings/my_revstr.c	/^char *my_revstr(char *str)$/;"	f
+my_show_word_array	lib/my_strings/my_show_word_array.c	/^int my_show_word_array(char * const *tab)$/;"	f
+my_str_isalpha	lib/my_strings/my_str_isalpha.c	/^int my_str_isalpha(char const *str)$/;"	f
+my_str_isnum	lib/my_strings/my_str_isnum.c	/^int my_str_isnum(char const *str)$/;"	f
+my_str_isspace_num	lib/my/my_char_is_alpha_num.c	/^int my_str_isspace_num(char *str)$/;"	f
+my_str_to_word_array	lib/my/my_str_to_word_array.c	/^char **my_str_to_word_array(char *str, char extra)$/;"	f
+my_strcapitalize	lib/my_strings/my_strcapitalize.c	/^char *my_strcapitalize(char *str)$/;"	f
+my_strcat	lib/my/my_strcat.c	/^char	*my_strcat(char *dest, char *src)$/;"	f
+my_strcat	lib/my_strings/my_strcat.c	/^char *my_strcat(char *dest, char const *src)$/;"	f
+my_strcmp	lib/my/my_strcmp.c	/^int my_strcmp(char const *s1, char const *s2)$/;"	f
+my_strcmp	lib/my_strings/my_strcmp.c	/^int my_strcmp(char const *s1, char const *s2)$/;"	f
+my_strcpy	lib/my_strings/my_strcpy.c	/^char *my_strcpy(char *dest, char const *src)$/;"	f
+my_strdup	lib/my/my_strdup.c	/^char *my_strdup(char const *src)$/;"	f
+my_strdup	lib/my_strings/my_strdup.c	/^char *my_strdup(char const *src)$/;"	f
+my_strdupcat	lib/my/my_strdupcat.c	/^char *my_strdupcat(char *str1, char *str2)$/;"	f
+my_strlen	lib/my/my_strlen.c	/^int my_strlen(char const *str)$/;"	f
+my_strlen	lib/my_strings/my_strlen.c	/^int my_strlen(char const *str)$/;"	f
+my_strlowcase	lib/my_strings/my_strlowcase.c	/^char *my_strlowcase(char *str)$/;"	f
+my_strncat	lib/my_strings/my_strncat.c	/^char *my_strncat(char *dest, char const *src, int nb)$/;"	f
+my_strncmp	lib/my/my_strncmp.c	/^int my_strncmp(char const *s1, char const *s2, int n)$/;"	f
+my_strncmp	lib/my_strings/my_strncmp.c	/^int my_strncmp(char const *s1, char const *s2, int n)$/;"	f
+my_strncpy	lib/my_strings/my_strncpy.c	/^char *my_strncpy(char *dest, char const *src, int n)$/;"	f
+my_strstr	lib/my/my_strstr.c	/^int my_strstr(char *str, char const *to_find)$/;"	f
+my_tabdup	lib/my_strings/tabs.c	/^char **my_tabdup(char **tab)$/;"	f
+my_tablen	lib/my_strings/tabs.c	/^int my_tablen(char **tab)$/;"	f
+my_triple_tabdup	lib/my_strings/triple_tabs.c	/^char ***my_triple_tabdup(char ***tab)$/;"	f
+my_triple_tablen	lib/my_strings/triple_tabs.c	/^int my_triple_tablen(char ***tab)$/;"	f
+name	includes/variables.h	/^	char *name;$/;"	m	struct:s_variable
+nb_bytes	lib/my_strings/my_printf.h	/^	int nb_bytes;$/;"	m	struct:list
+nb_in_base	lib/my/my_binary_to_int.c	/^int nb_in_base(char digit, char const *base)$/;"	f
+nbr_char	includes/str.h	/^	char *nbr_char;$/;"	m	struct:info_t
+nbr_word	includes/str.h	/^	int nbr_word;$/;"	m	struct:info_t
+neg	lib/my/my_getnbr.c	/^static int neg(char const *str)$/;"	f	file:
+new_len	src/history/history.c	/^static char *new_len(char *prev_command, char *terminal_str)$/;"	f	file:
+next	includes/minishell.h	/^	struct list *next;$/;"	m	struct:list	typeref:struct:list::list
+node	includes/minishell.h	/^	node_t *node;$/;"	m	struct:command
+node	includes/minishell.h	/^	node_t *node;$/;"	m	struct:list
+node	includes/minishell.h	/^typedef struct node {$/;"	s
+node_t	includes/minishell.h	/^} node_t;$/;"	t	typeref:struct:node
+non_canonic_mode	src/main.c	/^int non_canonic_mode(int i)$/;"	f
+non_print_str	lib/my_strings/flags.c	/^int non_print_str(char *str)$/;"	f
+num_len	lib/my_strings/my_printf_tools.c	/^int num_len(long long nb, char const *base)$/;"	f
+operator	includes/str.h	/^int operator(char c);$/;"	v
+operator	src/commands/operator.c	/^int operator(char c)$/;"	f
+output	includes/minishell.h	/^	int output;$/;"	m	struct:command
+parent	includes/minishell.h	/^	struct node *parent;$/;"	m	struct:node	typeref:struct:node::node
+pipe_fd	includes/minishell.h	/^	int pipe_fd[2];$/;"	m	struct:command
+pipe_node	src/pipes.c	/^void pipe_node(command_t *command)$/;"	f
+pop_operators	src/tree/rpn.c	/^static int pop_operators(node_t **output, node_t **stack, node_t *token)$/;"	f	file:
+pop_operators_until_open_parenthesis	src/tree/rpn.c	/^static int pop_operators_until_open_parenthesis(node_t **output, node_t **stack,$/;"	f	file:
+pop_sons_from_stack	src/tree/make_tree.c	/^static int pop_sons_from_stack(list_t **stack, node_t *ope)$/;"	f	file:
+pos_arg	includes/minishell.h	/^	int pos_arg;$/;"	m	struct:s_dot_int
+precedence	src/tree/rpn_aux.c	/^int precedence(node_t *data)$/;"	f
+precision	lib/my_strings/my_printf.h	/^	int precision;$/;"	m	struct:list
+prepare_auto_complete	src/prompt.c	/^void prepare_auto_complete(command_t *command, circular_dll_t *list)$/;"	f
+prompt	src/prompt.c	/^int prompt(command_t *command)$/;"	f
+prompt_int	src/signals.c	/^void prompt_int(int a)$/;"	f
+put_zeros	lib/my_strings/my_printf_tools.c	/^int put_zeros(char c)$/;"	f
+read_back	lib/my/read_list.c	/^void read_back(circular_dll_t *list)$/;"	f
+read_front	lib/my/add_delete_element.c	/^void read_front(circular_dll_t *list)$/;"	f
+read_front	lib/my/read_list.c	/^void read_front(circular_dll_t *list)$/;"	f
+recons	lib/my/get_next_line.c	/^char* recons(char *buffer, char *result, int to_copy)$/;"	f
+redirect_all_std	tests/ut_history.c	/^void redirect_all_std(void)$/;"	f
+redirect_or_pipe_node	src/minishell.c	/^void redirect_or_pipe_node(command_t *command)$/;"	f
+replace_var	src/var.c	/^static int replace_var(char **str, char **envp, uint8_t ret)$/;"	f	file:
+replace_variable	src/variables/handle_variables.c	/^int replace_variable(circular_dll_t *variables, char **envp, char *command)$/;"	f
+ret	includes/minishell.h	/^	uint8_t ret;$/;"	m	struct:command
+right	includes/minishell.h	/^	struct node *right;$/;"	m	struct:node	typeref:struct:node::node
+rm_line_to_env	src/commands/commands_set_unsetenv.c	/^char **rm_line_to_env(char **envp, int n)$/;"	f
+row	includes/minishell.h	/^	int row;$/;"	m	struct:command
+s_circular_double_linked_list	includes/linked_list.h	/^typedef struct s_circular_double_linked_list$/;"	s
+s_complete	includes/minishell.h	/^typedef struct s_complete$/;"	s
+s_dot_int	includes/minishell.h	/^typedef struct s_dot_int$/;"	s
+s_error	includes/signals.h	/^struct s_error {$/;"	s
+s_flags	includes/builtins.h	/^struct s_flags {$/;"	s
+s_line	includes/minishell.h	/^typedef struct s_line$/;"	s
+s_variable	includes/variables.h	/^struct s_variable$/;"	s
+separator_node	src/minishell.c	/^static void separator_node(command_t *command)$/;"	f	file:
+set_env	src/commands/commands_set_unsetenv.c	/^static char **set_env(char **envp, char **cmd)$/;"	f	file:
+set_new_variable	src/variables/set_builtin.c	/^variable_t *set_new_variable(variable_t *new_variable, char *value)$/;"	f
+shift_array	src/variables/handle_variables.c	/^static char *shift_array(char *array, int shift_size, int offset)$/;"	f	file:
+signed_argument	lib/my_strings/arguments.c	/^int signed_argument(va_list ap, list_t *elmt)$/;"	f
+special_cd	src/commands/commands_cd.c	/^static int special_cd(char **envp, char **var, char const *name)$/;"	f	file:
+special_variables	includes/variables.h	/^static const char *const special_variables[] = {"cwd", "term", "precmd",$/;"	v
+src	includes/minishell.h	/^	char *src;$/;"	m	struct:s_dot_int
+str_to_word_binaries	lib/my/path_to_array.c	/^void str_to_word_binaries(char *str, command_t *new)$/;"	f
+strcat_del	src/program_path.c	/^char *strcat_del(char const *path, char const *prog, char del)$/;"	f
+strcpy_no_end_byte	src/variables/handle_variables.c	/^static char *strcpy_no_end_byte(char *dest, char *src)$/;"	f	file:
+string_is_operator	lib/my/check_string.c	/^int string_is_operator(char *command)$/;"	f
+string_to_binaries	lib/my/path_to_array.c	/^void string_to_binaries(char *str, command_t *new)$/;"	f
+tab	includes/builtins.h	/^static struct s_flags tab[] = {$/;"	v	typeref:struct:s_flags
+take_none_glob	src/globing.c	/^static int take_none_glob(circular_dll_t *new_args, char **my_args)$/;"	f	file:
+type	includes/minishell.h	/^	type_t type;$/;"	m	struct:node
+type	includes/minishell.h	/^typedef enum type {$/;"	g
+type_t	includes/minishell.h	/^} type_t;$/;"	t	typeref:enum:type
+unset_env	src/commands/commands_set_unsetenv.c	/^static char **unset_env(char **envp, char *cmd, int len)$/;"	f	file:
+unsigned_argument	lib/my_strings/arguments.c	/^int unsigned_argument(va_list ap, list_t *element, char *str)$/;"	f
+unsignedwrite_nbr	lib/my/my_print_unsigned_number.c	/^void unsignedwrite_nbr(unsigned int nb)$/;"	f
+utils	lib/my/my_print_pointers.c	/^void utils(char *display)$/;"	f
+valid	includes/minishell.h	/^	char *valid;$/;"	m	struct:s_complete
+value	includes/variables.h	/^	char *value;$/;"	m	struct:s_variable
+variable_t	includes/variables.h	/^typedef struct s_variable variable_t;$/;"	t	typeref:struct:s_variable
+verif_ascii1	lib/my/my_print_string_witherror.c	/^int verif_ascii1(char const *str, int i)$/;"	f
+verif_ascii2	lib/my/my_print_string_witherror.c	/^int verif_ascii2(char const *str, int i)$/;"	f
+verif_ascii3	lib/my/my_print_string_witherror.c	/^int verif_ascii3(char const *str, int i)$/;"	f
+write_nbr	lib/my/my_put_integrer.c	/^void write_nbr(int nb)$/;"	f
