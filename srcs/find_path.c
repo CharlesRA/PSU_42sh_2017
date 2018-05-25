@@ -69,6 +69,8 @@ char *check_access_command(shell_t *tcsh, char *command)
 		if (access(tcsh->binaries[i], X_OK) == 0)
 			return (tcsh->binaries[i]);
 	}
+	if (access(command, F_OK) == 0)
+		return (command);
 	tcsh->return_value = 1;
 	error_command(command);
 	return (NULL);
@@ -102,8 +104,6 @@ char *path_to_binaries(char **envp, shell_t *tcsh, char *command)
 	for (int i = 0; tab[i].builtin != NULL; i++)
 		if (my_strcmp(command, tab[i].builtin) == 0)
 			return (tcsh->different_command[0][0]);
-	if (access(command, F_OK) == 0)
-		return (command);
 	if (find_variable_path(envp, command, tcsh) == NULL)
 		return (NULL);
 	return (check_access_command(tcsh, command));
