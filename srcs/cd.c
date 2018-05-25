@@ -13,34 +13,31 @@
 
 char **change_pwd(char **envp)
 {
-	char *cwd = malloc(sizeof(char) * 4096);
+	char *cwd = getcwd(NULL, 0);
 	int i = 0;
 
-	if (cwd == NULL)
-		exit(84);
-	cwd = getcwd(cwd, 4096);
-	if (getcwd(cwd, 4096) != NULL) {
+	if (cwd != NULL) {
 		i = find_correct_line_env(envp, "PWD=");
-		envp[i] = my_strdupcat("PWD=", cwd);
-		return (envp);
-	}
-	else
+		if (i != -1) {
+			envp[i] = my_strdupcat("PWD=", cwd);
+			free(cwd);
+			return (envp);
+		}
+		free(cwd);
+	} else
 		perror("getcwd() error");
 	return (NULL);
 }
 
 char **change_old_pwd(char **envp)
 {
-	char *cwd = malloc(sizeof(char) * 4096);
+	char *cwd = getcwd(NULL, 0);
 	int i = 0;
 
-	if (cwd == NULL)
-		exit(84);
-	if (getcwd(cwd, 4096) == NULL) {
+	if (cwd == NULL) {
 		perror("getcwd() error");
 		return (envp);
 	}
-	cwd = getcwd(cwd, 4096);
 	i = find_correct_line_env(envp, "OLDPWD=");
 	if (i != -1)
 		envp[i] = my_strdupcat("PWD=", cwd);

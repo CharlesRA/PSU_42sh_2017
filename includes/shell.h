@@ -31,6 +31,8 @@ typedef struct s_shell
 	char ***different_command;
 	char *path;
 	char *command;
+	circular_dll_t *variables;
+	circular_dll_t *history;
 	circular_dll_t *alias;
 } shell_t;
 

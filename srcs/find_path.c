@@ -112,6 +112,13 @@ char *choose_command(shell_t *tcsh, int *i, char **envp)
 {
 	char *command = NULL;
 
+	for (int j = 0; tcsh->different_command[0][j] != NULL; j++) {
+		if (strstr(tcsh->different_command[0][j], "$") != NULL) {
+			tcsh->different_command[0][j] =
+			replace_variable(tcsh->variables, envp,
+					tcsh->different_command[0][j]);
+		}
+	}
 	if (tcsh->different_command[0][0] == NULL)
 		return (NULL);
 	replace_alias(tcsh);

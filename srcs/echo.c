@@ -10,12 +10,11 @@
 
 char **print_echo(shell_t *new, char **env)
 {
-	for (int i = 1; new->different_command[0][i] != NULL; i++) {
+	for (int i = 1 ; new->different_command[0][i] != NULL ; i++) {
 		my_putstr(new->different_command[0][i]);
 		if (new->different_command[0][i + 1] != NULL)
-			my_putstr(" ");
-
+			my_putchar(' ');
 	}
-	my_putstr("\n");
+	my_putchar('\n');
 	return (env);
 }
