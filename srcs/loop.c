@@ -65,10 +65,10 @@ int loop(shell_t *new, char **envp)
 		command = get_the_command(new);
 		if (command == NULL)
 			continue;
-		add_back(new->history, command);
-		if (my_strcmp(command, "exit\n") == 0)
+		if (strcmp(command, "exit") == 0)
 			return (0);
-		envp = loop_command(new, envp);
+		add_back(new->history, command);
+			envp = loop_command(new, envp);
 	}
 	return (0);
 }
