@@ -16,7 +16,7 @@
 
 char *remove_backslash(char *command)
 {
-	char *dest = malloc(sizeof(char) * my_strlen(command) + 1);
+	char *dest = malloc(sizeof(char) * (my_strlen(command) + 1));
 	int j = 0;
 
 	for (int i = 0; command[i] != '\0';i++) {
@@ -31,7 +31,6 @@ char *remove_backslash(char *command)
 			dest[j] = command[i];
 	}
 	dest[j] = '\0';
-	dest = realloc(dest, my_strlen(dest) + 1);
 	free(command);
 	return (dest);
 }
