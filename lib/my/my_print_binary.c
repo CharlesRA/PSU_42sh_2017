@@ -41,11 +41,9 @@ char *binary_for_less(int nbr, char *display)
 	return (display);
 }
 
-char my_printbinaire(int nbr)
+void my_printbinaire(int nbr)
 {
 	char *display;
-	int result = 0;
-	int i = 1;
 	int SizeInt = count_malloc(nbr);
 
 	display = malloc(sizeof(char) * SizeInt * 3);

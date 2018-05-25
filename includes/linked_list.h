@@ -8,8 +8,7 @@
 #ifndef LIST_H
 #define LIST_H
 
-enum e_dir
-{
+enum e_dir {
 	PREV,
 	NEXT,
 	NBR_DIR

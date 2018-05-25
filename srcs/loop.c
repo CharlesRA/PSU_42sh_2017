@@ -19,7 +19,7 @@ int builtin_to_be_fork(char *command)
 		&& tab[i].to_be_fork == 1) {
 			return (1);
 		}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 int wait_process_semicolon(shell_t *tcsh, int i, int *proc)
@@ -29,7 +29,7 @@ int wait_process_semicolon(shell_t *tcsh, int i, int *proc)
 	|| tcsh->priority[i] == AND)
 		wait_process(proc, tcsh);
 	get_index(i, 1);
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 int apply_command(shell_t *tcsh, char **envp, int *proc)
@@ -53,7 +53,7 @@ int apply_command(shell_t *tcsh, char **envp, int *proc)
 		}
 		tcsh->different_command++;
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 char **loop_command(shell_t *tcsh, char **envp)
@@ -76,9 +76,9 @@ int loop(shell_t *tcsh, char **envp, circular_dll_t *list)
 		if (command == NULL)
 			continue;
 		if (strcmp(command, "exit") == 0)
-			return (0);
+			return (EXIT_NORMAL);
 		add_back(tcsh->history, command);
 		envp = loop_command(tcsh, envp);
 	}
-	return (0);
+	return (EXIT_FAIL);
 }

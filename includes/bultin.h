@@ -36,7 +36,7 @@ static struct s_flags tab[] = {
 	{"alias", &create_alias, 0},
 	{"exit", &exit_shell, 0},
 	{"which", &display_which, 1},
-	{NULL, NULL},
+	{NULL, NULL, 0},
 };
 
 #endif

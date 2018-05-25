@@ -55,7 +55,7 @@ static int loop_globing(shell_t *tcsh, int *start, glob_t *globbuf, int i)
 	int error = 0;
 
 	if (is_globing(tcsh->different_command[0][i]) == 0)
-		return (0);
+		return (EXIT_NORMAL);
 	if (*start == 0) {
 		error = glob(tcsh->different_command[0][i], GLOB_DOOFFS
 		, NULL, globbuf);
@@ -65,7 +65,7 @@ static int loop_globing(shell_t *tcsh, int *start, glob_t *globbuf, int i)
 		, GLOB_DOOFFS | GLOB_APPEND, NULL, globbuf);
 	if (error != 0)
 		return (-1);
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 int globing(shell_t *tcsh)
@@ -83,5 +83,5 @@ int globing(shell_t *tcsh)
 			return (-1);
 	}
 	add_in_list_new_arg(&globbuf, new_args, tcsh);
-	return (0);
+	return (EXIT_NORMAL);
 }

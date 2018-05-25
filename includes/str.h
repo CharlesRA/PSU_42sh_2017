@@ -30,7 +30,7 @@ void my_printf(const char *format, ...);
 int my_getnbr(char const *str);
 int is_num(char const *str);
 int my_strstr(char *str, char const *to_find);
-char my_printbinaire(int nbr);
+void my_printbinaire(int nbr);
 int my_strcmp(char const *s1, char const *s2);
 int my_putstr(char const *str);
 int my_strncmp(char const *s1, char const *s2, int n);

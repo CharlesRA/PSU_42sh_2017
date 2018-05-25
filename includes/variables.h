@@ -10,12 +10,10 @@
 
 #include "linked_list.h"
 
-typedef struct s_variable variable_t;
-struct s_variable
-{
+typedef struct s_variable {
 	char *name;
 	char *value;
-};
+} variable_t;
 
 static const char *const special_variables[] = {"cwd", "term", "precmd",
 						"cwdcmd", "ignoreof"};

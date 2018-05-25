@@ -32,44 +32,51 @@ int skip_redirecion(shell_t *new, int *i)
 	|| new->priority[*i] == TWO_LEFT) {
 		return (1);
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
-int operator_tow_left(shell_t *new, int i, char *path)
+static void operator_left(shell_t *new, int i, char *path)
 {
 	char *buffer = "\0";
 	size_t size = 0;
 	int fd = 0;
 
-	if (new->priority[i + 1] == ONE_LEFT) {
+	switch (new->priority[i + 1]) {
+	case ONE_LEFT:
 		fd = open(path, O_RDONLY);
 		dup2(fd, 0);
-	}
-	if (new->priority[i + 1] == TWO_LEFT) {
+		break;
+	case TWO_LEFT:
 		while (my_strcmp(buffer, path) != 0) {
 			my_putstr("? ");
 			if (getline(&buffer, &size, stdin) == -1)
 				break;
 			buffer[my_strlen(buffer) - 1] = '\0';
 		}
+		break;
+	default:
+		break;
 	}
-	return (0);
 }
 
 int operator_pipe_redirect_file(shell_t *new, int i, int *pipe, char *path)
 {
+	int mode = O_WRONLY | O_CREAT;
 	int fd = 0;
 
-	if (new->priority[i + 1] != SEMICOLON
-	&& new->priority[i + 1] == PIPE)
+	switch (new->priority[i + 1]) {
+	case PIPE:
 		dup2(pipe[1], 1);
-	else if (new->priority[i + 1] == ONE_RIGHT) {
-		fd = open(path, O_WRONLY | O_CREAT, 0666);
+		break;
+	case TWO_RIGHT:
+		mode |= O_APPEND;
+	case ONE_RIGHT:
+		fd = open(path, mode, 0666);
 		dup2(fd, 1);
-	} else if (new->priority[i + 1] == TWO_RIGHT) {
-		fd = open(path, O_WRONLY | O_APPEND | O_CREAT, 0666);
-		dup2(fd, 1);
+		break;
+	default:
+		operator_left(new, i, path);
+		break;
 	}
-	operator_tow_left(new, i, path);
-	return (0);
+	return (EXIT_NORMAL);
 }
