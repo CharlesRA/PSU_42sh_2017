@@ -33,6 +33,7 @@ EXE	=	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/error_message.c\
 		$(SRC_DIR)/command_and_priority.c\
 		$(SRC_DIR)/differents_type_command.c\
+		$(SRC_DIR)/globbing.c\
 
 OBJ	=	$(EXE:.c=.o)
 

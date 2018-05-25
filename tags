@@ -1,0 +1,213 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+NAME	Makefile	/^NAME	=	mysh$/;"	m
+CC	Makefile	/^CC	=	gcc -g3$/;"	m
+MAKE	Makefile	/^MAKE	=	\/usr\/bin\/make$/;"	m
+SRC_DIR	Makefile	/^SRC_DIR	=	.\/srcs$/;"	m
+LIB_DIR	Makefile	/^LIB_DIR	=	.\/lib\/my$/;"	m
+UT_DIR	Makefile	/^UT_DIR	=	.\/tests$/;"	m
+LIB_DIR	Makefile	/^LIB_DIR	=	.\/lib\/my$/;"	m
+EXE	Makefile	/^EXE	=	$(SRC_DIR)\/main.c\\$/;"	m
+OBJ	Makefile	/^OBJ	=	$(EXE:.c=.o)$/;"	m
+UT	Makefile	/^UT 	= 	$(UT_DIR)\/ut_error.c\\$/;"	m
+UT2	Makefile	/^UT2	=	$(SRC_DIR)\/find_path.c\\$/;"	m
+RM	Makefile	/^RM	=	rm -f$/;"	m
+CFLAGS	Makefile	/^CFLAGS	=	##-Wall -Wextra$/;"	m
+CPPFLAGS	Makefile	/^CPPFLAGS=	-I.\/includes\/$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS	=	-L.\/lib\/ -lmy$/;"	m
+UT_FLAGS	Makefile	/^UT_FLAGS=	-lcriterion --coverage$/;"	m
+INCLUDE	Makefile	/^INCLUDE	=	-I .\/includes$/;"	m
+check_redirecion	srcs/operator.c	/^char *check_redirecion(shell_t *new, int *i)$/;"	f
+skip_redirecion	srcs/operator.c	/^int skip_redirecion(shell_t *new, int *i)$/;"	f
+operator_tow_left	srcs/operator.c	/^int operator_tow_left(shell_t *new, int i, char *path)$/;"	f
+operator_pipe_redirect_file	srcs/operator.c	/^int operator_pipe_redirect_file(shell_t *new, int i, int *pipe, char *path)$/;"	f
+change_pwd	srcs/cd.c	/^char **change_pwd(char **envp)$/;"	f
+change_old_pwd	srcs/cd.c	/^char **change_old_pwd(char **envp)$/;"	f
+change_directory_part_two	srcs/cd.c	/^int change_directory_part_two(shell_t *new, char **env)$/;"	f
+compare_cd	srcs/cd.c	/^char *compare_cd(shell_t *new, char *cwd, char **env)$/;"	f
+change_directory	srcs/cd.c	/^char **change_directory(shell_t *new, char **env)$/;"	f
+wait_process_semicolon	srcs/loop.c	/^int wait_process_semicolon(shell_t *new, int i, int *proc)$/;"	f
+apply_command	srcs/loop.c	/^int apply_command(shell_t *new, char **envp, int *proc)$/;"	f
+loop_command	srcs/loop.c	/^char **loop_command(shell_t *new, char **envp)$/;"	f
+loop	srcs/loop.c	/^int loop(shell_t *new, char **envp)$/;"	f
+unset_env	srcs/unsetenv.c	/^char **unset_env(shell_t *new, char **envp)$/;"	f
+get_index	srcs/differents_type_command.c	/^int get_index(int i, int change)$/;"	f
+case_real_command	srcs/differents_type_command.c	/^int case_real_command(int *pipe_fd, shell_t *new,$/;"	f
+case_builtin	srcs/differents_type_command.c	/^int case_builtin(int *proc, shell_t *new, char **envp)$/;"	f
+case_fork	srcs/differents_type_command.c	/^int case_fork(int temp, int *pipe_fd, shell_t *new, char **envp)$/;"	f
+print_env	srcs/env.c	/^char **print_env(shell_t *new, char **envp)$/;"	f
+case_command_and_or	srcs/find_path.c	/^int case_command_and_or(shell_t *tcsh, int *i)$/;"	f
+get_the_command	srcs/find_path.c	/^char *get_the_command(shell_t *tcsh)$/;"	f
+choose_command	srcs/find_path.c	/^char *choose_command(shell_t *tcsh, int *i, char **envp)$/;"	f
+check_access_command	srcs/find_path.c	/^char *check_access_command(shell_t *tcsh, char *command)$/;"	f
+find_variable_path	srcs/find_path.c	/^char *find_variable_path(char **envp, char *command, shell_t *tcsh)$/;"	f
+path_to_binaries	srcs/find_path.c	/^char *path_to_binaries(char **envp, shell_t *tcsh, char *command)$/;"	f
+condition_priority_redirection	srcs/command_and_priority.c	/^int condition_priority_redirection(shell_t *new, int *i, int *j, char *str)$/;"	f
+condition_priority	srcs/command_and_priority.c	/^int condition_priority(shell_t *new, int *i, int *j, char *str)$/;"	f
+priority_array	srcs/command_and_priority.c	/^int priority_array(char *str, shell_t *new)$/;"	f
+fill_array	srcs/command_and_priority.c	/^int fill_array(char ***array, char **command, int len)$/;"	f
+array_command	srcs/command_and_priority.c	/^char *** array_command(char **command)$/;"	f
+main	srcs/main.c	/^int main(int ac, char **av, char **envp)$/;"	f
+wait_process	srcs/utils.c	/^void wait_process(int *nbr, shell_t *new)$/;"	f
+change_fdin	srcs/utils.c	/^int change_fdin(int *pipe_fd, shell_t *new)$/;"	f
+operator	srcs/utils.c	/^int operator(char c)$/;"	f
+char_is_an_operator	srcs/utils.c	/^int char_is_an_operator(char const *str, int *i, int mod)$/;"	f
+find_home	srcs/utils.c	/^char *find_home(char **env)$/;"	f
+check_builtin	srcs/builtin.c	/^int check_builtin(shell_t *new, char *command)$/;"	f
+apply_builtin	srcs/builtin.c	/^char **apply_builtin(const char *command, shell_t *new, char **envp)$/;"	f
+error_command	srcs/error_message.c	/^void error_command(char *message)$/;"	f
+error_execve	srcs/error_message.c	/^void error_execve(char *command)$/;"	f
+error_pid	srcs/error_message.c	/^int error_pid(int pid)$/;"	f
+non_sence_command	srcs/error.c	/^int non_sence_command(char *str)$/;"	f
+error_operator	srcs/error.c	/^int error_operator(char *str)$/;"	f
+error_status	srcs/error.c	/^void error_status(int wstatus, shell_t *new)$/;"	f
+overwrite_env	srcs/setenv.c	/^int overwrite_env(char *envp, shell_t *new)$/;"	f
+check_invalid_char	srcs/setenv.c	/^int check_invalid_char(char *str)$/;"	f
+set_env_arg	srcs/setenv.c	/^char **set_env_arg(int i, shell_t *new, char **envp, int overwrite)$/;"	f
+set_env_error	srcs/setenv.c	/^int set_env_error(shell_t *new, char **envp)$/;"	f
+set_env	srcs/setenv.c	/^char **set_env(shell_t *new, char **envp)$/;"	f
+disp_test	tester.sh	/^disp_test()$/;"	f
+run_script	tester.sh	/^run_script()$/;"	f
+prepare_test	tester.sh	/^prepare_test()$/;"	f
+load_test	tester.sh	/^load_test()$/;"	f
+my_strncmp	lib/my/my_strncmp.c	/^int my_strncmp(char const *s1, char const *s2, int n)$/;"	f
+my_printhexa_nocaps	lib/my/my_print_hexa_without_caps.c	/^void my_printhexa_nocaps(int nbr)$/;"	f
+my_putchar	lib/my/my_putchar.c	/^void my_putchar(char c)$/;"	f
+READ_SIZE	lib/my/get_next_line.h	17;"	d
+verif_ascii3	lib/my/my_print_string_witherror.c	/^int verif_ascii3(char const *str, int i)$/;"	f
+verif_ascii2	lib/my/my_print_string_witherror.c	/^int verif_ascii2(char const *str, int i)$/;"	f
+verif_ascii1	lib/my/my_print_string_witherror.c	/^int verif_ascii1(char const *str, int i)$/;"	f
+flag_caps_s	lib/my/my_print_string_witherror.c	/^void flag_caps_s(char const *str)$/;"	f
+my_putstr	lib/my/my_print_string.c	/^void my_putstr(char const *str)$/;"	f
+my_put_nbr_d	lib/my/my_put_digits.c	/^int my_put_nbr_d(int nb)$/;"	f
+count_row_path	lib/my/path_to_array.c	/^char *count_row_path(char *str, shell_t *new)$/;"	f
+count_lines_path	lib/my/path_to_array.c	/^void count_lines_path(char *str, shell_t *new)$/;"	f
+string_to_binaries	lib/my/path_to_array.c	/^void string_to_binaries(char *str, shell_t *new)$/;"	f
+str_to_word_binaries	lib/my/path_to_array.c	/^void str_to_word_binaries(char *str, shell_t *new)$/;"	f
+my_strcat	lib/my/my_strcat.c	/^char	*my_strcat(char *dest, char *src)$/;"	f
+neg	lib/my/my_getnbr.c	/^static int neg(char const *str)$/;"	f	file:
+my_getnbr	lib/my/my_getnbr.c	/^int my_getnbr(char const *str)$/;"	f
+create_list	lib/my/add_delete_element.c	/^circular_dll_t *create_list(void)$/;"	f
+delete_element	lib/my/add_delete_element.c	/^void delete_element(circular_dll_t **element)$/;"	f
+add_back	lib/my/add_delete_element.c	/^int add_back(circular_dll_t *element, void *new_data)$/;"	f
+SRC_DIR	lib/my/Makefile	/^SRC_DIR	=	.$/;"	m
+LIB_DIR	lib/my/Makefile	/^LIB_DIR	=	..$/;"	m
+SRC	lib/my/Makefile	/^SRC	=	$(SRC_DIR)\/my_strlen.c	\\$/;"	m
+AR	lib/my/Makefile	/^AR	=	ar rc$/;"	m
+CC	lib/my/Makefile	/^CC	=	gcc$/;"	m
+CFLAGS	lib/my/Makefile	/^CFLAGS	=	-g3 #-Wall -Wextra -Werror$/;"	m
+CPPFLAGS	lib/my/Makefile	/^CPPFLAGS=	-I..\/..\/includes\/$/;"	m
+OBJ	lib/my/Makefile	/^OBJ	=	$(SRC:.c=.o)$/;"	m
+NAME	lib/my/Makefile	/^NAME	=	libmy.a$/;"	m
+increase_count	lib/my/my_str_to_word_array.c	/^int increase_count(char const *str, int i, int count)$/;"	f
+count_words	lib/my/my_str_to_word_array.c	/^int count_words(char const *str, char extra)$/;"	f
+increase_len	lib/my/my_str_to_word_array.c	/^int increase_len(char const *str, int *len)$/;"	f
+calcul_len	lib/my/my_str_to_word_array.c	/^int calcul_len(char const *str, char extra)$/;"	f
+my_str_to_word_array	lib/my/my_str_to_word_array.c	/^char **my_str_to_word_array(char *str, char extra)$/;"	f
+is_num	lib/my/is_num.c	/^int is_num(char const *str)$/;"	f
+s_flags	lib/my/my_printf.c	/^struct s_flags {$/;"	s	file:
+flag	lib/my/my_printf.c	/^	char flag;$/;"	m	struct:s_flags	file:
+function	lib/my/my_printf.c	/^	void* function;$/;"	m	struct:s_flags	file:
+tab	lib/my/my_printf.c	/^static struct s_flags tab[] = {$/;"	v	typeref:struct:s_flags	file:
+print_char	lib/my/my_printf.c	/^void print_char(const char *str, int i)$/;"	f
+verif_flag_percent	lib/my/my_printf.c	/^int verif_flag_percent(const char *str, int i, int j)$/;"	f
+verif_flag	lib/my/my_printf.c	/^int verif_flag(const char *str, int i, int j, va_list ap)$/;"	f
+my_printf	lib/my/my_printf.c	/^void my_printf(const char *format, ...)$/;"	f
+my_printoctale	lib/my/my_put_octal.c	/^void my_printoctale(int nbr)$/;"	f
+utils	lib/my/my_print_pointers.c	/^void utils(char *display)$/;"	f
+count_malloc	lib/my/my_print_pointers.c	/^long long count_malloc(long long nbr)$/;"	f
+my_printpointers	lib/my/my_print_pointers.c	/^void my_printpointers(long long nbr)$/;"	f
+my_compute_power_rec	lib/my/my_compute_power_rec.c	/^int my_compute_power_rec(int nb, int p)$/;"	f
+associate	lib/my/binary_to_array.c	/^int *associate(char *binary)$/;"	f
+my_printhexa_caps	lib/my/my_print_hexa_with_caps.c	/^void my_printhexa_caps(int nbr)$/;"	f
+my_strdupcat	lib/my/my_strdupcat.c	/^char *my_strdupcat(char *str1, char *str2)$/;"	f
+my_array_free	lib/my/my_array_free.c	/^void my_array_free(char **ptr)$/;"	f
+nb_in_base	lib/my/my_binary_to_int.c	/^int nb_in_base(char digit, char const *base)$/;"	f
+my_base_to_int	lib/my/my_binary_to_int.c	/^int my_base_to_int(char *nbr, char const *base)$/;"	f
+check_backslash_n	lib/my/get_next_line.c	/^int check_backslash_n(char *str)$/;"	f
+recons	lib/my/get_next_line.c	/^char* recons(char *buffer, char *result, int to_copy)$/;"	f
+get_next_line	lib/my/get_next_line.c	/^char *get_next_line(int fd)$/;"	f
+write_nbr	lib/my/my_put_integrer.c	/^void write_nbr(int nb)$/;"	f
+my_put_nbr_i	lib/my/my_put_integrer.c	/^int my_put_nbr_i(int nb)$/;"	f
+find_correct_line_env	lib/my/find_line_env.c	/^int find_correct_line_env(char **env, char *to_find)$/;"	f
+my_putstr	lib/my/puts.c	/^int my_putstr(char const *str)$/;"	f
+my_array_len	lib/my/my_array_len.c	/^int my_array_len(char **array)$/;"	f
+string_is_operator	lib/my/check_string.c	/^int string_is_operator(char *command)$/;"	f
+get_next_word	lib/my/check_string.c	/^char *get_next_word(char **end, char *str, char extra, int *indice)$/;"	f
+unsignedwrite_nbr	lib/my/my_print_unsigned_number.c	/^void unsignedwrite_nbr(unsigned int nb)$/;"	f
+my_put_unsignednbr	lib/my/my_print_unsigned_number.c	/^int my_put_unsignednbr(unsigned int nb)$/;"	f
+my_revstr	lib/my/my_revstr.c	/^char *my_revstr(char *str)$/;"	f
+my_putserr	lib/my/puts_error.c	/^int my_putserr(char *str)$/;"	f
+read_front	lib/my/read_list.c	/^void read_front(circular_dll_t *list)$/;"	f
+read_back	lib/my/read_list.c	/^void read_back(circular_dll_t *list)$/;"	f
+my_print_percent	lib/my/my_print_percent.c	/^void my_print_percent(const char* str)$/;"	f
+my_array_dup	lib/my/my_array_dup.c	/^char **my_array_dup(char **map)$/;"	f
+my_strlen	lib/my/my_strlen.c	/^int my_strlen(char const *str)$/;"	f
+binary_for_plus	lib/my/my_print_binary.c	/^char *binary_for_plus(int nbr, char *display)$/;"	f
+binary_for_less	lib/my/my_print_binary.c	/^char *binary_for_less(int nbr, char *display)$/;"	f
+my_printbinaire	lib/my/my_print_binary.c	/^char my_printbinaire(int nbr)$/;"	f
+my_strdup	lib/my/my_strdup.c	/^char *my_strdup(char const *src)$/;"	f
+my_strcmp	lib/my/my_strcmp.c	/^int my_strcmp(char const *s1, char const *s2)$/;"	f
+my_int_len	lib/my/my_intlen.c	/^int my_int_len(int score)$/;"	f
+my_strstr	lib/my/my_strstr.c	/^int my_strstr(char *str, char const *to_find)$/;"	f
+my_char_isalpha_num	lib/my/my_char_is_alpha_num.c	/^int my_char_isalpha_num(char alpha)$/;"	f
+my_str_isspace_num	lib/my/my_char_is_alpha_num.c	/^int my_str_isspace_num(char *str)$/;"	f
+my_realloc_char	lib/my/my_realloc.c	/^void my_realloc_char(void *ptr, int size)$/;"	f
+my_realloc_char_star	lib/my/my_realloc.c	/^void my_realloc_char_star(void *ptr, int size)$/;"	f
+SIGNAL_H	includes/signals.h	9;"	d
+s_error	includes/signals.h	/^struct s_error {$/;"	s
+error	includes/signals.h	/^	int error;$/;"	m	struct:s_error
+message	includes/signals.h	/^	char *message;$/;"	m	struct:s_error
+err	includes/signals.h	/^struct s_error err[] = {$/;"	v	typeref:struct:s_error
+STR_H	includes/str.h	9;"	d
+info_t	includes/str.h	/^typedef struct info_t {$/;"	s
+nbr_word	includes/str.h	/^	int nbr_word;$/;"	m	struct:info_t
+nbr_char	includes/str.h	/^	char *nbr_char;$/;"	m	struct:info_t
+info_t	includes/str.h	/^} info_t;$/;"	t	typeref:struct:info_t
+operator	includes/str.h	/^int operator(char c);$/;"	v
+LIST_H	includes/linked_list.h	9;"	d
+e_dir	includes/linked_list.h	/^enum e_dir$/;"	g
+PREV	includes/linked_list.h	/^	PREV,$/;"	e	enum:e_dir
+NEXT	includes/linked_list.h	/^	NEXT,$/;"	e	enum:e_dir
+NBR_DIR	includes/linked_list.h	/^	NBR_DIR$/;"	e	enum:e_dir
+s_circular_double_linked_list	includes/linked_list.h	/^typedef struct s_circular_double_linked_list$/;"	s
+data	includes/linked_list.h	/^	void *data;$/;"	m	struct:s_circular_double_linked_list
+go_to	includes/linked_list.h	/^	struct s_circular_double_linked_list *go_to[NBR_DIR];$/;"	m	struct:s_circular_double_linked_list	typeref:struct:s_circular_double_linked_list::s_circular_double_linked_list
+circular_dll_t	includes/linked_list.h	/^} circular_dll_t;$/;"	t	typeref:struct:s_circular_double_linked_list
+BUILTIN_H	includes/bultin.h	9;"	d
+s_flags	includes/bultin.h	/^struct s_flags {$/;"	s
+builtin	includes/bultin.h	/^	char *builtin;$/;"	m	struct:s_flags
+function	includes/bultin.h	/^	void *function;$/;"	m	struct:s_flags
+tab	includes/bultin.h	/^static struct s_flags tab[] = {$/;"	v	typeref:struct:s_flags
+SHELL_H	includes/shell.h	9;"	d
+OPERATOR	includes/shell.h	/^enum OPERATOR {$/;"	g
+PIPE	includes/shell.h	/^	PIPE = 49,$/;"	e	enum:OPERATOR
+SEMICOLON	includes/shell.h	/^	SEMICOLON,$/;"	e	enum:OPERATOR
+ONE_LEFT	includes/shell.h	/^	ONE_LEFT,$/;"	e	enum:OPERATOR
+TWO_LEFT	includes/shell.h	/^	TWO_LEFT,$/;"	e	enum:OPERATOR
+ONE_RIGHT	includes/shell.h	/^	ONE_RIGHT,$/;"	e	enum:OPERATOR
+TWO_RIGHT	includes/shell.h	/^	TWO_RIGHT,$/;"	e	enum:OPERATOR
+OR	includes/shell.h	/^	OR,$/;"	e	enum:OPERATOR
+AND	includes/shell.h	/^	AND,$/;"	e	enum:OPERATOR
+s_shell	includes/shell.h	/^typedef struct s_shell$/;"	s
+return_value	includes/shell.h	/^	int return_value;$/;"	m	struct:s_shell
+row	includes/shell.h	/^	int row;$/;"	m	struct:s_shell
+array	includes/shell.h	/^	char **array;$/;"	m	struct:s_shell
+binaries	includes/shell.h	/^	char **binaries;$/;"	m	struct:s_shell
+priority	includes/shell.h	/^	char *priority;$/;"	m	struct:s_shell
+different_command	includes/shell.h	/^	char ***different_command;$/;"	m	struct:s_shell
+path	includes/shell.h	/^	char *path;$/;"	m	struct:s_shell
+command	includes/shell.h	/^	char *command;$/;"	m	struct:s_shell
+shell_t	includes/shell.h	/^} shell_t;$/;"	t	typeref:struct:s_shell
+operator	includes/shell.h	/^int operator(char c);$/;"	v
+DEFINE_H	includes/define.h	9;"	d
+ERROR_CD	includes/define.h	11;"	d
+WRONG_ARCHITECTURE	includes/define.h	12;"	d
+PERM_DENIED	includes/define.h	13;"	d
+AMBIGUOUS	includes/define.h	14;"	d
+NULL_COMMAND	includes/define.h	15;"	d
+NBR_H	includes/nbr.h	9;"	d

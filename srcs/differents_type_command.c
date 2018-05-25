@@ -37,11 +37,10 @@ char *command, char **envp)
 	return (0);
 }
 
-int case_builtin(int *proc, shell_t *new, char **envp, char ***skip)
+int case_builtin(int *proc, shell_t *new, char **envp)
 {
-	wait_process(proc, new, skip);
+	wait_process(proc, new);
 	apply_builtin(new->command, new, envp);
-	skip = new->different_command++;
 	return (0);
 }
 

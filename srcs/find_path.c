@@ -13,57 +13,67 @@
 #include <unistd.h>
 #include <stdio.h>
 
-char *get_the_command(shell_t *new)
+
+int case_command_and_or(shell_t *tcsh, int *i)
+{
+	if (tcsh->priority[*i] == AND && tcsh->return_value != 0)
+		return (1);
+	if (tcsh->priority[*i] == OR && tcsh->return_value == 0)
+		return (1);
+	return (0);
+}
+
+char *get_the_command(shell_t *tcsh)
 {
 	char *command = NULL;
 	size_t size = 0;
 
 	if (getline(&command, &size, stdin) == -1)
-		exit(new->return_value);
+		exit(tcsh->return_value);
 	if ((size = my_strlen(command)) == 1)
 		return (NULL);
-	new->array = my_str_to_word_array(command, ' ');
-	if (new->array == NULL
-	|| priority_array(command, new) == 84
-	|| error_operator(new->priority) == 1
-	|| non_sence_command(new->array[0]) == 1) {
-		new->return_value = 1;
+	tcsh->array = my_str_to_word_array(command, ' ');
+	if (tcsh->array == NULL
+	|| priority_array(command, tcsh) == 84
+	|| error_operator(tcsh->priority) == 1
+	|| non_sence_command(tcsh->array[0]) == 1) {
+		tcsh->return_value = 1;
 		return (NULL);
 	}
-	new->different_command = array_command(new->array);
+	tcsh->different_command = array_command(tcsh->array);
 	return (command);
 }
 
-char *choose_command(shell_t *new, int *i, char **envp)
+char *choose_command(shell_t *tcsh, int *i, char **envp)
 {
 	char *command = NULL;
 
-	new->path = check_redirecion(new, i);
-	if (skip_redirecion(new, i) == 1)
+	tcsh->path = check_redirecion(tcsh, i);
+	if (skip_redirecion(tcsh, i) == 1 || case_command_and_or(tcsh, i) == 1)
 		return (NULL);
-	command = path_to_binaries(envp, new, *(new->different_command)[0]);
+	command = path_to_binaries(envp, tcsh, *(tcsh->different_command)[0]);
 	if (command == NULL) {
-		new->return_value = 1;
+		tcsh->return_value = 1;
 		return (NULL);
 	}
 	return (command);
 }
 
-char *check_access_command(shell_t *new, char *command)
+char *check_access_command(shell_t *tcsh, char *command)
 {
-	for (int i = 0; new->binaries[i] != NULL; i++)
-		new->binaries[i] = my_strdupcat(new->binaries[i], "/");
-	for (int i = 0; new->binaries[i] != NULL; i++) {
-		new->binaries[i] = my_strdupcat(new->binaries[i], command);
-		if (access(new->binaries[i], X_OK) == 0)
-			return (new->binaries[i]);
+	for (int i = 0; tcsh->binaries[i] != NULL; i++)
+		tcsh->binaries[i] = my_strdupcat(tcsh->binaries[i], "/");
+	for (int i = 0; tcsh->binaries[i] != NULL; i++) {
+		tcsh->binaries[i] = my_strdupcat(tcsh->binaries[i], command);
+		if (access(tcsh->binaries[i], X_OK) == 0)
+			return (tcsh->binaries[i]);
 	}
-	new->return_value = 1;
+	tcsh->return_value = 1;
 	error_command(command);
 	return (NULL);
 }
 
-char *find_variable_path(char **envp, char *command, shell_t *new)
+char *find_variable_path(char **envp, char *command, shell_t *tcsh)
 {
 	int i = 0;
 
@@ -75,25 +85,25 @@ char *find_variable_path(char **envp, char *command, shell_t *new)
 		i++;
 	}
 	if (envp[i] == NULL) {
-		new->return_value = 1;
+		tcsh->return_value = 1;
 		error_command(command);
 		return (NULL);
 	}
 }
 
-char *path_to_binaries(char **envp, shell_t *new, char *command)
+char *path_to_binaries(char **envp, shell_t *tcsh, char *command)
 {
 	if (my_strcmp(command, "setenv") == 0
-	&& new->different_command[0][1] == NULL) {
-		new->different_command[0][0] = my_strdup("env");
-		return (new->different_command[0][0]);
+	&& tcsh->different_command[0][1] == NULL) {
+		tcsh->different_command[0][0] = my_strdup("env");
+		return (tcsh->different_command[0][0]);
 	}
 	for (int i = 0; tab[i].builtin != NULL; i++)
 		if (my_strcmp(command, tab[i].builtin) == 0)
-			return (new->different_command[0][0]);
+			return (tcsh->different_command[0][0]);
 	if (access(command, F_OK) == 0)
 		return (command);
-	if (find_variable_path(envp, command, new) == NULL)
+	if (find_variable_path(envp, command, tcsh) == NULL)
 		return (NULL);
-	return (check_access_command(new, command));
+	return (check_access_command(tcsh, command));
 }

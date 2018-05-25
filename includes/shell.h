@@ -16,6 +16,8 @@ enum OPERATOR {
 	TWO_LEFT,
 	ONE_RIGHT,
 	TWO_RIGHT,
+	OR,
+	AND,
 };
 
 typedef struct s_shell
@@ -33,7 +35,7 @@ typedef struct s_shell
 char *path_to_binaries(char *envp[], shell_t *new, char *command);
 int check_lines_envp(char *envp);
 char *path_to_binaries(char *envp[], shell_t *new, char *command);
-void error_status(int wstatus, shell_t *new, char *command);
+void error_status(int wstatus, shell_t *new);
 char **change_directory(shell_t *new, char **env);
 int loop(shell_t *new, char **envp);
 int find_correct_line_env(char **env, char *to_find);
@@ -57,10 +59,10 @@ int operator(char c);
 int error_operator_command(char **str);
 int non_sence_command(char *str);
 int error_operator(char *str);
-void wait_process(int *nbr, shell_t *new, char ***skip);
+void wait_process(int *nbr, shell_t *new);
 int skip_redirecion(shell_t *new, int *i);
 int case_fork(int temp, int *pipe_fd, shell_t *new, char **envp);
-int case_builtin(int *proc, shell_t *new, char **envp, char ***skip);
+int case_builtin(int *proc, shell_t *new, char **envp);
 void str_to_word_binaries(char *str, shell_t *new);
 
 #endif

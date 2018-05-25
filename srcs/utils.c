@@ -10,20 +10,13 @@
 #include <sys/wait.h>
 #include "bultin.h"
 
-void wait_process(int *nbr, shell_t *new, char ***skip)
+void wait_process(int *nbr, shell_t *new)
 {
 	int status = 0;
 
 	for (int i = 0; i != *nbr; i++) {
-		if (check_builtin(new, skip[0][0]) == 1
-		&& my_strcmp(skip[0][0], "env") != 0) {
-			*nbr -= 1;
-			skip++;
-			continue;
-		}
 		wait(&status);
-		error_status(status, new, skip[0][0]);
-		skip++;
+		error_status(status, new);
 	}
 	*nbr = 0;
 }
@@ -50,8 +43,10 @@ int operator(char c)
 
 int char_is_an_operator(char const *str, int *i, int mod)
 {
-	if ((str[*i] == ';'
-	|| str[*i] == '|'
+	if ((str[*i] == '|'  && str[*i + 1] != '|'
+	|| str[*i] == '|'  && str[*i + 1] == '|'
+	|| str[*i] == ';'  && str[*i + 1] != ';'
+	|| str[*i] == ';'  && str[*i + 1] == ';'
 	|| (str[*i] == '<' && str[*i + 1] == '<')
 	|| (str[*i] == '>' && str[*i + 1] == '>')
 	|| (str[*i] == '<' && str[*i + 1] != '<')
@@ -79,5 +74,6 @@ char *find_home(char **env)
 		while (env[i][k] != '\0')
 			str[j++] = env[i][k++];
 	}
+	str[j] = '\0';
 	return (str);
 }

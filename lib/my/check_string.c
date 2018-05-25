@@ -14,6 +14,8 @@ int string_is_operator(char *command)
 	|| my_strcmp(command, "<") == 0
 	|| my_strcmp(command, "<<") == 0
 	|| my_strcmp(command, ">") == 0
+	|| my_strcmp(command, "&&") == 0
+	|| my_strcmp(command, "||") == 0
 	|| my_strcmp(command, ">>") == 0)
 		return (1);
 	return (0);

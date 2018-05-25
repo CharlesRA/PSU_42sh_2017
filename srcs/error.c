@@ -43,7 +43,7 @@ int error_operator(char *str)
 	return (0);
 }
 
-void error_status(int wstatus, shell_t *new, char *command)
+void error_status(int wstatus, shell_t *new)
 {
 	new->return_value = WEXITSTATUS(wstatus);
 	for (int i = 0; i != 31; i++) {
@@ -54,12 +54,4 @@ void error_status(int wstatus, shell_t *new, char *command)
 			my_putserr("\n");
 		}
 	}
-}
-
-void waitpid_and_error(pid_t pid, shell_t *new, char *command)
-{
-	int wstatus = 0;
-
-	waitpid(pid, &wstatus, 0);
-	error_status(wstatus, new, command);
 }
