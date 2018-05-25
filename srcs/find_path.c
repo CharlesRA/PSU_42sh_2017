@@ -95,7 +95,8 @@ char *get_the_command(shell_t *tcsh)
 	if (command == NULL)
 		return (NULL);
 	command = remove_backslash(command);
-
+	if (strstr(command, "!!") != NULL)
+		command = history_handling(tcsh->history, command);
 	tcsh->array = my_str_to_word_array(command, ' ');
 	if (tcsh->array == NULL
 	|| priority_array(command, tcsh) == 84

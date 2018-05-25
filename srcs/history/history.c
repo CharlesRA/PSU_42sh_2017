@@ -56,7 +56,7 @@ char *history_handling(circular_dll_t *history_list, char *terminal_str)
 		*new_str = terminal_str[i];
 	}
 	free(terminal_str);
-	printf("%s", copy);
+	printf("%s\n", copy);
 	fflush(stdout);
 	return (copy);
 }
