@@ -47,6 +47,8 @@ char *choose_command(shell_t *tcsh, int *i, char **envp)
 {
 	char *command = NULL;
 
+	if (tcsh->different_command[0][0] == NULL)
+		return (NULL);
 	replace_alias(tcsh);
 	globing(tcsh);
 	tcsh->path = check_redirecion(tcsh, i);
