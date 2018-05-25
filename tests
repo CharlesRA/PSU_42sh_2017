@@ -395,7 +395,7 @@ NAME="Testing multiple | and + redirection (command minishell 2)"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
-    echo "> mkdir test ; cd test ; ls -a ; ls | cat | wc -c > tutu ; cat tutu"
+    echo "mkdir test ; cd test ; ls -a ; ls | cat | wc -c > tutu ; cat tutu"
 [947-END]
 
 [948]
@@ -407,9 +407,18 @@ TESTS=
 [948-END]
 
 [949]
-NAME="find binaire ????"
+NAME="find tests ?????"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
     echo "????"
 [949-END]
+
+[950]
+NAME="simple space " ""
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo " "
+[950-END]
+
