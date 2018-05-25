@@ -36,6 +36,9 @@ char *check_valid_path(circular_dll_t *list, char *result, char *arg)
 			break;
 		data = data->go_to[NEXT];
 	}
+	if (data == list) {
+		return (arg);
+	}
 	while (len != strlen(((complete_t *)data->data)->valid)) {
 		temp = list->go_to[NEXT];
 		while (temp != list) {
