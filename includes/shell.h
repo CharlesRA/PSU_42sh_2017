@@ -36,12 +36,19 @@ typedef struct s_shell
 	circular_dll_t *alias;
 } shell_t;
 
+
+typedef struct s_complete
+{
+	char *file;
+	char *valid;
+} complete_t;
+
 char *path_to_binaries(char *envp[], shell_t *new, char *command);
 int check_lines_envp(char *envp);
 char *path_to_binaries(char *envp[], shell_t *new, char *command);
 void error_status(int wstatus, shell_t *new);
 char **change_directory(shell_t *new, char **env);
-int loop(shell_t *new, char **envp);
+int loop(shell_t *new, char **envp, circular_dll_t *list);
 int check_env(char **envp);
 void error_command(char *message);
 void destroy_array(shell_t *new);
@@ -51,7 +58,7 @@ int operator_pipe_redirect_file(shell_t *new, int i, int *pipe, char *path);
 char *check_redirecion(shell_t *new, int *i);
 char *choose_command(shell_t *new, int *i, char **envp);
 int change_fdin(int *pipe_fd, shell_t *new);
-char *get_the_command(shell_t *new);
+char *get_the_command(shell_t *new, circular_dll_t *list);
 void waitpid_and_error(pid_t pid, shell_t *new, char *command);
 int opertor_builtin(char *command, shell_t *new
 , char **envp, int i, int fd_in, int *pipe_fd);

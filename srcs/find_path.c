@@ -32,29 +32,40 @@ char *remove_backslash(char *command)
 	return (dest);
 }
 
-
-char *get_the_command_gtl(shell_t *tcsh, char *command, int firstime)
+char *get_the_command_gtl(shell_t *tcsh, char *command, int firstime
+, circular_dll_t *list)
 {
 	size_t size = 0;
 
 	if (firstime == 1)
 		printf("? ");
-	if (getline(&command, &size, stdin) == -1)
-		exit(tcsh->return_value);
-	size = my_strlen(command);
+	if (isatty(0) == 0) {
+		if (getline(&command, &size, stdin) == -1)
+			exit(tcsh->return_value);
+		}
+	else {
+		command = get_next_line(0, list);
+		if (command == NULL) {
+			exit(tcsh->return_value);
+		}
+	}
+	if (command)
+		size = my_strlen(command);
 	if (size == 0)
 		return (NULL);
 	return (command);
 }
 
-
-char *get_the_command_cpy(shell_t *tcsh, char *command, char *all_command)
+char *get_the_command_cpy(shell_t *tcsh, char *command, char *all_command
+, circular_dll_t *list)
 {
 	int firstime = 0;
 	size_t len = 0;
 
 	do {
-		command = get_the_command_gtl(tcsh, command, firstime);
+		command = get_the_command_gtl(tcsh, command, firstime, list);
+		if (command == NULL)
+			return (NULL);
 		if (command[0] == '\\' && command[1] != '\\') {
 			if (firstime == 0)
 				printf("? ");
@@ -82,10 +93,10 @@ int case_command_and_or(shell_t *tcsh, int *i)
 	return (0);
 }
 
-char *get_the_command(shell_t *tcsh)
+char *get_the_command(shell_t *tcsh, circular_dll_t *list)
 {
 	char *all_command = NULL;
-	char *command = get_the_command_cpy(tcsh, NULL, NULL);
+	char *command = get_the_command_cpy(tcsh, NULL, NULL, list);
 	size_t size = 0;
 
 	if (command == NULL)

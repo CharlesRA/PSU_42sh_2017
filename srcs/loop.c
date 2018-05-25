@@ -65,14 +65,14 @@ char **loop_command(shell_t *tcsh, char **envp)
 	return (envp);
 }
 
-int loop(shell_t *tcsh, char **envp)
+int loop(shell_t *tcsh, char **envp, circular_dll_t *list)
 {
 	char *command = NULL;
 
 	while (1) {
 		if (isatty(0) == 1)
 			my_putstr("$> : ");
-		command = get_the_command(tcsh);
+		command = get_the_command(tcsh, list);
 		if (command == NULL)
 			continue;
 		if (strcmp(command, "exit") == 0)

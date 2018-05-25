@@ -20,7 +20,7 @@ typedef struct info_t {
 int my_str_isspace_num(char *str);
 int my_char_isalpha_num(char alpha);
 char **my_array_dup(char **map);
-char *get_next_line(int fd);
+char *get_next_line(int fd, circular_dll_t *list);
 char *my_revstr(char *str);
 int my_strlen(char const *str);
 char *my_strdupcat(char *str1, char *str2);
