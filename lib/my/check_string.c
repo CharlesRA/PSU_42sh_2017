@@ -37,9 +37,8 @@ char *get_next_word(char **end, char *str, char extra, int *indice)
 	word = malloc(sizeof(char) * (len + 1));
 	if (word == NULL)
 		return (NULL);
-	for (int i = 0; i < len; i++) {
+	for (int i = 0 ; i < len ; i++)
 		word[i] = str[i];
-	}
 	word[len] = '\0';
 	*end = str + len;
 	return (word);

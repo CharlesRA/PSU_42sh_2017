@@ -14,7 +14,7 @@
 
 int builtin_to_be_fork(char *command)
 {
-	for (int i = 0; tab[i].builtin != NULL; i++)
+	for (int i = 0 ; tab[i].builtin != NULL ; i++)
 		if (strcmp(command, tab[i].builtin) == 0
 		&& tab[i].to_be_fork == 1) {
 			return (1);

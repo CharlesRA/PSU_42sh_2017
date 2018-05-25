@@ -38,7 +38,7 @@ char *my_strdupcat(char *str1, char *str2);
 int my_array_len(char **array);
 void my_putchar(char c);
 void my_printf(const char *format, ...);
-int find_correct_line_env(char **env, char *to_find);
+int find_correct_line_env(char **env, char const *to_find);
 char **my_str_to_word_array(char *str, char extra);
 void my_print_percent(const char *str);
 void my_printhexa_caps(int nbr);

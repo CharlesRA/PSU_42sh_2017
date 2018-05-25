@@ -11,8 +11,8 @@
 char **my_array_dup(char **map)
 {
 	int array_len = my_array_len(map) + 1;
-	char **dup = malloc(sizeof(char *) * array_len);
 	int i = 0;
+	char **dup = malloc(sizeof(char *) * array_len);
 
 	if (dup == NULL)
 		return (NULL);

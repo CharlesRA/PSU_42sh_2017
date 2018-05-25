@@ -9,30 +9,23 @@
 #include <stdlib.h>
 #include "str.h"
 
-int check_backslash_n(char *str)
+int check_backslash_n(char const *str)
 {
 	int i = 0;
-	int mod = 0;
 
 	while (str[i] != '\0') {
-		if (str[i] == '\n') {
-			mod = 1;
-			i++;
-			break;
-		}
+		if (str[i] == '\n')
+			return (++i);
 		i++;
 	}
-	if (mod == 0)
-		return (0);
-	return (i);
+	return (0);
 }
 
-char* recons(char *buffer, char *result, int to_copy)
+char *recons(char *buffer, char *result, int to_copy)
 {
-	int len = 0;
+	int len = my_strlen(result);
 	int i = 0;
 
-	len = my_strlen(result);
 	buffer = malloc(sizeof(char) * len + 1);
 	while (i != to_copy) {
 		buffer[i] = result[i];
@@ -51,18 +44,18 @@ char* recons(char *buffer, char *result, int to_copy)
 
 char *get_next_line(int fd)
 {
-	char *buffer = malloc(sizeof(char) * 1 + 1);
+	static char *result = NULL;
+	char *buffer = malloc(2);
+	int nbr = 0;
+	int to_copy = 0;
 
 	if (buffer == NULL)
 		return (NULL);
-	static char *result = NULL;
-	static int passage = 0;
-	int nbr = read(fd, buffer, 1);
-	int to_copy = 0;
-
-	if (nbr < 1)
+	nbr = read(fd, buffer, 1);
+	if (nbr < 1) {
+		free(buffer);
 		return (NULL);
-	passage++;
+	}
 	buffer[nbr] = '\0';
 	result = my_strdupcat(result, buffer);
 	to_copy = check_backslash_n(result);

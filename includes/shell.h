@@ -42,7 +42,6 @@ char *path_to_binaries(char *envp[], shell_t *new, char *command);
 void error_status(int wstatus, shell_t *new);
 char **change_directory(shell_t *new, char **env);
 int loop(shell_t *new, char **envp);
-int find_correct_line_env(char **env, char *to_find);
 int check_env(char **envp);
 void error_command(char *message);
 void destroy_array(shell_t *new);

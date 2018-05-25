@@ -19,16 +19,13 @@ char *remove_backslash(char *command)
 	char *dest = malloc(sizeof(char) * (my_strlen(command) + 1));
 	int j = 0;
 
-	for (int i = 0; command[i] != '\0';i++) {
+	for (int i = 0 ; command[i] != '\0' ; i++) {
+		dest[j] = command[i];
 		if (command[i] != '\\' && command[i] != '\n' ||
-		   (command[i] == '\\' && command[i + 1] == '\\') ||
-		   (command[i - 1] == ' ' && command[i] == '\\' &&
-		   command[i + 1] == ' ' )) {
-			dest[j] = command[i];
+		(command[i] == '\\' && command[i + 1] == '\\') ||
+		(command[i - 1] == ' ' && command[i] == '\\' &&
+		command[i + 1] == ' ' ))
 			j++;
-		}
-		else
-			dest[j] = command[i];
 	}
 	dest[j] = '\0';
 	free(command);
@@ -44,7 +41,8 @@ char *get_the_command_gtl(shell_t *tcsh, char *command, int firstime)
 		printf("? ");
 	if (getline(&command, &size, stdin) == -1)
 		exit(tcsh->return_value);
-	if ((size = my_strlen(command)) == 0)
+	size = my_strlen(command);
+	if (size == 0)
 		return (NULL);
 	return (command);
 }
@@ -53,25 +51,25 @@ char *get_the_command_gtl(shell_t *tcsh, char *command, int firstime)
 char *get_the_command_cpy(shell_t *tcsh, char *command, char *all_command)
 {
 	int firstime = 0;
+	size_t len = 0;
 
 	do {
 		command = get_the_command_gtl(tcsh, command, firstime);
 		if (command[0] == '\\' && command[1] != '\\') {
-			if( firstime == 0)
+			if (firstime == 0)
 				printf("? ");
 			continue;
 		}
 		if (firstime == 0) {
 			all_command = strdup(command);
 			firstime = 1;
-		}
-		else
+		} else
 			all_command = my_strdupcat(all_command, command);
-		if (my_strlen(command) <= 3 && firstime == 1)
+		len = strlen(command);
+		if (len <= 3 && firstime == 1)
 			return (all_command);
-	} while ((strlen(command) <= 3 && command[strlen(command) - 2] == '\\')
-		 || (command[strlen(command) - 2] == '\\'
-		 && command[strlen(command) - 3] != '\\'));
+	} while ((len <= 3 && command[len - 2] == '\\')
+		|| (command[len - 2] == '\\' && command[len - 3] != '\\'));
 	return (all_command);
 }
 
@@ -86,11 +84,10 @@ int case_command_and_or(shell_t *tcsh, int *i)
 
 char *get_the_command(shell_t *tcsh)
 {
-	char *command = NULL;
-	size_t size = 0;
 	char *all_command = NULL;
+	char *command = get_the_command_cpy(tcsh, NULL, NULL);
+	size_t size = 0;
 
-	command = get_the_command_cpy(tcsh, command, all_command);
 	if (command == NULL)
 		return (NULL);
 	command = remove_backslash(command);
@@ -112,7 +109,7 @@ char *choose_command(shell_t *tcsh, int *i, char **envp)
 {
 	char *command = NULL;
 
-	for (int j = 0; tcsh->different_command[0][j] != NULL; j++) {
+	for (int j = 0 ; tcsh->different_command[0][j] != NULL ; j++) {
 		if (strstr(tcsh->different_command[0][j], "$") != NULL) {
 			tcsh->different_command[0][j] =
 			replace_variable(tcsh->variables, envp,
@@ -141,9 +138,8 @@ char *choose_command(shell_t *tcsh, int *i, char **envp)
 
 char *check_access_command(shell_t *tcsh, char *command)
 {
-	for (int i = 0; tcsh->binaries[i] != NULL; i++)
+	for (int i = 0 ; tcsh->binaries[i] != NULL ; i++) {
 		tcsh->binaries[i] = my_strdupcat(tcsh->binaries[i], "/");
-	for (int i = 0; tcsh->binaries[i] != NULL; i++) {
 		tcsh->binaries[i] = my_strdupcat(tcsh->binaries[i], command);
 		if (access(tcsh->binaries[i], X_OK) == 0)
 			return (tcsh->binaries[i]);
