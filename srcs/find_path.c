@@ -79,7 +79,7 @@ int case_command_and_or(shell_t *tcsh, int *i)
 		return (1);
 	if (tcsh->priority[*i] == OR && tcsh->return_value == 0)
 		return (1);
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 char *get_the_command(shell_t *tcsh)

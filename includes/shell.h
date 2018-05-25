@@ -7,7 +7,9 @@
 
 #ifndef SHELL_H
 #define SHELL_H
+
 #include <unistd.h>
+#include "define.h"
 #include "alias.h"
 #include "linked_list.h"
 

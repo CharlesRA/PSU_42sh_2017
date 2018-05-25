@@ -32,7 +32,7 @@ int skip_redirecion(shell_t *new, int *i)
 	|| new->priority[*i] == TWO_LEFT) {
 		return (1);
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 static void operator_left(shell_t *new, int i, char *path)
@@ -78,5 +78,5 @@ int operator_pipe_redirect_file(shell_t *new, int i, int *pipe, char *path)
 		operator_left(new, i, path);
 		break;
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }

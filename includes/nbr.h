@@ -7,6 +7,7 @@
 
 #ifndef NBR_H
 #define NBR_H
+
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -18,4 +19,5 @@ int rand(void);
 int my_compute_power_rec(int nb, int p);
 int my_base_to_int(char *nbr, char const *base);
 int get_index(int i, int change);
+
 #endif
