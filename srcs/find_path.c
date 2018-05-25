@@ -29,7 +29,7 @@ char *get_the_command(shell_t *tcsh)
 
 	if (getline(&command, &size, stdin) == -1)
 		exit(tcsh->return_value);
-	if ((size = my_strlen(command)) == 1)
+	if ((size = my_strlen(command)) == 0)
 		return (NULL);
 	tcsh->array = my_str_to_word_array(command, ' ');
 	if (tcsh->array == NULL
@@ -54,11 +54,14 @@ char *choose_command(shell_t *tcsh, int *i, char **envp)
 					tcsh->different_command[0][j]);
 		}
 	}
+	if (tcsh->different_command[0][0] == NULL)
+		return (NULL);
+	replace_alias(tcsh);
 	globing(tcsh);
 	tcsh->path = check_redirecion(tcsh, i);
 	if (skip_redirecion(tcsh, i) == 1 || case_command_and_or(tcsh, i) == 1)
 		return (NULL);
-	command = path_to_binaries(envp, tcsh, *(tcsh->different_command)[0]);
+	command = path_to_binaries(envp, tcsh, tcsh->different_command[0][0]);
 	if (command == NULL) {
 		tcsh->return_value = 1;
 		return (NULL);
@@ -75,6 +78,8 @@ char *check_access_command(shell_t *tcsh, char *command)
 		if (access(tcsh->binaries[i], X_OK) == 0)
 			return (tcsh->binaries[i]);
 	}
+	if (access(command, F_OK) == 0)
+		return (command);
 	tcsh->return_value = 1;
 	error_command(command);
 	return (NULL);
@@ -108,8 +113,6 @@ char *path_to_binaries(char **envp, shell_t *tcsh, char *command)
 	for (int i = 0; tab[i].builtin != NULL; i++)
 		if (my_strcmp(command, tab[i].builtin) == 0)
 			return (tcsh->different_command[0][0]);
-	if (access(command, F_OK) == 0)
-		return (command);
 	if (find_variable_path(envp, command, tcsh) == NULL)
 		return (NULL);
 	return (check_access_command(tcsh, command));

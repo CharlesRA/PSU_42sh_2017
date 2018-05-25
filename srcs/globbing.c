@@ -58,6 +58,8 @@ static void add_in_list_new_arg(glob_t *globbuf
 
 	for (int i = globbuf->gl_offs; i != end; i++)
 		add_back(new_args, my_strdup(globbuf->gl_pathv[i]));
+	if (list_len(new_args) == 0)
+		add_back(new_args, my_strdup(tcsh->different_command[0][0]));
 	apply_new_args(new_args, tcsh);
 }
 
@@ -71,7 +73,7 @@ void globing(shell_t *tcsh)
 		exit(84);
 	globbuf.gl_offs = take_none_glob(new_args, tcsh->different_command[0]);
 	globbuf.gl_pathc = 0;
-	for (int i = 1; i != my_array_len(tcsh->different_command[0]); i++) {
+	for (int i = 0; i != my_array_len(tcsh->different_command[0]); i++) {
 		if (is_globing(tcsh->different_command[0][i]) == 0)
 			continue;
 		if (start == 0) {

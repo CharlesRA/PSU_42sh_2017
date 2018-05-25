@@ -8,6 +8,7 @@
 #ifndef SHELL_H
 #define SHELL_H
 #include <unistd.h>
+#include "alias.h"
 #include "linked_list.h"
 
 enum OPERATOR {
@@ -24,7 +25,6 @@ enum OPERATOR {
 typedef struct s_shell
 {
 	int return_value;
-	int row;
 	char **array;
 	char **binaries;
 	char *priority;
@@ -33,6 +33,7 @@ typedef struct s_shell
 	char *command;
 	circular_dll_t *variables;
 	circular_dll_t *history;
+	circular_dll_t *alias;
 } shell_t;
 
 char *path_to_binaries(char *envp[], shell_t *new, char *command);
@@ -66,6 +67,6 @@ void wait_process(int *nbr, shell_t *new);
 int skip_redirecion(shell_t *new, int *i);
 int case_fork(int temp, int *pipe_fd, shell_t *new, char **envp);
 int case_builtin(int *proc, shell_t *new, char **envp);
-void str_to_word_binaries(char *str, shell_t *new);
+void globing(shell_t *tcsh);
 
 #endif

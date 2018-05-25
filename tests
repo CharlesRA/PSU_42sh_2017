@@ -125,7 +125,7 @@ TESTS=
 [912-END]
 
 [914]
-NAME="Testing pipe + builtin"
+NAME="Testing && + builtin"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
@@ -141,7 +141,7 @@ TESTS=
 [915-END]
 
 [916]
-NAME="Testing valeur return correct command wrong"
+NAME="Testing valeur return correct command   WRONG"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
@@ -150,7 +150,7 @@ TESTS=
 [916-END]
 
 [917]
-NAME="Testing set wrong"
+NAME="Testing set   WRONG"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
@@ -174,7 +174,7 @@ TESTS=
 [919-END]
 
 [920]
-NAME="Testing redirection"
+NAME="Testing redirection simple >"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
@@ -220,3 +220,205 @@ CLEAN=""
 TESTS=
   echo "ls [a-z]*"
 [925-END]
+
+[926]
+NAME="Testing redirection simple < "
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  cat > fichier"
+[926-END]
+
+[927]
+NAME="Testing redirection double >>"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "echo "aabb" >> fichier"
+[927-END]
+
+[928]
+NAME="Testing double pipe"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "ls -l /etc | grep sh | cd .."
+[928-END]
+
+[929]
+NAME="Testing set affichage"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set"
+[929-END]
+
+[930]
+NAME="Testing set variable"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set pafpaf"
+[930-END]
+
+[931]
+NAME="Testing print variable term   WRONG"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "$term"
+[931-END]
+
+[932]
+NAME="Testing set"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set"
+[932-END]
+
+[933]
+NAME="Testing delete term variable"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set term"
+[933-END]
+
+[934]
+NAME="Testing set wrong term variable"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set term=pouf"
+[934-END]
+
+[935]
+NAME="Testing set cwd"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set cwd=pouf"
+[935-END]
+
+[936]
+NAME="Testing set ignoreof"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set ignoreof=paf"
+[936-END]
+
+[937]
+NAME="Testing set precmd"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set precmd=pouf"
+[937-END]
+
+[938]
+NAME="Testing set wrong term variable"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "set  cwdcmd=lalala"
+[938-END]
+
+[939]
+NAME="Testing print alias  WRONG"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "alias"
+[939-END]
+
+[940]
+NAME="Testing change alias"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "alias ll a"
+[940-END]
+
+[941]
+NAME="Testing lost backslash"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "cd .. &&\ echo ok"
+[941-END]
+
+[942]
+NAME="Testing simple pipe with error"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "ls -l /etc |a grep sh"
+[942-END]
+
+[943]
+NAME="Testing subject line"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "cd ; </etc/hosts od -c | grep xx | wc >> /tmp/z -l ; cd - && echo OK"
+[943-END]
+
+[944]
+NAME="Testing multiple command ;"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo "cd .. ; ls"
+[944-END]
+
+[945]
+NAME="Testing alias use"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "alias ll cd .."
+    echo "ll"
+[945-END]
+
+[946]
+NAME="Testing simple  separator ||"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "cd patate || pwd"
+[946-END]
+
+[947]
+NAME="Testing multiple | and + redirection (command minishell 2)"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "mkdir test ; cd test ; ls -a ; ls | cat | wc -c > tutu ; cat tutu"
+[947-END]
+
+[948]
+NAME="simple echo ?"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "?"
+[948-END]
+
+[949]
+NAME="find tests ?????"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "????"
+[949-END]
+
+[950]
+NAME="simple space " ""
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo " "
+[950-END]
+

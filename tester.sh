@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MYSHELL="./mysh"
+MYSHELL="./42sh"
 REFER="/bin/tcsh -f"
 TRAPSIG=0
 

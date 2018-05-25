@@ -47,7 +47,6 @@ SRC	=	$(SRC_DIR)/my_strlen.c	\
 		$(SRC_DIR)/find_line_env.c\
 		$(SRC_DIR)/my_strcat.c\
 		$(SRC_DIR)/my_strlen.c\
-		$(SRC_DIR)/path_to_array.c\
 		$(SRC_DIR)/my_strdupcat.c\
 		$(SRC_DIR)/my_strstr.c\
 		$(SRC_DIR)/my_realloc.c\

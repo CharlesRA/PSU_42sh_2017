@@ -14,4 +14,10 @@
 #define AMBIGUOUS "Ambiguous output redirect.\n"
 #define NULL_COMMAND "Invalid null command.\n"
 
+enum STATUS {
+	EXIT_FAIL = 84,
+	EXIT_NORMAL = 0,
+	NUMBER
+};
+
 #endif
