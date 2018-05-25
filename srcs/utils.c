@@ -35,6 +35,7 @@ int operator(char c)
 {
 	if (c == ';'
 	|| c == '|'
+	|| c == '&'
 	|| c == '<'
 	|| c == '>')
 		return (1);
@@ -46,7 +47,7 @@ int char_is_an_operator(char const *str, int *i, int mod)
 	if ((str[*i] == '|'  && str[*i + 1] != '|'
 	|| str[*i] == '|'  && str[*i + 1] == '|'
 	|| str[*i] == ';'  && str[*i + 1] != ';'
-	|| str[*i] == ';'  && str[*i + 1] == ';'
+	|| str[*i] == '&'  && str[*i + 1] == '&'
 	|| (str[*i] == '<' && str[*i + 1] == '<')
 	|| (str[*i] == '>' && str[*i + 1] == '>')
 	|| (str[*i] == '<' && str[*i + 1] != '<')

@@ -52,7 +52,7 @@ char *choose_command(shell_t *tcsh, int *i, char **envp)
 	tcsh->path = check_redirecion(tcsh, i);
 	if (skip_redirecion(tcsh, i) == 1 || case_command_and_or(tcsh, i) == 1)
 		return (NULL);
-	command = path_to_binaries(envp, tcsh, *(tcsh->different_command)[0]);
+	command = path_to_binaries(envp, tcsh, tcsh->different_command[0][0]);
 	if (command == NULL) {
 		tcsh->return_value = 1;
 		return (NULL);
