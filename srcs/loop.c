@@ -76,9 +76,9 @@ int loop(shell_t *tcsh, char **envp)
 		if (command == NULL)
 			continue;
 		if (strcmp(command, "exit") == 0)
-			return (0);
+			return (EXIT_NORMAL);
 		add_back(tcsh->history, command);
 		envp = loop_command(tcsh, envp);
 	}
-	return (0);
+	return (EXIT_FAIL);
 }
