@@ -23,7 +23,6 @@ void add_variable(circular_dll_t *variables, variable_t *new_variable)
 	if (copy->name == NULL || copy->value == NULL)
 		return;
 	for (; temp != variables; temp = temp->go_to[NEXT]) {
-		printf("passage\n");
 		actual = (variable_t *)temp->data;
 		if (strcmp(actual->name, copy->name) > 0) {
 			add_back(temp, copy);
