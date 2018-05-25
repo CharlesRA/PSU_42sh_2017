@@ -5,9 +5,9 @@
 ## Makefile
 ##
 
-NAME	=	42sh
+NAME	=	mysh
 
-CC	=	gcc
+CC	=	gcc -g3
 
 MAKE	=	/usr/bin/make
 

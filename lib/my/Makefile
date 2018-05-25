@@ -64,7 +64,7 @@ AR	=	ar rc
 
 CC	=	gcc
 
-CFLAGS	=	#-Wall -Wextra -Werror
+CFLAGS	=	-g3 #-Wall -Wextra -Werror
 
 CPPFLAGS=	-I../../includes/
 

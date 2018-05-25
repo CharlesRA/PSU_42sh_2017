@@ -13,7 +13,6 @@
 #include <unistd.h>
 #include <stdio.h>
 
-
 int case_command_and_or(shell_t *tcsh, int *i)
 {
 	if (tcsh->priority[*i] == AND && tcsh->return_value != 0)
@@ -48,6 +47,7 @@ char *choose_command(shell_t *tcsh, int *i, char **envp)
 {
 	char *command = NULL;
 
+	globing(tcsh);
 	tcsh->path = check_redirecion(tcsh, i);
 	if (skip_redirecion(tcsh, i) == 1 || case_command_and_or(tcsh, i) == 1)
 		return (NULL);
