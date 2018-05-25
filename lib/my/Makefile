@@ -58,6 +58,7 @@ SRC	=	$(SRC_DIR)/my_strlen.c	\
 		$(SRC_DIR)/puts_error.c\
 		$(SRC_DIR)/my_array_free.c\
 		$(SRC_DIR)/check_string.c\
+		$(SRC_DIR)/is_globing.c\
 
 AR	=	ar rc
 

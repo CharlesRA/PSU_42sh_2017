@@ -67,6 +67,6 @@ void wait_process(int *nbr, shell_t *new);
 int skip_redirecion(shell_t *new, int *i);
 int case_fork(int temp, int *pipe_fd, shell_t *new, char **envp);
 int case_builtin(int *proc, shell_t *new, char **envp);
-void globing(shell_t *tcsh);
+int globing(shell_t *tcsh);
 
 #endif

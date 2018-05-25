@@ -122,7 +122,12 @@ char *choose_command(shell_t *tcsh, int *i, char **envp)
 	if (tcsh->different_command[0][0] == NULL)
 		return (NULL);
 	replace_alias(tcsh);
-	globing(tcsh);
+	if (globing(tcsh) == -1) {
+		my_putserr(tcsh->different_command[0][0]);
+		my_putserr(": No match.\n");
+		tcsh->return_value = 1;
+		return (NULL);
+	}
 	tcsh->path = check_redirecion(tcsh, i);
 	if (skip_redirecion(tcsh, i) == 1 || case_command_and_or(tcsh, i) == 1)
 		return (NULL);
