@@ -9,14 +9,12 @@
 #include <stdio.h>
 #include "str.h"
 #include "linked_list.h"
-#include "minishell.h"
 
 void read_front(circular_dll_t *list)
 {
 	circular_dll_t *temp = list->go_to[NEXT];
 
 	while (temp != list && temp != NULL) {
-		printf("%s\n", ((line_t*)temp->data)->command);
 		temp = temp->go_to[NEXT];
 	}
 }

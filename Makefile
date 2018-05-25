@@ -1,88 +1,99 @@
 ##
 ## EPITECH PROJECT, 2017
-## Makefile
+## corewar
 ## File description:
 ## Makefile
 ##
 
-NAME	=	42sh
+NAME	=	mysh
 
-NAMET	=	unit_tests
+CC	=	gcc -g3
 
-CC	=	gcc
+MAKE	=	/usr/bin/make
 
-SRC	=	src/brackets.c \
-		src/brackets_replace_arg.c \
-		src/builtin.c \
-		src/commands/commands_built_in.c \
-		src/commands/commands_cd.c \
-		src/commands/commands_env.c \
-		src/commands/commands_set_unsetenv.c \
-		src/commands/operator.c \
-		src/errors.c \
-		src/exit.c \
-		src/history/history.c \
-		src/interro_dot.c \
-		src/io_redirections.c \
-		src/main.c \
-		src/minishell.c \
-		src/pipes.c \
-		src/program.c \
-		src/program_path.c \
-		src/prompt.c \
-		src/signals.c \
-		src/tree/tree.c \
-		src/tree/make_tree.c \
-		src/tree/lexer/lexer.c \
-		src/tree/lexer/lexer_add_node.c \
-		src/tree/lexer/lexer_check_type.c \
-		src/tree/rpn.c \
-		src/tree/rpn_aux.c \
-		src/var.c \
-		src/variables/cwd.c \
-		src/variables/declare_variable.c \
-		src/variables/handle_variables.c \
-		src/variables/set_builtin.c \
+SRC_DIR	=	./srcs
 
-SRCT	=	tests/tests.c
+LIB_DIR	=	./lib/my
 
-CFLAGS	=	-g3 -W -Wall -Wextra -Wno-unused-variable -pedantic -Wno-unused-parameter
+UT_DIR	=	./tests
+
+LIB_DIR	=	./lib/my
+
+EXE	=	$(SRC_DIR)/main.c\
+		$(SRC_DIR)/find_path.c\
+		$(SRC_DIR)/error.c\
+		$(SRC_DIR)/cd.c\
+		$(SRC_DIR)/builtin.c\
+		$(SRC_DIR)/env.c\
+		$(SRC_DIR)/loop.c\
+		$(SRC_DIR)/setenv.c\
+		$(SRC_DIR)/utils.c\
+		$(SRC_DIR)/unsetenv.c\
+		$(SRC_DIR)/operator.c\
+		$(SRC_DIR)/error_message.c\
+		$(SRC_DIR)/command_and_priority.c\
+		$(SRC_DIR)/differents_type_command.c\
+
+OBJ	=	$(EXE:.c=.o)
+
+UT 	= 	$(UT_DIR)/ut_error.c\
+		$(UT_DIR)/ut_operator.c\
+		$(UT_DIR)/ut_cd.c\
+		$(UT_DIR)/ut_setenv.c\
+		$(UT_DIR)/ut_path.c\
+
+
+
+UT2	=	$(SRC_DIR)/find_path.c\
+		$(SRC_DIR)/error.c\
+		$(SRC_DIR)/cd.c\
+		$(SRC_DIR)/builtin.c\
+		$(SRC_DIR)/env.c\
+		$(SRC_DIR)/loop.c\
+		$(SRC_DIR)/setenv.c\
+		$(SRC_DIR)/utils.c\
+		$(SRC_DIR)/unsetenv.c\
+		$(SRC_DIR)/operator.c\
+		$(SRC_DIR)/error_message.c\
+		$(SRC_DIR)/command_and_priority.c\
+		$(SRC_DIR)/differents_type_command.c\
+
+RM	=	rm -f
+
+CFLAGS	=	##-Wall -Wextra
 
 CPPFLAGS=	-I./includes/
 
-OBJ	=	$(SRC:.c=.o)
+LDFLAGS	=	-L./lib/ -lmy
 
-OBJT	=	tests.o
+UT_FLAGS=	-lcriterion --coverage
 
-LIB_DIR	=	lib/
+INCLUDE	=	-I ./includes
 
-LDFLAGS	=	-L$(LIB_DIR) -lmy -lmy_strings -lncurses
 
-all:	$(NAME)
+all:		LIB $(NAME)
 
-lib_make:
-	make -C $(LIB_DIR)my
-	make -C $(LIB_DIR)my_strings
+LIB:
+		$(MAKE) -C $(LIB_DIR)
 
-$(NAME):	lib_make $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
+$(NAME):	LIB $(OBJ)
+		$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 
-tests_run:	lib_make
-	$(CC) --coverage -c $(SRCT)
-	$(CC) $(CFLAGS) $(OBJT) -lcriterion -lgcov -o $(NAMET) $(LDFLAGS)
-	./$(NAMET)
+tests_run:	LIB
+		$(CC) $(INCLUDE) -o $(NAME) $(UT) $(UT2) -lcriterion -coverage  -L./lib/ -lmy
+		./$(NAME)
 
 clean:
-	make clean -C $(LIB_DIR)my
-	make clean -C $(LIB_DIR)my_strings
-	$(RM) $(OBJ) $(OBJT)
-	$(RM) *.gcno *.gcda
+		$(MAKE) clean -C $(LIB_DIR)
+		$(RM) $(OBJ)
 
-fclean:	clean
-	make fclean -C $(LIB_DIR)my
-	make fclean -C $(LIB_DIR)my_strings
-	$(RM) $(NAME) $(NAMET)
+ut_clean:
+		rm *gc*
 
-re:	fclean all
+fclean:		clean
+		$(MAKE) fclean -C $(LIB_DIR)
+		$(RM) $(NAME)
 
-.PHONY: all clean fclean re tests_run lib_make
+re:		fclean all
+
+.PHONY:		re all fclean clean

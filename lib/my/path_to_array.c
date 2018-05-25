@@ -2,13 +2,13 @@
 ** EPITECH PROJECT, 2018
 ** path$
 ** File description:
-** minicommand
+** minishell
 */
 
-#include "minishell.h"
+#include "shell.h"
 #include <stdlib.h>
 
-char *count_row_path(char *str, command_t *new)
+char *count_row_path(char *str, shell_t *new)
 {
 	int i = 5;
 
@@ -23,7 +23,7 @@ char *count_row_path(char *str, command_t *new)
 		return (NULL);
 }
 
-void count_lines_path(char *str, command_t *new)
+void count_lines_path(char *str, shell_t *new)
 {
 	int i = 5;
 	int mod = 0;
@@ -46,7 +46,7 @@ void count_lines_path(char *str, command_t *new)
 	new->binaries[k] = malloc(sizeof(char) * (lines));
 }
 
-void string_to_binaries(char *str, command_t *new)
+void string_to_binaries(char *str, shell_t *new)
 {
 	int i = 5;
 	int k = 0;
@@ -70,7 +70,7 @@ void string_to_binaries(char *str, command_t *new)
 	new->binaries[k] = NULL;
 }
 
-void str_to_word_binaries(char *str, command_t *new)
+void str_to_word_binaries(char *str, shell_t *new)
 {
 	count_row_path(str, new);
 	count_lines_path(str, new);
