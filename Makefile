@@ -13,6 +13,10 @@ MAKE	=	/usr/bin/make
 
 SRC_DIR	=	./srcs
 
+BUILTINS	=$(SRC_DIR)/builtins
+
+EXTRA		=$(SRC_DIR)/extra
+
 HISTORY_DIR =	$(SRC_DIR)/history/
 
 VAR_DIR	=	$(SRC_DIR)/variables/
@@ -26,21 +30,22 @@ LIB_DIR	=	./lib/my
 EXE	=	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/find_path.c\
 		$(SRC_DIR)/error.c\
-		$(SRC_DIR)/cd.c\
-		$(SRC_DIR)/builtin.c\
-		$(SRC_DIR)/echo.c\
-		$(SRC_DIR)/alias.c\
-		$(SRC_DIR)/exit.c\
-		$(SRC_DIR)/env.c\
+		$(BUILTINS)/cd.c\
+		$(BUILTINS)/builtin.c\
+		$(BUILTINS)/echo.c\
+		$(BUILTINS)/alias.c\
+		$(BUILTINS)/which.c\
+		$(BUILTINS)/setenv.c\
+		$(BUILTINS)/exit.c\
+		$(BUILTINS)/env.c\
+		$(BUILTINS)/unsetenv.c\
 		$(SRC_DIR)/loop.c\
-		$(SRC_DIR)/setenv.c\
 		$(SRC_DIR)/utils.c\
-		$(SRC_DIR)/unsetenv.c\
 		$(SRC_DIR)/operator.c\
 		$(SRC_DIR)/error_message.c\
 		$(SRC_DIR)/command_and_priority.c\
 		$(SRC_DIR)/differents_type_command.c\
-		$(SRC_DIR)/globbing.c\
+		$(EXTRA)/globbing.c\
 		$(HISTORY_DIR)history.c\
 		$(VAR_DIR)declare_variable.c\
 		$(VAR_DIR)handle_variables.c\

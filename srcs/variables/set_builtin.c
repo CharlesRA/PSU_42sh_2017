@@ -16,12 +16,11 @@ void add_variable(circular_dll_t *variables, variable_t *new_variable)
 	circular_dll_t *temp = variables->go_to[NEXT];
 	variable_t *actual = (variable_t *) temp->data;
 
-	if (copy == NULL)
+	if (copy == NULL || new_variable->name == NULL ||
+	new_variable->value == NULL)
 		return;
 	copy->name = new_variable->name;
 	copy->value = new_variable->value;
-	if (copy->name == NULL || copy->value == NULL)
-		return;
 	for ( ; temp != variables ; temp = temp->go_to[NEXT]) {
 		printf("passage\n");
 		actual = (variable_t *) temp->data;

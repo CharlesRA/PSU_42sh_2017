@@ -12,6 +12,69 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
+
+char *remove_backslash(char *command)
+{
+	char *dest = malloc(sizeof(char) * my_strlen(command) + 1);
+	int j = 0;
+
+	for (int i = 0; command[i] != '\0';i++) {
+		if (command[i] != '\\' && command[i] != '\n' ||
+		   (command[i] == '\\' && command[i + 1] == '\\') ||
+		   (command[i - 1] == ' ' && command[i] == '\\' &&
+		   command[i + 1] == ' ' )) {
+			dest[j] = command[i];
+			j++;
+		}
+		else
+			dest[j] = command[i];
+	}
+	dest[j] = '\0';
+	dest = realloc(dest, my_strlen(dest) + 1);
+	free(command);
+	return (dest);
+}
+
+
+char *get_the_command_gtl(shell_t *tcsh, char *command, int firstime)
+{
+	size_t size = 0;
+
+	if (firstime == 1)
+		printf("? ");
+	if (getline(&command, &size, stdin) == -1)
+		exit(tcsh->return_value);
+	if ((size = my_strlen(command)) == 0)
+		return (NULL);
+	return (command);
+}
+
+
+char *get_the_command_cpy(shell_t *tcsh, char *command, char *all_command)
+{
+	int firstime = 0;
+
+	do {
+		command = get_the_command_gtl(tcsh, command, firstime);
+		if (command[0] == '\\' && command[1] != '\\') {
+			if( firstime == 0)
+				printf("? ");
+			continue;
+		}
+		if (firstime == 0) {
+			all_command = strdup(command);
+			firstime = 1;
+		}
+		else
+			all_command = my_strdupcat(all_command, command);
+		if (my_strlen(command) <= 3 && firstime == 1)
+			return (all_command);
+	} while ((strlen(command) <= 3 && command[strlen(command) - 2] == '\\')
+		 || (command[strlen(command) - 2] == '\\'
+		 && command[strlen(command) - 3] != '\\'));
+	return (all_command);
+}
 
 int case_command_and_or(shell_t *tcsh, int *i)
 {
@@ -26,11 +89,13 @@ char *get_the_command(shell_t *tcsh)
 {
 	char *command = NULL;
 	size_t size = 0;
+	char *all_command = NULL;
 
-	if (getline(&command, &size, stdin) == -1)
-		exit(tcsh->return_value);
-	if ((size = my_strlen(command)) == 0)
+	command = get_the_command_cpy(tcsh, command, all_command);
+	if (command == NULL)
 		return (NULL);
+	command = remove_backslash(command);
+
 	tcsh->array = my_str_to_word_array(command, ' ');
 	if (tcsh->array == NULL
 	|| priority_array(command, tcsh) == 84

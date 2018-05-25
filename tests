@@ -138,6 +138,7 @@ SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo "ls \ -l"
+  echo "srcs"
 [915-END]
 
 [916]
@@ -421,4 +422,3 @@ CLEAN=""
 TESTS=
     echo " "
 [950-END]
-

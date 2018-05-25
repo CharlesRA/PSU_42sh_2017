@@ -9,7 +9,7 @@
 #include "bultin.h"
 #include "str.h"
 
-int check_builtin(shell_t *new, char *command)
+int check_builtin(char *command)
 {
 	for (int i = 0 ; tab[i].builtin != NULL ; i++)
 		if (my_strcmp(command, tab[i].builtin) == 0)
