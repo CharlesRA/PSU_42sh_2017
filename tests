@@ -374,10 +374,42 @@ TESTS=
 [944-END]
 
 [945]
-NAME="Testing alias use  WRONG"
+NAME="Testing alias use"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
-    echo "alias ll a"
-    echo "a"
+    echo "alias ll cd .."
+    echo "ll"
 [945-END]
+
+[946]
+NAME="Testing simple  separator ||"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "cd patate || pwd"
+[946-END]
+
+[947]
+NAME="Testing multiple | and + redirection (command minishell 2)"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "> mkdir test ; cd test ; ls -a ; ls | cat | wc -c > tutu ; cat tutu"
+[947-END]
+
+[948]
+NAME="simple echo ?"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "?"
+[948-END]
+
+[949]
+NAME="find binaire ????"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+    echo "????"
+[949-END]
