@@ -27,13 +27,12 @@ int non_sence_command(char *str)
 
 int error_operator(char *str)
 {
-	for (int i = 0; str[i] != '\0'; i++) {
+	for (int i = 0 ; str[i] != '\0' ; i++) {
 		if ((str[i] == PIPE && str[i + 1] == TWO_LEFT)
 		|| (str[i] == ONE_LEFT && str[i + 1] == TWO_LEFT)
 		|| (str[i] == PIPE && str[i + 1] == ONE_LEFT)
 		|| (str[i] == ONE_RIGHT && str[i + 1] == TWO_RIGHT)
 		|| (str[i] == TWO_RIGHT && str[i + 1] == TWO_RIGHT)
-		|| (str[i] == ONE_RIGHT && str[i + 1] == TWO_RIGHT)
 		|| (str[i] == ONE_RIGHT && str[i + 1] == ONE_RIGHT)
 		|| (str[i] == ONE_LEFT && str[i + 1] == ONE_LEFT)) {
 			my_printf(AMBIGUOUS);
@@ -46,9 +45,9 @@ int error_operator(char *str)
 void error_status(int wstatus, shell_t *new)
 {
 	new->return_value = WEXITSTATUS(wstatus);
-	for (int i = 0; i != 31; i++) {
+	for (int i = 0 ; i != 31 ; i++) {
 		if (WTERMSIG(wstatus) == i + 1) {
-			wstatus = wstatus < 128 ? wstatus += 128 : wstatus;
+			wstatus += (wstatus < 128 ? 128 : 0);
 			new->return_value = wstatus;
 			my_putserr(err[i].message);
 			my_putserr("\n");
