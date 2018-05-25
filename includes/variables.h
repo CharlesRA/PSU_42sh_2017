@@ -20,6 +20,6 @@ struct s_variable
 static const char *const special_variables[] = {"cwd", "term", "precmd",
 						"cwdcmd", "ignoreof"};
 
-int replace_variable(circular_dll_t *, char **, char *);
+char *replace_variable(circular_dll_t *, char **, char *);
 
 #endif /* VAR42_ */

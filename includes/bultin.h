@@ -15,6 +15,7 @@ int check_builtin(shell_t *new, char *command);
 char **print_env(shell_t *new, char **envp);
 char **apply_builtin(const char *command, shell_t *new, char **envp);
 char **print_echo(shell_t *new, char **env);
+char **declare_variable(shell_t *tcsh, char **envp);
 
 struct s_flags {
 	char *builtin;
@@ -27,6 +28,7 @@ static struct s_flags tab[] = {
 	{"setenv", &set_env },
 	{"unsetenv", &unset_env},
 	{"echo", &print_echo},
+	{"set", &declare_variable},
 	{"exit", NULL},
 	{NULL, NULL},
 };

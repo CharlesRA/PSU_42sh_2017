@@ -5,6 +5,7 @@
 ** minishell
 */
 
+#include <string.h>
 #include <unistd.h>
 #include "shell.h"
 #include "str.h"
@@ -64,6 +65,12 @@ int loop(shell_t *new, char **envp)
 		command = get_the_command(new);
 		if (command == NULL)
 			continue;
+		if (strstr(command, "!!") != NULL) {
+			command = history_handling(new->history, command);
+		}
+		if (command == NULL)
+			continue;
+		add_back(new->history, command);
 		if (my_strcmp(command, "exit\n") == 0)
 			return (0);
 		envp = loop_command(new, envp);

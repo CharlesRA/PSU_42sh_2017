@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "shell.h"
 #include "variables.h"
 #include "linked_list.h"
 
@@ -41,15 +42,13 @@ static int check_invalid(char *name)
 	return (0);
 }
 
-static char *dup_to_char(char const *str, char c)
+static char *dup_to_char(char *str, char c)
 {
 	int len = 0;
 
 	if (str == NULL)
 		return (NULL);
 	for (; str[len] != c && str[len]; len++);
-	if (str[len] == c)
-		len--;
 	return(strndup(str, len));
 }
 
@@ -66,30 +65,35 @@ static void display_variables(circular_dll_t *variables,
 	}
 }
 
-int declare_variable(circular_dll_t *variables, char **command,
-		circular_dll_t *history)
+char **declare_variable(shell_t *tcsh, char **envp)
 {
 	variable_t *new_variable = malloc(sizeof(*new_variable));
+	char **copy = tcsh->different_command[0];
 
-	if (new_variable == NULL)
-		return (1);
-	if (command[1] == NULL) {
-		display_variables(variables, history);
-		return (0);
+	if (new_variable == NULL) {
+		tcsh->return_value = 1;
+		return (envp);
 	}
-	for (int i = 0; command[i] != NULL; i++) {
-		new_variable->name = dup_to_char(command[i], '=');
-		if (check_invalid(new_variable->name) == 1)
-			return (1);
-		if (strstr(command[i], "=") != NULL
-		&& strcmp(command[i], "=") != 0) {
-			new_variable = set_new_variable(new_variable, command[i + 1]);
-			i++;
-		} else if (strcmp(command[i], "=") == 0) {
-			new_variable = set_new_variable(new_variable, command[i + 1]);
-			i++;
+	if (copy[1] == NULL) {
+		display_variables(tcsh->variables, tcsh->history);
+		return (envp);
+	}
+	for (int i = 1; copy[i] != NULL; i++) {
+		new_variable->name = dup_to_char(copy[i], '=');
+		if (check_invalid(new_variable->name) == 1) {
+			tcsh->return_value = 1;
+			return (envp);
 		}
-		add_variable(variables, new_variable);
+		if (strstr(copy[i], "=") == NULL && copy[i + 1] != NULL
+		&& strcmp(copy[i + 1], "=") == 0) {
+			i+=2;
+			new_variable = set_new_variable(new_variable,
+				copy[i]);
+		} else if (strstr(copy[i], "=") != NULL) {
+			new_variable = set_new_variable(new_variable,
+			strstr(copy[i], "=") + 1);
+		}
+		add_variable(tcsh->variables, new_variable);
 	}
-	return (0);
+	return (envp);
 }

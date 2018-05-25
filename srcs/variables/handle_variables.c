@@ -37,7 +37,7 @@ static char *shift_array(char *array, int shift_size, int offset)
 	return (array);
 }
 
-static int find_variable(circular_dll_t *variables, char **envp, char *command,
+static char *find_variable(circular_dll_t *variables, char **envp, char *command,
 			int offset)
 {
 	int old_len = strlen(command);
@@ -47,38 +47,45 @@ static int find_variable(circular_dll_t *variables, char **envp, char *command,
 
 	for (len = 1; command[len + 1] > 20 && command[len + 1] != '$'; len++);
 	for (; temp != variables; temp = temp->go_to[NEXT]) {
-		if (strncmp(((variable_t *)temp->data)->name, command + 1, len) == 0)
+		if (strncmp(((variable_t *)temp->data)->name, command + 1, len) == 0) {
 			var = strdup(((variable_t *)temp->data)->value);
+		}
 	}
 	for (int i = 0; envp[i] != NULL; i++) {
-		if (var == NULL && strncmp(envp[i], command + 1, len) == 0)
+		if (var == NULL && strncmp(envp[i], command + 1, len) == 0) {
 			var = strdup(envp[i] + len + 1);
+		}
 	}
 	if (var == NULL)
-		return (len);
+		return (NULL);
 	len++;
 	command = shift_array(command, (old_len - len) + strlen(var), offset);
 	command = strcpy_no_end_byte(command, var);
-	return (0);
+	return (command);
 }
 
-int replace_variable(circular_dll_t *variables, char **envp, char *command)
+char *replace_variable(circular_dll_t *variables, char **envp, char *command)
 {
 	int is_variable = 0;
-	char *copy = command;
+	int len = strlen(command);
+	char *copy = strdup(command);
 	char *fail;
 
 	for (int i = 0; command[i]; i++) {
 		if (command[i] == '$') {
-			is_variable = find_variable(variables, envp,
+			command = find_variable(variables, envp,
 						command + i, i);
 		}
-		if (is_variable != 0) {
-			fail = strndup(command + i + 1, is_variable);
+		if (command == NULL) {
+			fail = strndup(copy + i + 1, len - i - 1);
 			fprintf(stderr, "%s: Undefined variable.\n", fail);
 			free(fail);
-			return (1);
+			return (command);
 		}
 	}
-	return (0);
+	if (command == NULL)
+		command = copy;
+	else
+		free(copy);
+	return (command);
 }

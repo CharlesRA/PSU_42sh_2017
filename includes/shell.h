@@ -8,6 +8,7 @@
 #ifndef SHELL_H
 #define SHELL_H
 #include <unistd.h>
+#include "linked_list.h"
 
 enum OPERATOR {
 	PIPE = 49,
@@ -30,6 +31,8 @@ typedef struct s_shell
 	char ***different_command;
 	char *path;
 	char *command;
+	circular_dll_t *variables;
+	circular_dll_t *history;
 } shell_t;
 
 char *path_to_binaries(char *envp[], shell_t *new, char *command);
