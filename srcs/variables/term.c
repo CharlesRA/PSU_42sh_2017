@@ -20,7 +20,8 @@ static int reset_term(char **envp, variable_t *term, int i)
 		len_env = strlen(envp[i] + 5);
 		len_var = strlen(term->value);
 		if (len_env < len_var) {
-			envp[i] = realloc(envp[i], sizeof(char) * (len_var + 6));
+			envp[i] = realloc(envp[i],
+					sizeof(char) * (len_var + 6));
 		}
 		envp[i] += 5;
 		envp[i] = strcpy(envp[i], term->value);

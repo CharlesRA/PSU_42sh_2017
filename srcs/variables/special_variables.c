@@ -22,7 +22,7 @@ int handle_special_var(shell_t *new, char **envp)
 {
 	int is_cwd = 0;
 	circular_dll_t *temp = new->variables->go_to[NEXT];
-        variable_t *actual_var;
+	variable_t *actual_var;
 
 	for (; temp != new->variables; temp = temp->go_to[NEXT]) {
 		actual_var = (variable_t *)temp->data;
