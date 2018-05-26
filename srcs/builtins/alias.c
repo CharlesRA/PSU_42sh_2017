@@ -13,22 +13,22 @@
 #include <stdio.h>
 #include <string.h>
 
-void find_occurence_alias(shell_t *tcsh, circular_dll_t *temp, int i)
+void find_occurence_alias(shell_t *data, circular_dll_t *temp, int i)
 {
-	if (strcmp(tcsh->different_command[0][i]
+	if (strcmp(data->different_command[0][i]
 	, ((alias_t *) temp->data)->alias) == 0)
-		tcsh->different_command[0][i]
+		data->different_command[0][i]
 	= strdup(((alias_t *) temp->data)->value);
 }
 
-void replace_alias(shell_t *tcsh)
+void replace_alias(shell_t *data)
 {
 	circular_dll_t *temp = NULL;
 
-	for (int i = 0 ; tcsh->different_command[0][i] ; i++) {
-		temp = tcsh->alias->go_to[NEXT];
-		while (temp != tcsh->alias) {
-			find_occurence_alias(tcsh, temp, i);
+	for (int i = 0 ; data->different_command[0][i] ; i++) {
+		temp = data->alias->go_to[NEXT];
+		while (temp != data->alias) {
+			find_occurence_alias(data, temp, i);
 			temp = temp->go_to[NEXT];
 		}
 	}
@@ -46,11 +46,11 @@ void *add_alias_to_list(circular_dll_t *list, char *shortcut, char *value)
 	return (list);
 }
 
-char **create_alias(shell_t *tcsh, char **env)
+char **create_alias(shell_t *data, char **env)
 {
-	if (my_array_len(tcsh->different_command[0]) == 3
-	&& add_alias_to_list(tcsh->alias, tcsh->different_command[0][1]
-	, tcsh->different_command[0][2]) == NULL)
+	if (my_array_len(data->different_command[0]) == 3
+	&& add_alias_to_list(data->alias, data->different_command[0][1]
+	, data->different_command[0][2]) == NULL)
 		return (NULL);
 	return (env);
 }

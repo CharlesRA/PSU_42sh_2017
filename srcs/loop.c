@@ -22,63 +22,63 @@ int builtin_to_be_fork(char *command)
 	return (EXIT_NORMAL);
 }
 
-int wait_process_semicolon(shell_t *tcsh, int i, int *proc)
+int wait_process_semicolon(shell_t *data, int i, int *proc)
 {
-	if (tcsh->priority[i] == SEMICOLON
-	|| tcsh->priority[i] == OR
-	|| tcsh->priority[i] == AND)
-		wait_process(proc, tcsh);
+	if (data->priority[i] == SEMICOLON
+	|| data->priority[i] == OR
+	|| data->priority[i] == AND)
+		wait_process(proc, data);
 	get_index(i, 1);
 	return (EXIT_NORMAL);
 }
 
-int apply_command(shell_t *tcsh, char **envp, int *proc)
+int apply_command(shell_t *data, char **envp, int *proc)
 {
 	int  pipe_fd[2] = {0, 0};
 	int temp = -1;
 
-	for (int i = 0 ; tcsh->priority[i] != '\0' ; i++) {
-		wait_process_semicolon(tcsh, i, proc);
-		tcsh->command = choose_command(tcsh, &i, envp);
-		if (tcsh->command == NULL) {
-			tcsh->different_command++;
+	for (int i = 0 ; data->priority[i] != '\0' ; i++) {
+		wait_process_semicolon(data, i, proc);
+		data->command = choose_command(data, &i, envp);
+		if (data->command == NULL) {
+			data->different_command++;
 			continue;
 		}
-		if (check_builtin(tcsh->command) == 1
-		&& builtin_to_be_fork(tcsh->command) == 0)
-			case_builtin(proc, tcsh, envp);
+		if (check_builtin(data->command) == 1
+		&& builtin_to_be_fork(data->command) == 0)
+			case_builtin(proc, data, envp);
 		else {
 			*proc += 1;
-			temp = case_fork(temp, pipe_fd, tcsh, envp);
+			temp = case_fork(temp, pipe_fd, data, envp);
 		}
-		tcsh->different_command++;
+		data->different_command++;
 	}
 	return (EXIT_NORMAL);
 }
 
-char **loop_command(shell_t *tcsh, char **envp)
+char **loop_command(shell_t *data, char **envp)
 {
 	int proc = 0;
 
-	apply_command(tcsh, envp, &proc);
-	wait_process(&proc, tcsh);
+	apply_command(data, envp, &proc);
+	wait_process(&proc, data);
 	return (envp);
 }
 
-int loop(shell_t *tcsh, char **envp, circular_dll_t *list)
+int loop(shell_t *data, char **envp, circular_dll_t *list)
 {
 	char *command = NULL;
 
 	while (1) {
 		if (isatty(0) == 1)
 			my_putstr("$> : ");
-		command = get_the_command(tcsh, list);
+		command = get_the_command(data, list);
 		if (command == NULL)
 			continue;
 		if (strcmp(command, "exit") == 0)
 			return (EXIT_NORMAL);
-		add_back(tcsh->history, command);
-		envp = loop_command(tcsh, envp);
+		add_back(data->history, command);
+		envp = loop_command(data, envp);
 	}
 	return (EXIT_FAIL);
 }

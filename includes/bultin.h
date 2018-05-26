@@ -15,7 +15,7 @@ int check_builtin(char *command);
 char **print_env(shell_t *new, char **envp);
 char **apply_builtin(const char *command, shell_t *new, char **envp);
 char **print_echo(shell_t *new, char **env);
-char **declare_variable(shell_t *tcsh, char **envp);
+char **declare_variable(shell_t *data, char **envp);
 char **create_alias(shell_t *new, char **env);
 char **exit_shell(shell_t *new, char **env);
 char **display_which(shell_t *new, char **env);
