@@ -58,5 +58,6 @@ char *get_next_word(char **end, char *str, char extra, int *indice);
 int operator(char c);
 int char_is_an_operator(char const *str, int *i, int mod);
 int calcul_len(char const *str, char extra);
+int check_invalid_char(char *str);
 
 #endif

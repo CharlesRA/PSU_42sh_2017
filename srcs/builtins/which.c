@@ -7,6 +7,7 @@
 
 #include "shell.h"
 #include <stdio.h>
+#include "str.h"
 
 char **display_which(shell_t *data, char **env)
 {

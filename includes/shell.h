@@ -38,7 +38,6 @@ typedef struct s_shell
 	circular_dll_t *alias;
 } shell_t;
 
-
 typedef struct s_complete
 {
 	char *file;
@@ -52,7 +51,6 @@ void error_status(int wstatus, shell_t *new);
 char **change_directory(shell_t *new, char **env);
 int loop(shell_t *new, char **envp, circular_dll_t *list);
 int check_env(char **envp);
-void error_command(char *message);
 void destroy_array(shell_t *new);
 int priority_array(char *str, shell_t *new);
 char ***array_command(char **command);
@@ -76,5 +74,18 @@ int skip_redirecion(shell_t *new, int *i);
 int case_fork(int temp, int *pipe_fd, shell_t *new, char **envp);
 int case_builtin(int *proc, shell_t *new, char **envp);
 int globing(shell_t *data);
+int is_globing(char *str);
+void print_and_complete(char **buffer
+, char **result , circular_dll_t *list);
+int check_builtin(char *command);
+void replace_alias(shell_t *data);
+char *replace_variable(circular_dll_t *variables, char **envp, char *command);
+char *history_handling(circular_dll_t *history_list, char *terminal_str);
+char *remove_backslash(char *command);
+char *get_the_command_cpy(shell_t *data, char *command, char *all_command
+, circular_dll_t *list);
+void delete_key(char *buffer, char *result);
+int non_canonic_mode(int i);
+int init_ncurses(char **envp, circular_dll_t *list);
 
 #endif

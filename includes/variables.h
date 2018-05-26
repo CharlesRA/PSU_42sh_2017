@@ -19,5 +19,7 @@ static const char *const special_variables[] = {"cwd", "term", "precmd",
 						"cwdcmd", "ignoreof"};
 
 char *replace_variable(circular_dll_t *, char **, char *);
+void add_variable(circular_dll_t *variables, variable_t *new_variable);
+variable_t *set_new_variable(variable_t *new_variable, char *value);
 
 #endif /* VAR42_ */

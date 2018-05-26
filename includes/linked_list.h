@@ -25,5 +25,6 @@ circular_dll_t *create_list(void);
 void add_front(circular_dll_t *element, void *card);
 int add_back(circular_dll_t *element, void *new_data);
 void read_front(circular_dll_t *list);
+int list_len(circular_dll_t *list);
 
 #endif

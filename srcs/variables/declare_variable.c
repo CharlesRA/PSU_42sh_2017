@@ -11,6 +11,7 @@
 #include "shell.h"
 #include "variables.h"
 #include "linked_list.h"
+#include "str.h"
 
 static int is_letter(char c)
 {

@@ -47,6 +47,8 @@ EXE	=	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/differents_type_command.c\
 		$(EXTRA)/globbing.c\
 		$(EXTRA)/auto_complete.c\
+		$(EXTRA)/prepare_auto_complete.c\
+		$(EXTRA)/inhibitors.c\
 		$(HISTORY_DIR)history.c\
 		$(VAR_DIR)declare_variable.c\
 		$(VAR_DIR)handle_variables.c\

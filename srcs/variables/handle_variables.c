@@ -25,10 +25,12 @@ static char *shift_array(char *array, int shift_size, int offset)
 
 	if (old_len > shift_size) {
 		array = strcpy(array, array + (old_len - shift_size));
-		array = realloc(array - offset, sizeof(char) * (shift_size + 1));
+		array = realloc(array - offset
+		, sizeof(char) * (shift_size + 1));
 		array += offset;
 	} else if (old_len < shift_size) {
-		array = realloc(array - offset, sizeof(char) * (shift_size + 1));
+		array = realloc(array - offset
+		, sizeof(char) * (shift_size + 1));
 		array += offset;
 		array = strcpy(array + (shift_size - old_len), array);
 		array -= (shift_size - old_len);
@@ -36,8 +38,8 @@ static char *shift_array(char *array, int shift_size, int offset)
 	return (array);
 }
 
-static char *find_variable(circular_dll_t *variables, char **envp, char *command,
-			int offset)
+static char *find_variable(circular_dll_t *variables, char **envp
+, char *command, int offset)
 {
 	circular_dll_t *temp = variables->go_to[NEXT];
 	char *var = NULL;
