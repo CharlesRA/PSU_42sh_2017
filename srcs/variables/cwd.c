@@ -8,14 +8,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 #include "variables.h"
+#include "shell.h"
+#include "define.h"
 
-int change_cwd(variable_t *cwd)
+int handle_cwd(shell_t *tcsh, char **envp, variable_t *cwd)
 {
-	cwd->value = getcwd(cwd->value, 0);
+	if (cwd == NULL) {
+		cwd = malloc(sizeof(*cwd));
+		if (cwd == NULL)
+			return (EXIT_FAIL);
+		cwd->name = strdup("cwd");
+		if (cwd->name == NULL)
+			return (EXIT_FAIL);
+	}
+	cwd->value = getcwd(NULL, 0);
 	if (cwd->value == NULL) {
 		fprintf(stderr, "Error getting current working directory\n");
-		return (1);
+		return (EXIT_FAIL);
 	}
-	return (0);
+	add_variable(tcsh->variables, cwd);
+	return (EXIT_NORMAL);
 }

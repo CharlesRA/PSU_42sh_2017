@@ -51,6 +51,9 @@ EXE	=	$(SRC_DIR)/main.c\
 		$(VAR_DIR)handle_variables.c\
 		$(VAR_DIR)set_builtin.c\
 		$(VAR_DIR)cwd.c\
+		$(VAR_DIR)term.c\
+		$(VAR_DIR)ignoreeof.c\
+		$(VAR_DIR)special_variables.c\
 
 OBJ	=	$(EXE:.c=.o)
 

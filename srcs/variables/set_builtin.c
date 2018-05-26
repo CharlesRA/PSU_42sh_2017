@@ -30,8 +30,7 @@ void add_variable(circular_dll_t *variables, variable_t *new_variable)
 			break;
 		}
 		if (strcmp(actual->name, copy->name) == 0) {
-			free(temp->data);
-			temp->data = copy;
+			actual->value = copy->value;
 			break;
 		}
 	}

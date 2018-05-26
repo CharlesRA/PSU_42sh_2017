@@ -34,6 +34,7 @@ typedef struct s_shell
 	circular_dll_t *variables;
 	circular_dll_t *history;
 	circular_dll_t *alias;
+	int is_eof;
 } shell_t;
 
 char *path_to_binaries(char *envp[], shell_t *new, char *command);
