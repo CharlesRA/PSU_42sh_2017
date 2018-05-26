@@ -7,15 +7,12 @@
 
 #include "str.h"
 
-int find_correct_line_env(char **env, char *to_find)
+int find_correct_line_env(char **env, char const *to_find)
 {
-	int i = 0;
-
-	while (env[i] != NULL) {
-		if (my_strstr(env[i], to_find)) {
+	if (env == NULL || env[0] == NULL)
+		return (-1);
+	for (int i = 0 ; env[i] != NULL ; i++)
+		if (my_strstr(env[i], to_find))
 			return (i);
-		}
-		i++;
-	}
 	return (-1);
 }

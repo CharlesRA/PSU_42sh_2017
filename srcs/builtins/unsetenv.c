@@ -6,6 +6,7 @@
 */
 
 #include "shell.h"
+#include "str.h"
 
 char **unset_env(shell_t *new, char **envp)
 {

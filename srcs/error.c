@@ -8,7 +8,6 @@
 #include "shell.h"
 #include "str.h"
 #include "signals.h"
-#include "define.h"
 #include <sys/types.h>
 #include <sys/wait.h>
 
@@ -22,7 +21,7 @@ int non_sence_command(char *str)
 		my_printf(NULL_COMMAND);
 		return (1);
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 int error_operator(char *str)
@@ -39,7 +38,7 @@ int error_operator(char *str)
 			return (1);
 		}
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 void error_status(int wstatus, shell_t *new)

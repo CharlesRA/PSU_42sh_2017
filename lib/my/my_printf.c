@@ -65,7 +65,6 @@ void my_printf(const char *format, ...)
 {
 	int j = 0;
 	int i = 0;
-	int k = 0;
 	va_list ap;
 
 	va_start(ap, format);
@@ -78,7 +77,6 @@ void my_printf(const char *format, ...)
 		}
 		print_char(format, i);
 		j = 0;
-		k = 0;
 	}
 	va_end(ap);
 }

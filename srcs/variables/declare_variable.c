@@ -11,6 +11,7 @@
 #include "shell.h"
 #include "variables.h"
 #include "linked_list.h"
+#include "str.h"
 
 static int is_letter(char c)
 {
@@ -65,23 +66,23 @@ static void display_variables(circular_dll_t *variables,
 	}
 }
 
-char **declare_variable(shell_t *tcsh, char **envp)
+char **declare_variable(shell_t *data, char **envp)
 {
 	variable_t *new_variable = malloc(sizeof(*new_variable));
-	char **copy = tcsh->different_command[0];
+	char **copy = data->different_command[0];
 
 	if (new_variable == NULL) {
-		tcsh->return_value = 1;
+		data->return_value = 1;
 		return (envp);
 	}
 	if (copy[1] == NULL) {
-		display_variables(tcsh->variables, tcsh->history);
+		display_variables(data->variables, data->history);
 		return (envp);
 	}
 	for (int i = 1 ; copy[i] != NULL ; i++) {
 		new_variable->name = dup_to_char(copy[i], '=');
 		if (check_invalid(new_variable->name) == 1) {
-			tcsh->return_value = 1;
+			data->return_value = 1;
 			return (envp);
 		}
 		if (strstr(copy[i], "=") == NULL && copy[i + 1] != NULL
@@ -92,7 +93,7 @@ char **declare_variable(shell_t *tcsh, char **envp)
 		} else if (strstr(copy[i], "=") != NULL)
 			new_variable = set_new_variable(new_variable,
 						strstr(copy[i], "=") + 1);
-		add_variable(tcsh->variables, new_variable);
+		add_variable(data->variables, new_variable);
 	}
 	return (envp);
 }

@@ -7,7 +7,7 @@
 
 NAME	=	42sh
 
-CC	=	gcc -g3
+CC	=	gcc
 
 MAKE	=	/usr/bin/make
 
@@ -46,6 +46,9 @@ EXE	=	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/command_and_priority.c\
 		$(SRC_DIR)/differents_type_command.c\
 		$(EXTRA)/globbing.c\
+		$(EXTRA)/auto_complete.c\
+		$(EXTRA)/prepare_auto_complete.c\
+		$(EXTRA)/inhibitors.c\
 		$(HISTORY_DIR)history.c\
 		$(VAR_DIR)declare_variable.c\
 		$(VAR_DIR)handle_variables.c\
@@ -85,7 +88,7 @@ CFLAGS	=	##-Wall -Wextra
 
 CPPFLAGS=	-I./includes/
 
-LDFLAGS	=	-L./lib/ -lmy
+LDFLAGS	=	-lncurses -L./lib/ -lmy
 
 UT_FLAGS=	-lcriterion --coverage
 

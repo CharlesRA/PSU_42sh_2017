@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include "shell.h"
-#include "define.h"
 #include "str.h"
 #include "bultin.h"
 
@@ -62,7 +61,7 @@ int change_directory_part_two(shell_t *new, char **env)
 	|| my_strcmp(new->different_command[0][1], "~") == 0) {
 		home = find_home(env);
 		if (home == NULL)
-			return (84);
+			return (EXIT_FAIL);
 		dir = chdir(home);
 		if (dir != -1)
 			free(home);
@@ -70,9 +69,9 @@ int change_directory_part_two(shell_t *new, char **env)
 	if (dir == -1) {
 		new->return_value = 1;
 		my_printf(ERROR_CD, new->different_command[0][1]);
-		return (84);
+		return (EXIT_FAIL);
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 char *compare_cd(shell_t *new, char *cwd, char **env)

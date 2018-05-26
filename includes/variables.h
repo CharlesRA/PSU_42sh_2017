@@ -11,12 +11,10 @@
 #include "shell.h"
 #include "linked_list.h"
 
-typedef struct s_variable variable_t;
-struct s_variable
-{
+typedef struct s_variable {
 	char *name;
 	char *value;
-};
+} variable_t;
 
 int handle_cwd(shell_t *new, char **envp, variable_t *cwd);
 int handle_ignoreeof(shell_t *new, char **envp, variable_t *ignoreeof);
@@ -37,5 +35,7 @@ static const spe_var_func_t special_variables[] = {{"cwd", handle_cwd},
 						{NULL, NULL}};
 
 char *replace_variable(circular_dll_t *, char **, char *);
+void add_variable(circular_dll_t *variables, variable_t *new_variable);
+variable_t *set_new_variable(variable_t *new_variable, char *value);
 
 #endif /* VAR42_ */

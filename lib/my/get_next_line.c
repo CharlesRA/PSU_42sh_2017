@@ -1,13 +1,16 @@
 /*
 ** EPITECH PROJECT, 2018
-** get_next_line
+** charles.raimbault@epitech.eu
 ** File description:
-** CPE
+** get_next_line.c
 */
 
-#include <unistd.h>
+#include "linked_list.h"
 #include <stdlib.h>
+#include "shell.h"
 #include "str.h"
+#include <string.h>
+#include <stdio.h>
 
 int check_backslash_n(char *str)
 {
@@ -49,26 +52,28 @@ char* recons(char *buffer, char *result, int to_copy)
 	return (buffer);
 }
 
-char *get_next_line(int fd)
+char *get_next_line(int fd, circular_dll_t *list)
 {
-	char *buffer = malloc(sizeof(char) * 1 + 1);
+	char *buffer = calloc(3, sizeof(char) * 3 + 1);
 
 	if (buffer == NULL)
 		return (NULL);
 	static char *result = NULL;
-	static int passage = 0;
-	int nbr = read(fd, buffer, 1);
+	int nbr = read(fd, buffer, 3);
 	int to_copy = 0;
 
-	if (nbr < 1)
-		return (NULL);
-	passage++;
 	buffer[nbr] = '\0';
-	result = my_strdupcat(result, buffer);
-	to_copy = check_backslash_n(result);
-	if (to_copy != 0) {
-		buffer = recons(buffer, result, to_copy);
-		return (buffer);
+	if (nbr < 1 || buffer[0] == 4)
+		return (NULL);
+	if (nbr != 3) {
+		print_and_complete(&buffer, &result, list);
+		delete_key(buffer, result);
+		result = my_strdupcat(result, buffer);
+		to_copy = check_backslash_n(result);
+		if (to_copy != 0) {
+			buffer = recons(buffer, result, to_copy);
+			return (buffer);
+		}
 	}
-	get_next_line(fd);
+	get_next_line(fd, list);
 }

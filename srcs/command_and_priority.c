@@ -26,7 +26,7 @@ int condition_priority_redirection(shell_t *new, int *i, int *j, char *str)
 		new->priority[(*j)++] = AND;
 		*i += 1;
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 int condition_priority(shell_t *new, int *i, int *j, char *str)
@@ -40,7 +40,7 @@ int condition_priority(shell_t *new, int *i, int *j, char *str)
 	} else if (str[*i] == ';' && str[*i + 1] != ';')
 		new->priority[(*j)++] = SEMICOLON;
 	condition_priority_redirection(new, i, j, str);
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 int priority_array(char *str, shell_t *new)
@@ -50,12 +50,12 @@ int priority_array(char *str, shell_t *new)
 
 	new->priority = malloc(sizeof(char) * len + 1);
 	if (new->priority == NULL)
-		return (84);
+		return (EXIT_FAIL);
 	new->priority[0] = '#';
 	for (int i = 0 ; i < len ; i++)
 		condition_priority(new, &i, &j, str);
 	new->priority[j] = '\0';
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 int fill_array(char ***array, char **command, int len)
@@ -65,7 +65,7 @@ int fill_array(char ***array, char **command, int len)
 
 	array[0] = malloc(sizeof(char *) * (len + 1));
 	if (array[0] == NULL)
-		return (84);
+		return (EXIT_FAIL);
 	for (int i = 0 ; command[i] != NULL ; i++) {
 		array[j][k] = my_strdup(command[i]);
 		if (string_is_operator(command[i]) == 1) {
@@ -77,10 +77,10 @@ int fill_array(char ***array, char **command, int len)
 	}
 	array[j][k] = NULL;
 	array[j + 1] = NULL;
-	return (0);
+	return (EXIT_NORMAL);
 }
 
-char *** array_command(char **command)
+char ***array_command(char **command)
 {
 	int len = my_array_len(command) + 1;
 	char ***array = malloc(sizeof(char *) * (len + 1));

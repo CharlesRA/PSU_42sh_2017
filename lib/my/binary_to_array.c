@@ -10,19 +10,18 @@
 
 int *associate(char *binary)
 {
-	char temp[3];
 	int *info_param = malloc(sizeof(int) * 4);
 	int j = 0;
+	char temp[3];
 
 	if (info_param == NULL)
 		return (NULL);
-	for (int i = 0; j < 4;) {
+	for (int i = 0 ; j < 4 ; j++) {
 		temp[0] = binary[i];
 		temp[1] = binary[i + 1];
 		temp[2] = '\0';
 		info_param[j] = my_getnbr(temp);
 		i += 2;
-		j++;
 	}
 	return (info_param);
 }

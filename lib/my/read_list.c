@@ -10,14 +10,14 @@
 #include "str.h"
 #include "linked_list.h"
 #include "alias.h"
+#include "shell.h"
 
 void read_front(circular_dll_t *list)
 {
 	circular_dll_t *temp = list->go_to[NEXT];
 
 	while (temp != list && temp != NULL) {
-		printf("%s\n", ((alias_t*)temp->data)->value);
-		printf("%s\n", ((alias_t*)temp->data)->alias);
+		printf("%s\n", ((complete_t*)temp->data)->file);
 		temp = temp->go_to[NEXT];
 	}
 }

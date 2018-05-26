@@ -4,6 +4,9 @@
 42sh
 *.a
 *.o
+*.orig
 vgcore*
 tags
 .tags
+tester.sh
+tests

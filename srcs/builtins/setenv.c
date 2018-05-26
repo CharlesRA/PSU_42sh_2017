@@ -7,7 +7,6 @@
 
 #include "shell.h"
 #include "str.h"
-#include "define.h"
 
 int overwrite_env(char *envp, shell_t *new)
 {
@@ -17,7 +16,7 @@ int overwrite_env(char *envp, shell_t *new)
 	int result = 0;
 
 	if (str == NULL)
-		exit(84);
+		exit(EXIT_FAIL);
 	while (envp[i] != '=' && envp[i] != '\0') {
 		str[i] = envp[i];
 		i++;
@@ -71,7 +70,7 @@ int set_env_error(shell_t *new, char **envp)
 			return (1);
 		}
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 char **set_env(shell_t *new, char **envp)

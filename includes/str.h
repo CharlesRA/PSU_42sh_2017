@@ -20,7 +20,7 @@ typedef struct info_t {
 int my_str_isspace_num(char *str);
 int my_char_isalpha_num(char alpha);
 char **my_array_dup(char **map);
-char *get_next_line(int fd);
+char *get_next_line(int fd, circular_dll_t *list);
 char *my_revstr(char *str);
 int my_strlen(char const *str);
 char *my_strdupcat(char *str1, char *str2);
@@ -30,7 +30,7 @@ void my_printf(const char *format, ...);
 int my_getnbr(char const *str);
 int is_num(char const *str);
 int my_strstr(char *str, char const *to_find);
-char my_printbinaire(int nbr);
+void my_printbinaire(int nbr);
 int my_strcmp(char const *s1, char const *s2);
 int my_putstr(char const *str);
 int my_strncmp(char const *s1, char const *s2, int n);
@@ -38,7 +38,7 @@ char *my_strdupcat(char *str1, char *str2);
 int my_array_len(char **array);
 void my_putchar(char c);
 void my_printf(const char *format, ...);
-int find_correct_line_env(char **env, char *to_find);
+int find_correct_line_env(char **env, char const *to_find);
 char **my_str_to_word_array(char *str, char extra);
 void my_print_percent(const char *str);
 void my_printhexa_caps(int nbr);
@@ -58,5 +58,6 @@ char *get_next_word(char **end, char *str, char extra, int *indice);
 int operator(char c);
 int char_is_an_operator(char const *str, int *i, int mod);
 int calcul_len(char const *str, char extra);
+int check_invalid_char(char *str);
 
 #endif
