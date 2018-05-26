@@ -155,6 +155,8 @@ char *check_access_command(shell_t *data, char *command)
 		return (NULL);
 	if (access(bin, X_OK) == 0)
 		return (bin);
+	if (data->binaries == NULL)
+		return (command);
 	for (int i = 0 ; data->binaries[i] != NULL ; i++) {
 		data->binaries[i] = my_strdupcat(data->binaries[i], "/");
 		data->binaries[i] = my_strdupcat(data->binaries[i], command);
@@ -173,10 +175,11 @@ char *find_variable_path(char **envp, char *command, shell_t *data)
 	while (envp[i] != NULL) {
 		if (my_strstr(envp[i], "PATH=") == 1) {
 			data->binaries = my_str_to_word_array(envp[i] + 5, ':');
-			break;
+			return (command);
 		}
 		i++;
 	}
+	data->binaries = NULL;
 	return (command);
 }
 
