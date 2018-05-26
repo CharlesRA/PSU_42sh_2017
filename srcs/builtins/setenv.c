@@ -6,7 +6,6 @@
 */
 
 #include "shell.h"
-#include "str.h"
 
 int overwrite_env(char *envp, shell_t *new)
 {

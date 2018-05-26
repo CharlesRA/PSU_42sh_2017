@@ -5,11 +5,9 @@
 ** inhibitors.c
 */
 
-#include "linked_list.h"
-#include "shell.h"
-#include "str.h"
 #include <string.h>
 #include <stdio.h>
+#include "shell.h"
 
 char *remove_backslash(char *command)
 {

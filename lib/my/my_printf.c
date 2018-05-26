@@ -10,7 +10,7 @@
 
 struct s_flags {
 	char flag;
-	void* function;
+	void *function;
 };
 
 static struct s_flags tab[] = {
@@ -52,12 +52,12 @@ int verif_flag_percent(const char *str, int i, int j)
 int verif_flag(const char *str, int i, int j, va_list ap)
 {
 	void (*pointeurSurFonction)(long long);
+
 	if (str[i + 1] == tab[j].flag && j >= 2) {
 		pointeurSurFonction = tab[j].function;
 		pointeurSurFonction(va_arg(ap, long long));
 		i = i + 1;
 	}
-
 	return (i);
 }
 
@@ -68,9 +68,8 @@ void my_printf(const char *format, ...)
 	va_list ap;
 
 	va_start(ap, format);
-	for (i = 0 ;format[i]; i++)
-	{
-		while ((format[i] == '%'  && format[i + 1] != tab[j].flag)) {
+	for (i = 0 ;format[i]; i++) {
+		while ((format[i] == '%' && format[i + 1] != tab[j].flag)) {
 			j++;
 			i = verif_flag(format, i, j, ap);
 			i = verif_flag_percent(format, i, j);

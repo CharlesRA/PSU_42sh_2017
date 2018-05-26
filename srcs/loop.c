@@ -6,9 +6,7 @@
 */
 
 #include <string.h>
-#include <unistd.h>
 #include "shell.h"
-#include "str.h"
 #include "nbr.h"
 #include "bultin.h"
 

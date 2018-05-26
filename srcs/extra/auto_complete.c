@@ -5,17 +5,15 @@
 ** auto_complete.c
 */
 
-#include "str.h"
-#include "linked_list.h"
-#include "shell.h"
 #include <string.h>
+#include "shell.h"
 
 void delete_key(char *buffer, char *result)
 {
 	if (buffer[0] == 127) {
 		buffer[0] = '\0';
 		if (strlen(result) != 0) {
-			write(1 , "\b \b", strlen("\b \b"));
+			write(1, "\b \b", strlen("\b \b"));
 			result[strlen(result) - 1] = '\0';
 		}
 	}
@@ -38,7 +36,7 @@ char *check_valid_path(circular_dll_t *list, char *result, char *arg)
 {
 	circular_dll_t *temp = list->go_to[NEXT];
 	circular_dll_t *data = list->go_to[NEXT];
-	int len = 1;
+	size_t len = 1;
 
 	while (data != list) {
 		if (strlen(((complete_t *)data->data)->valid) != 0)

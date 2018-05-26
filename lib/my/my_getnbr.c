@@ -9,8 +9,8 @@
 
 static int neg(char const *str)
 {
-	int	check = 1;
-	int	i = 0;
+	int check = 1;
+	int i = 0;
 
 	while (str[i]) {
 		if (str[i] == '-' && str[i + 1] <= '9' && str[i + 1] >= '0')
@@ -24,9 +24,9 @@ static int neg(char const *str)
 
 int my_getnbr(char const *str)
 {
-	int	i = 0;
-	int	nb = 0;
-	int	count = 0;
+	int i = 0;
+	int nb = 0;
+	int count = 0;
 
 	if (my_strcmp(str, "-2147483648") == 0)
 		return (-2147483648);

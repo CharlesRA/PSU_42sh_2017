@@ -24,10 +24,10 @@ void read_front(circular_dll_t *list)
 
 void read_back(circular_dll_t *list)
 {
-	if (list->go_to[PREV] == NULL)
-		return;
 	circular_dll_t *temp = list->go_to[PREV];
 
+	if (list->go_to[PREV] == NULL)
+		return;
 	while (temp != list)
 		temp = temp->go_to[PREV];
 }

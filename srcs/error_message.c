@@ -5,10 +5,9 @@
 ** minishell
 */
 
+#include <errno.h>
 #include "str.h"
 #include "define.h"
-#include <errno.h>
-#include <stdio.h>
 
 void error_execve(char *command)
 {

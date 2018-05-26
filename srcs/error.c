@@ -6,10 +6,7 @@
 */
 
 #include "shell.h"
-#include "str.h"
 #include "signals.h"
-#include <sys/types.h>
-#include <sys/wait.h>
 
 int non_sence_command(char *str)
 {

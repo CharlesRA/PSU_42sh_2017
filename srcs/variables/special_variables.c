@@ -8,7 +8,6 @@
 #include <string.h>
 #include "variables.h"
 #include "shell.h"
-#include "define.h"
 
 static int choose_variable(shell_t *new, char **envp, variable_t *actual_var,
 			int i)
@@ -36,4 +35,5 @@ int handle_special_var(shell_t *new, char **envp)
 		if (handle_cwd(new, envp, NULL) == EXIT_FAIL)
 			return (EXIT_FAIL);
 	}
+	return (EXIT_NORMAL);
 }

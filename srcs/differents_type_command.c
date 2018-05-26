@@ -5,8 +5,6 @@
 ** differents_type_command.c
 */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "shell.h"
 #include "bultin.h"
 
@@ -46,7 +44,6 @@ int case_builtin(int *proc, shell_t *new, char **envp)
 int case_fork(int temp, int *pipe_fd, shell_t *new, char **envp)
 {
 	pid_t pid = 0;
-	int i = get_index(0, 0);
 
 	if (temp != -1)
 		close(pipe_fd[1]);

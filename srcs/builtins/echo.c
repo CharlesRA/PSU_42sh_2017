@@ -5,7 +5,6 @@
 ** echo.c
 */
 
-#include "str.h"
 #include "shell.h"
 
 char **print_echo(shell_t *new, char **env)

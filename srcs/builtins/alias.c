@@ -5,13 +5,8 @@
 ** alias.c
 */
 
-#include "linked_list.h"
-#include "alias.h"
-#include "shell.h"
-#include "str.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include "shell.h"
 
 void find_occurence_alias(shell_t *data, circular_dll_t *temp, int i)
 {

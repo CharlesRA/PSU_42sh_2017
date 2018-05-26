@@ -6,7 +6,6 @@
 */
 
 #include "shell.h"
-#include "str.h"
 
 char **print_env(shell_t *new, char **envp)
 {

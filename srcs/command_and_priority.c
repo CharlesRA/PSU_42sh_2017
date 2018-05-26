@@ -6,7 +6,6 @@
 */
 
 #include "shell.h"
-#include "str.h"
 
 int condition_priority_redirection(shell_t *new, int *i, int *j, char *str)
 {

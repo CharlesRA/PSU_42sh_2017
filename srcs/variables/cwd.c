@@ -5,13 +5,10 @@
 ** cwd special variable
 */
 
-#include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 #include "variables.h"
 #include "shell.h"
-#include "define.h"
 
 int handle_cwd(shell_t *data, char **envp, variable_t *cwd)
 {

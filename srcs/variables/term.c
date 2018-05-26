@@ -5,11 +5,9 @@
 ** term special variable handling
 */
 
-#include <stdlib.h>
 #include <string.h>
 #include "variables.h"
 #include "shell.h"
-#include "define.h"
 
 static int reset_term(char **envp, variable_t *term, int i)
 {

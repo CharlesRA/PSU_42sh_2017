@@ -35,10 +35,11 @@ int list_len(circular_dll_t *list)
 
 void delete_element(circular_dll_t **element)
 {
+	circular_dll_t *to_free = NULL;
+
 	element[0]->go_to[PREV]->go_to[NEXT] = element[0]->go_to[NEXT];
 	element[0]->go_to[NEXT]->go_to[PREV] = element[0]->go_to[PREV];
-	circular_dll_t *to_free = element[0];
-
+	to_free = element[0];
 	element[0] = element[0]->go_to[PREV];
 	free(to_free);
 }

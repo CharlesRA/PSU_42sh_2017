@@ -5,13 +5,9 @@
 ** prepare_auto_complete.c
 */
 
-#include <sys/types.h>
 #include <dirent.h>
-#include <curses.h>
 #include <term.h>
 #include <string.h>
-#include "linked_list.h"
-#include "str.h"
 #include "define.h"
 #include "shell.h"
 
@@ -30,8 +26,10 @@ void read_file_for_complete(DIR * rep, circular_dll_t *list)
 
 	if (rep == NULL)
 		return;
-	while ((data = readdir(rep)) != NULL) {
+	data = readdir(rep);
+	while (data != NULL) {
 		add_data(list, data->d_name);
+		data = readdir(rep);
 	}
 }
 

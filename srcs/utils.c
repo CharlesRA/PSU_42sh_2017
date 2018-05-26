@@ -5,14 +5,11 @@
 ** utils.c
 */
 
-#include "shell.h"
-#include "str.h"
 #include <sys/wait.h>
-#include "bultin.h"
 #include <sys/ioctl.h>
-#include <stdio.h>
 #include <termios.h>
-#include <unistd.h>
+#include "shell.h"
+#include "bultin.h"
 
 int non_canonic_mode(int i)
 {
@@ -22,7 +19,7 @@ int non_canonic_mode(int i)
 	if (i == 0) {
 		if (ioctl(0 , TCGETS, &old) == -1
 		|| ioctl(0 , TCGETS, &new) == -1)
-			return (84);
+			return (EXIT_FAIL);
 		new.c_lflag &= ~ECHO;
 		new.c_lflag &= ~ICANON;
 		ioctl(0, TCSETS, &new);
@@ -30,7 +27,7 @@ int non_canonic_mode(int i)
 	if (i == 1) {
 		ioctl(0, TCSETS, &old);
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }
 
 void wait_process(int *nbr, shell_t *new)
@@ -80,7 +77,7 @@ char *find_home(char **env)
 	if (i != -1) {
 		str = malloc(sizeof(char) * my_strlen(env[i]));
 		if (str == NULL)
-			exit(84);
+			exit(EXIT_FAIL);
 		while (env[i][k] != '\0')
 			str[j++] = env[i][k++];
 	}

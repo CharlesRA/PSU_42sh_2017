@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include "shell.h"
-#include "str.h"
 #include "bultin.h"
 
 char **change_pwd(char **envp)

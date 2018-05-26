@@ -55,14 +55,14 @@ char* recons(char *buffer, char *result, int to_copy)
 char *get_next_line(int fd, circular_dll_t *list)
 {
 	char *buffer = calloc(3, sizeof(char) * 3 + 1);
+	static char *result = NULL;
+	int nbr = 0;
+	int to_copy = 0;
 
 	if (buffer == NULL)
 		return (NULL);
-	static char *result = NULL;
-	int nbr = read(fd, buffer, 3);
-	int to_copy = 0;
-
-	buffer[nbr] = '\0';
+	nbr = read(fd, buffer, 3);
+	buffer[(nbr == -1 ? 0 : nbr)] = '\0';
 	if (nbr < 1 || buffer[0] == 4)
 		return (NULL);
 	if (nbr != 3) {

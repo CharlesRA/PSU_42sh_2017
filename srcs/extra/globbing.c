@@ -6,9 +6,6 @@
 */
 
 #include <glob.h>
-#include <stdlib.h>
-#include "linked_list.h"
-#include "str.h"
 #include "shell.h"
 
 static int take_none_glob(circular_dll_t *new_args, char **my_args)
@@ -28,7 +25,7 @@ static void apply_new_args(circular_dll_t *new_args, shell_t *data)
 {
 	int size_list = list_len(new_args);
 	char **my_new_args = malloc(sizeof(char *) * (size_list + 1));
-	circular_dll_t *temp = new_args->go_to[	NEXT];
+	circular_dll_t *temp = new_args->go_to[NEXT];
 
 	for (int i = 0; temp != new_args; i++) {
 		my_new_args[i] = (char *)temp->data;

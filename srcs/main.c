@@ -6,9 +6,6 @@
 */
 
 #include "shell.h"
-#include "define.h"
-#include "str.h"
-#include <string.h>
 
 int main(int ac, char **av, char **envp)
 {

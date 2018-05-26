@@ -5,12 +5,9 @@
 ** operator.c
 */
 
-#include "shell.h"
-#include "str.h"
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include "shell.h"
 
 char *check_redirecion(shell_t *new, int *i)
 {

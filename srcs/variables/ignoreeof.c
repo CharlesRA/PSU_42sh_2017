@@ -7,7 +7,6 @@
 
 #include "variables.h"
 #include "shell.h"
-#include "define.h"
 
 int handle_ignoreeof(shell_t *data, char **envp, variable_t *ignoreeof)
 {

@@ -5,14 +5,11 @@
 ** minishell
 */
 
-#include "shell.h"
-#include "bultin.h"
-#include "str.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include "shell.h"
+#include "bultin.h"
+#include "variables.h"
 
 int case_command_and_or(shell_t *data, int *i)
 {

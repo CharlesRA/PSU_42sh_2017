@@ -7,7 +7,6 @@
 
 #include "shell.h"
 #include "bultin.h"
-#include "str.h"
 
 int check_builtin(char *command)
 {

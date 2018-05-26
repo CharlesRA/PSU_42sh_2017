@@ -12,6 +12,7 @@
 #include "define.h"
 #include "alias.h"
 #include "linked_list.h"
+#include "str.h"
 
 enum OPERATOR {
 	PIPE = 49,
