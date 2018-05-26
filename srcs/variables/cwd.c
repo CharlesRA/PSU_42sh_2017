@@ -13,7 +13,7 @@
 #include "shell.h"
 #include "define.h"
 
-int handle_cwd(shell_t *tcsh, char **envp, variable_t *cwd)
+int handle_cwd(shell_t *data, char **envp, variable_t *cwd)
 {
 	if (cwd == NULL) {
 		cwd = malloc(sizeof(*cwd));
@@ -28,6 +28,6 @@ int handle_cwd(shell_t *tcsh, char **envp, variable_t *cwd)
 		fprintf(stderr, "Error getting current working directory\n");
 		return (EXIT_FAIL);
 	}
-	add_variable(tcsh->variables, cwd);
+	add_variable(data->variables, cwd);
 	return (EXIT_NORMAL);
 }
