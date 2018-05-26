@@ -155,15 +155,15 @@ char *check_access_command(shell_t *data, char *command)
 		return (NULL);
 	if (access(bin, X_OK) == 0)
 		return (bin);
-	if (data->binaries == NULL)
-		return (command);
-	for (int i = 0 ; data->binaries[i] != NULL ; i++) {
-		data->binaries[i] = my_strdupcat(data->binaries[i], "/");
-		data->binaries[i] = my_strdupcat(data->binaries[i], command);
-		if (access(data->binaries[i], X_OK) == 0)
-			return (data->binaries[i]);
-	}
-	if (access(command, F_OK) == 0)
+	if (data->binaries != NULL)
+		for (int i = 0 ; data->binaries[i] != NULL ; i++) {
+			data->binaries[i] = my_strdupcat(data->binaries[i], "/");
+			data->binaries[i] = my_strdupcat(data->binaries[i], command);
+			if (access(data->binaries[i], X_OK) == 0)
+				return (data->binaries[i]);
+		}
+	if (strlen(command) >= 2 && command[0] == '.' && command[1] == '/'
+	&& access(command, F_OK) == 0)
 		return (command);
 	return (NULL);
 }
@@ -200,7 +200,7 @@ char *path_to_binaries(char **envp, shell_t *data, char *command)
 	temp = check_access_command(data, command);
 	if (temp == NULL) {
 		data->return_value = 1;
-		error_command(command);
+		fprintf(stderr, "%s: Command not found.\n", command);
 		return (NULL);
 	}
 	return (temp);

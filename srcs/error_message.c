@@ -8,12 +8,7 @@
 #include "str.h"
 #include "define.h"
 #include <errno.h>
-
-void error_command(char *message)
-{
-	my_putserr(message);
-	my_putserr(": Command not found.\n");
-}
+#include <stdio.h>
 
 void error_execve(char *command)
 {
