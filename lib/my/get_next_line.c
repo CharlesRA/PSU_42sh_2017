@@ -128,6 +128,8 @@ char *get_next_line(int fd, circular_dll_t *list)
 	int to_copy = 0;
 
 	buffer[nbr] = '\0';
+	if (buffer[0] == 4)
+		return (NULL);
 	if (nbr != 3) {
 		if (buffer[0] != 9)
 			my_putstr(buffer);
