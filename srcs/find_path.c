@@ -149,6 +149,12 @@ char *choose_command(shell_t *data, int *i, char **envp)
 
 char *check_access_command(shell_t *data, char *command)
 {
+	char *bin = my_strdupcat("/bin/", command);
+
+	if (bin == NULL)
+		return (NULL);
+	if (access(bin, X_OK) == 0)
+		return (bin);
 	for (int i = 0 ; data->binaries[i] != NULL ; i++) {
 		data->binaries[i] = my_strdupcat(data->binaries[i], "/");
 		data->binaries[i] = my_strdupcat(data->binaries[i], command);
@@ -157,8 +163,6 @@ char *check_access_command(shell_t *data, char *command)
 	}
 	if (access(command, F_OK) == 0)
 		return (command);
-	data->return_value = 1;
-	error_command(command);
 	return (NULL);
 }
 
@@ -173,15 +177,13 @@ char *find_variable_path(char **envp, char *command, shell_t *data)
 		}
 		i++;
 	}
-	if (envp[i] == NULL) {
-		data->return_value = 1;
-		error_command(command);
-		return (NULL);
-	}
+	return (command);
 }
 
 char *path_to_binaries(char **envp, shell_t *data, char *command)
 {
+	char *temp = NULL;
+
 	if (my_strcmp(command, "setenv") == 0
 	&& data->different_command[0][1] == NULL) {
 		data->different_command[0][0] = my_strdup("env");
@@ -192,5 +194,11 @@ char *path_to_binaries(char **envp, shell_t *data, char *command)
 			return (data->different_command[0][0]);
 	if (find_variable_path(envp, command, data) == NULL)
 		return (NULL);
-	return (check_access_command(data, command));
+	temp = check_access_command(data, command);
+	if (temp == NULL) {
+		data->return_value = 1;
+		error_command(command);
+		return (NULL);
+	}
+	return (temp);
 }

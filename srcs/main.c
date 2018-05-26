@@ -81,10 +81,16 @@ int init_ncurses(char **envp, circular_dll_t *list)
 {
 	int err = 0;
 	char *term = NULL;
+	int i = 0;
 
-	if (isatty(0) == 1 && find_correct_line_env(envp, "TERM=") != -1) {
-		term = envp[find_correct_line_env(envp, "TERM=")];
-		setupterm(term + 5, 1, &err);
+	if (isatty(0) == 1) {
+		i = find_correct_line_env(envp, "TERM=");
+		if (i == -1)
+			setupterm("xterm", 1, &err);
+		else  {
+			term = envp[i];
+			setupterm(term + 5, 1, &err);
+		}
 		if (err < 1 || non_canonic_mode(0) == EXIT_FAIL)
 			return (EXIT_FAIL);
 		generate_auto_complete(list, envp);

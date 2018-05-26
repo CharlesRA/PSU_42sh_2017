@@ -61,7 +61,7 @@ static void operator_left(shell_t *new, int i, char *path)
 
 int operator_pipe_redirect_file(shell_t *new, int i, int *pipe, char *path)
 {
-	int mode = O_WRONLY | O_CREAT;
+	int mode = O_WRONLY | O_CREAT | O_TRUNC;
 	int fd = 0;
 
 	switch (new->priority[i + 1]) {
