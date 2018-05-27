@@ -51,7 +51,8 @@ static char *get_the_command_gtl(shell_t *data, char *command, int firstime
 	return (command);
 }
 
-static char *check_for_first_time(char *command, char *all_command, int *firstime)
+static char *check_for_first_time(char *command, char *all_command,
+				int *firstime)
 {
 	if (*firstime == 0) {
 		*firstime = 1;

@@ -29,7 +29,8 @@ void replace_alias(shell_t *data)
 	}
 }
 
-static void *add_alias_to_list(circular_dll_t *list, char *shortcut, char *value)
+static void *add_alias_to_list(circular_dll_t *list, char *shortcut,
+			char *value)
 {
 	alias_t *alias = malloc(sizeof(alias_t));
 
