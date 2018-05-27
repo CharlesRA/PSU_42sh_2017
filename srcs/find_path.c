@@ -13,8 +13,12 @@
 
 static char *check_access_command(shell_t *data, char *command)
 {
-	if (access(command, F_OK) == 0)
-		return (access(command, X_OK) == 0 ? command : NULL);
+	if (command[0] == '.' || strstr(command, "/")) {
+		if (access(command, F_OK) == 0)
+			return (access(command, X_OK) == 0 ? command : NULL);
+		else
+			return (NULL);
+	}
 	if (data->binaries != NULL)
 		for (int i = 0 ; data->binaries[i] != NULL ; i++) {
 			data->binaries[i]
