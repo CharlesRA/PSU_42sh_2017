@@ -10,7 +10,7 @@
 #include "nbr.h"
 #include "bultin.h"
 
-int builtin_to_be_fork(char *command)
+static int builtin_to_be_fork(char *command)
 {
 	for (int i = 0 ; tab[i].builtin != NULL ; i++)
 		if (strcmp(command, tab[i].builtin) == 0
@@ -20,7 +20,7 @@ int builtin_to_be_fork(char *command)
 	return (EXIT_NORMAL);
 }
 
-int wait_process_semicolon(shell_t *data, int i, int *proc)
+static int wait_process_semicolon(shell_t *data, int i, int *proc)
 {
 	if (data->priority[i] == SEMICOLON
 	|| data->priority[i] == OR
@@ -30,7 +30,7 @@ int wait_process_semicolon(shell_t *data, int i, int *proc)
 	return (EXIT_NORMAL);
 }
 
-int apply_command(shell_t *data, char **envp, int *proc)
+static int apply_command(shell_t *data, char **envp, int *proc)
 {
 	int  pipe_fd[2] = {0, 0};
 	int temp = -1;
@@ -54,7 +54,7 @@ int apply_command(shell_t *data, char **envp, int *proc)
 	return (EXIT_NORMAL);
 }
 
-char **loop_command(shell_t *data, char **envp)
+static char **loop_command(shell_t *data, char **envp)
 {
 	int proc = 0;
 

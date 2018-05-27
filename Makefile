@@ -29,6 +29,7 @@ LIB_DIR	=	./lib/my
 
 EXE	=	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/find_path.c\
+		$(SRC_DIR)/find_path_aux.c\
 		$(SRC_DIR)/error.c\
 		$(BUILTINS)/cd.c\
 		$(BUILTINS)/builtin.c\

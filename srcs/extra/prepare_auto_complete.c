@@ -8,7 +8,6 @@
 #include <dirent.h>
 #include <term.h>
 #include <string.h>
-#include "define.h"
 #include "shell.h"
 
 void *add_data(circular_dll_t *list, char *read)

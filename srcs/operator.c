@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "shell.h"
 
-char *check_redirecion(shell_t *new, int *i)
+char *check_redirection(shell_t *new, int *i)
 {
 	char *str = NULL;
 
@@ -21,7 +21,7 @@ char *check_redirecion(shell_t *new, int *i)
 	return (str);
 }
 
-int skip_redirecion(shell_t *new, int *i)
+int skip_redirection(shell_t *new, int *i)
 {
 	if (new->priority[*i] == ONE_RIGHT
 	|| new->priority[*i] == TWO_RIGHT
