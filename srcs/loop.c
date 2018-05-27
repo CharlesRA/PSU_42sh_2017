@@ -8,7 +8,7 @@
 #include <string.h>
 #include "shell.h"
 #include "nbr.h"
-#include "bultin.h"
+#include "builtin.h"
 
 static int builtin_to_be_fork(char *command)
 {

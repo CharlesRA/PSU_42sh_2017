@@ -11,7 +11,6 @@
 char **unset_env(shell_t *new, char **envp);
 char **set_env(shell_t *new, char **envp);
 char *find_home(char **env);
-int check_builtin(char *command);
 char **print_env(shell_t *new, char **envp);
 char **apply_builtin(const char *command, shell_t *new, char **envp);
 char **print_echo(shell_t *new, char **env);

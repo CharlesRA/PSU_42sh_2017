@@ -8,18 +8,7 @@
 #include <string.h>
 #include "shell.h"
 
-void delete_key(char *buffer, char *result)
-{
-	if (buffer[0] == 127) {
-		buffer[0] = '\0';
-		if (strlen(result) != 0) {
-			write(1, "\b \b", strlen("\b \b"));
-			result[strlen(result) - 1] = '\0';
-		}
-	}
-}
-
-char *clear_text(char *buffer, char *auto_complete, char *result)
+static char *clear_text(char *buffer, char *auto_complete, char *result)
 {
 	int len = strlen(buffer);
 	char *string = NULL;
@@ -32,32 +21,36 @@ char *clear_text(char *buffer, char *auto_complete, char *result)
 	return (string);
 }
 
-char *check_valid_path(circular_dll_t *list, char *result, char *arg)
+static circular_dll_t *init_data(circular_dll_t *list)
 {
-	circular_dll_t *temp = list->go_to[NEXT];
 	circular_dll_t *data = list->go_to[NEXT];
-	size_t len = 1;
 
 	while (data != list) {
 		if (strlen(((complete_t *)data->data)->valid) != 0)
-			break;
+			return (data);
 		data = data->go_to[NEXT];
 	}
+	return (data);
+}
+
+static char *check_valid_path(circular_dll_t *list, char *result, char *arg)
+{
+	circular_dll_t *temp = list->go_to[NEXT];
+	circular_dll_t *data = init_data(list);
+	size_t len = 1;
+
 	if (data == list)
 		return (arg);
-	while (len != strlen(((complete_t *)data->data)->valid)) {
+	for ( ; len != strlen(((complete_t *)data->data)->valid) ; len++) {
 		temp = list->go_to[NEXT];
 		while (temp != list) {
 			if (strlen(((complete_t *)temp->data)->valid) != 0
 			&& strncmp(((complete_t *)data->data)->valid
-			, ((complete_t *)temp->data)->valid, len) != 0) {
-				len--;
+			, ((complete_t *)temp->data)->valid, len) != 0)
 				return (clear_text(arg, strndup(((complete_t *)
-				data->data)->valid, len), result));
-			}
+				data->data)->valid, --len), result));
 			temp = temp->go_to[NEXT];
 		}
-		len++;
 	}
 	return (clear_text(arg,
 	strndup(((complete_t *)data->data)->valid, len), result));

@@ -9,7 +9,7 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include "shell.h"
-#include "bultin.h"
+#include "builtin.h"
 
 int non_canonic_mode(int i)
 {
@@ -17,8 +17,8 @@ int non_canonic_mode(int i)
 	static struct termios new;
 
 	if (i == 0) {
-		if (ioctl(0 , TCGETS, &old) == -1
-		|| ioctl(0 , TCGETS, &new) == -1)
+		if (ioctl(0, TCGETS, &old) == -1
+		|| ioctl(0, TCGETS, &new) == -1)
 			return (EXIT_FAIL);
 		new.c_lflag &= ~ECHO;
 		new.c_lflag &= ~ICANON;

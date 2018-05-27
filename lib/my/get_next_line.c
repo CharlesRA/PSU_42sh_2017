@@ -6,13 +6,21 @@
 */
 
 #include "linked_list.h"
-#include <stdlib.h>
 #include "shell.h"
-#include "str.h"
 #include <string.h>
-#include <stdio.h>
 
-int check_backslash_n(char *str)
+static void delete_key(char *buffer, char *result)
+{
+	if (buffer[0] == 127) {
+		buffer[0] = '\0';
+		if (strlen(result) != 0) {
+			write(1, "\b \b", strlen("\b \b"));
+			result[strlen(result) - 1] = '\0';
+		}
+	}
+}
+
+static int check_backslash_n(char *str)
 {
 	int i = 0;
 	int mod = 0;
@@ -30,7 +38,7 @@ int check_backslash_n(char *str)
 	return (i);
 }
 
-char* recons(char *buffer, char *result, int to_copy)
+static char *recons(char *buffer, char *result, int to_copy)
 {
 	int len = 0;
 	int i = 0;

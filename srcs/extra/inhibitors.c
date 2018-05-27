@@ -51,6 +51,15 @@ static char *get_the_command_gtl(shell_t *data, char *command, int firstime
 	return (command);
 }
 
+static char *check_for_first_time(char *command, char *all_command, int *firstime)
+{
+	if (*firstime == 0) {
+		*firstime = 1;
+		return (strdup(command));
+	}
+	return (my_strdupcat(all_command, command));
+}
+
 char *get_the_command_cpy(shell_t *data, char *command, char *all_command
 , circular_dll_t *list)
 {
@@ -66,11 +75,8 @@ char *get_the_command_cpy(shell_t *data, char *command, char *all_command
 				printf("? ");
 			continue;
 		}
-		if (firstime == 0) {
-			all_command = strdup(command);
-			firstime = 1;
-		} else
-			all_command = my_strdupcat(all_command, command);
+		all_command = check_for_first_time(command, all_command,
+						&firstime);
 		len = strlen(command);
 		if (len <= 3 && firstime == 1)
 			return (all_command);

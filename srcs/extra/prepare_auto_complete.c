@@ -10,7 +10,7 @@
 #include <string.h>
 #include "shell.h"
 
-void *add_data(circular_dll_t *list, char *read)
+static void add_data(circular_dll_t *list, char *read)
 {
 	complete_t *data = malloc(sizeof(complete_t));
 
@@ -19,7 +19,7 @@ void *add_data(circular_dll_t *list, char *read)
 	add_back(list, data);
 }
 
-void read_file_for_complete(DIR * rep, circular_dll_t *list)
+static void read_file_for_complete(DIR * rep, circular_dll_t *list)
 {
 	struct dirent* data = NULL;
 
@@ -32,7 +32,7 @@ void read_file_for_complete(DIR * rep, circular_dll_t *list)
 	}
 }
 
-void *generate_auto_complete(circular_dll_t *list, char **envp)
+static void generate_auto_complete(circular_dll_t *list, char **envp)
 {
 	circular_dll_t *temp = list->go_to[NEXT];
 	DIR *rep = NULL;
@@ -40,10 +40,10 @@ void *generate_auto_complete(circular_dll_t *list, char **envp)
 	char **path = NULL;
 
 	if (i == -1)
-		return (NULL);
+		return;
 	path = my_str_to_word_array(envp[i] + 5, ':');
 	if (path == NULL)
-		return (NULL);
+		return;
 	for (int i = 0; path[i]; i++) {
 		rep = opendir(path[i]);
 		read_file_for_complete(rep, list);
@@ -70,5 +70,5 @@ int init_ncurses(char **envp, circular_dll_t *list)
 			return (EXIT_FAIL);
 		generate_auto_complete(list, envp);
 	}
-	return (0);
+	return (EXIT_NORMAL);
 }

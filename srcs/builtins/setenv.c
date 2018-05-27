@@ -7,7 +7,7 @@
 
 #include "shell.h"
 
-int overwrite_env(char *envp, shell_t *new)
+static int overwrite_env(char *envp, shell_t *new)
 {
 	int i = 0;
 	int size = my_strlen(envp);
@@ -38,7 +38,7 @@ int check_invalid_char(char *str)
 	return (0);
 }
 
-char **set_env_arg(int i, shell_t *new, char **envp, int overwrite)
+static char **set_env_arg(int i, shell_t *new, char **envp, int overwrite)
 {
 	if (overwrite == 0) {
 		my_realloc_char_star(&envp, 1);
@@ -54,7 +54,7 @@ char **set_env_arg(int i, shell_t *new, char **envp, int overwrite)
 	return (envp);
 }
 
-int set_env_error(shell_t *new, char **envp)
+static int set_env_error(shell_t *new, char **envp)
 {
 	if (check_invalid_char(new->different_command[0][1]) == 1) {
 		new->return_value = 1;

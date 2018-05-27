@@ -7,9 +7,9 @@
 
 #include <stdio.h>
 #include "shell.h"
-#include "bultin.h"
+#include "builtin.h"
 
-char **change_pwd(char **envp)
+static char **change_pwd(char **envp)
 {
 	char *cwd = getcwd(NULL, 0);
 	int i = 0;
@@ -27,7 +27,7 @@ char **change_pwd(char **envp)
 	return (NULL);
 }
 
-char **change_old_pwd(char **envp)
+static char **change_old_pwd(char **envp)
 {
 	char *cwd = getcwd(NULL, 0);
 	int i = 0;
@@ -49,7 +49,7 @@ char **change_old_pwd(char **envp)
 	return (envp);
 }
 
-int change_directory_part_two(shell_t *new, char **env)
+static int change_directory_part_two(shell_t *new, char **env)
 {
 	char *home;
 	int dir = 0;
@@ -73,7 +73,7 @@ int change_directory_part_two(shell_t *new, char **env)
 	return (EXIT_NORMAL);
 }
 
-char *compare_cd(shell_t *new, char *cwd, char **env)
+static char *compare_cd(shell_t *new, char *cwd, char **env)
 {
 	int dir = 0;
 

@@ -62,7 +62,7 @@ static char *find_variable(circular_dll_t *variables, char **envp
 	return (command);
 }
 
-char *replace_variable(circular_dll_t *variables, char **envp, char *command)
+char *replace_variable(circular_dll_t *vars, char **envp, char *command)
 {
 	char *copy = strdup(command);
 	char *fail = NULL;
@@ -71,8 +71,7 @@ char *replace_variable(circular_dll_t *variables, char **envp, char *command)
 
 	for (int i = 0 ; command[i] ; i++) {
 		if (command[i] == '$')
-			command = find_variable(variables, envp,
-						command + i, i);
+			command = find_variable(vars, envp, command + i, i);
 		if (command == NULL) {
 			fail = strndup(copy + i + 1, len - i - 1);
 			fprintf(stderr, "%s: Undefined variable.\n", fail);

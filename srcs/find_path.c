@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "shell.h"
-#include "bultin.h"
+#include "builtin.h"
 #include "variables.h"
 
 static char *check_access_command(shell_t *data, char *command)

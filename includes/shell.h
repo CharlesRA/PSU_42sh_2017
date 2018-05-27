@@ -86,7 +86,6 @@ char *history_handling(circular_dll_t *history_list, char *terminal_str);
 char *remove_backslash(char *command);
 char *get_the_command_cpy(shell_t *data, char *command, char *all_command
 , circular_dll_t *list);
-void delete_key(char *buffer, char *result);
 int non_canonic_mode(int i);
 int init_ncurses(char **envp, circular_dll_t *list);
 

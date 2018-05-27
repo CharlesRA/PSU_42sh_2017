@@ -73,5 +73,4 @@ char **set_all_variable(char **variables, shell_t *data,
 						strstr(variables[i], "=") + 1);
 		add_variable(data->variables, new_variable);
 	}
-
 }

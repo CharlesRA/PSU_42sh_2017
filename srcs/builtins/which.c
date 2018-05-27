@@ -21,4 +21,5 @@ char **display_which(shell_t *data, char **env)
 		}
 	}
 	fflush(stdout);
+	return (NULL);
 }

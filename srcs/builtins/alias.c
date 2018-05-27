@@ -8,7 +8,7 @@
 #include <string.h>
 #include "shell.h"
 
-void find_occurence_alias(shell_t *data, circular_dll_t *temp, int i)
+static void find_occurence_alias(shell_t *data, circular_dll_t *temp, int i)
 {
 	if (strcmp(data->different_command[0][i]
 	, ((alias_t *) temp->data)->alias) == 0)
@@ -29,7 +29,7 @@ void replace_alias(shell_t *data)
 	}
 }
 
-void *add_alias_to_list(circular_dll_t *list, char *shortcut, char *value)
+static void *add_alias_to_list(circular_dll_t *list, char *shortcut, char *value)
 {
 	alias_t *alias = malloc(sizeof(alias_t));
 
