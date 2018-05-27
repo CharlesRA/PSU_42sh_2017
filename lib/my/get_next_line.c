@@ -78,10 +78,8 @@ char *get_next_line(int fd, circular_dll_t *list)
 		delete_key(buffer, result);
 		result = my_strdupcat(result, buffer);
 		to_copy = check_backslash_n(result);
-		if (to_copy != 0) {
-			buffer = recons(buffer, result, to_copy);
-			return (buffer);
-		}
+		if (to_copy != 0)
+			return (recons(buffer, result, to_copy));
 	}
 	get_next_line(fd, list);
 }

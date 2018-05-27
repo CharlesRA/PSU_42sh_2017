@@ -27,7 +27,6 @@ enum OPERATOR {
 
 typedef struct s_shell
 {
-	int return_value;
 	char **array;
 	char **binaries;
 	char *priority;
@@ -37,6 +36,7 @@ typedef struct s_shell
 	circular_dll_t *variables;
 	circular_dll_t *history;
 	circular_dll_t *alias;
+	int return_value;
 	int is_eof;
 } shell_t;
 

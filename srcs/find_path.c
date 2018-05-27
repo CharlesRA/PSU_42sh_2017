@@ -13,12 +13,9 @@
 
 static char *check_access_command(shell_t *data, char *command)
 {
-	if (command[0] == '.' || strstr(command, "/")) {
-		if (access(command, F_OK) == 0)
-			return (access(command, X_OK) == 0 ? command : NULL);
-		else
-			return (NULL);
-	}
+	if (strstr(command, "/"))
+		return (access(command, F_OK) == 0 &&
+			access(command, X_OK) == 0 ? command : NULL);
 	if (data->binaries != NULL)
 		for (int i = 0 ; data->binaries[i] != NULL ; i++) {
 			data->binaries[i]
@@ -36,6 +33,8 @@ static char *find_variable_path(char **envp, char *command, shell_t *data)
 {
 	int i = 0;
 
+	if (envp == NULL)
+		return (command);
 	while (envp[i] != NULL) {
 		if (my_strstr(envp[i], "PATH=") == 1) {
 			data->binaries = my_str_to_word_array(envp[i] + 5, ':');
@@ -43,7 +42,7 @@ static char *find_variable_path(char **envp, char *command, shell_t *data)
 		}
 		i++;
 	}
-	data->binaries = NULL;
+	data->binaries = my_str_to_word_array("/bin", ' ');
 	return (command);
 }
 
