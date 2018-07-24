@@ -41,7 +41,6 @@ int check_invalid_char(char *str)
 static char **set_env_arg(int i, shell_t *new, char **envp, int overwrite)
 {
 	if (overwrite == 0) {
-		my_realloc_char_star(&envp, 1);
 		envp[i + 1] = NULL;
 	}
 	new->different_command[0][1]

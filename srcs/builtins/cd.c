@@ -42,7 +42,6 @@ static char **change_old_pwd(char **envp)
 	else {
 		i = my_array_len(envp);
 		envp[i] = my_strdupcat("OLDPWD=", cwd);
-		my_realloc_char_star(&envp, 1);
 		envp[i + 1] = NULL;
 	}
 	free(cwd);

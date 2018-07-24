@@ -49,7 +49,6 @@ SRC	=	$(SRC_DIR)/my_strlen.c	\
 		$(SRC_DIR)/my_strlen.c\
 		$(SRC_DIR)/my_strdupcat.c\
 		$(SRC_DIR)/my_strstr.c\
-		$(SRC_DIR)/my_realloc.c\
 		$(SRC_DIR)/puts.c\
 		$(SRC_DIR)/find_line_env.c\
 		$(SRC_DIR)/my_strdup.c\
@@ -64,7 +63,7 @@ AR	=	ar rc
 
 CC	=	gcc
 
-CFLAGS	=	#-Wall -Wextra -Werror
+CFLAGS	=	-std=c99 #-Wall -Wextra -Werror
 
 CPPFLAGS=	-I../../includes/
 

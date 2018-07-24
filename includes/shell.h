@@ -7,7 +7,8 @@
 
 #ifndef SHELL_H
 #define SHELL_H
-
+#include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include "define.h"
 #include "alias.h"

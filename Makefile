@@ -85,7 +85,7 @@ UT2	=	$(SRC_DIR)/find_path.c\
 
 RM	=	rm -f
 
-CFLAGS	=	#-W -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter
+CFLAGS	=	-std=c99#-W -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter
 
 CPPFLAGS=	-I./includes/
 
